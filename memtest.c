@@ -363,7 +363,7 @@ void main(void)
     //prompting user to enter start address
     while(!start_addr){
         printf("\r\nPlease enter a starting address from 08020000 to 08030000\r\n");
-        scanf("%d", &start_addr);
+        scanf("%x", &start_addr);
 
         if(start_addr<0x08020000 || start_addr>0x08030000){
             printf("\r\nStart address is invalid\r\n");
@@ -372,14 +372,14 @@ void main(void)
             printf("\r\nFor words or long words, please enter an even numbered address\r\n");
             end_addr = 0;
         } else{
-            printf("\r\nThe chosen starting address is: %x", start_addr);
+            printf("\r\nThe chosen starting address is: %x\r\n", start_addr);
         }
     }
 
     //prompting user to enter end address
     while(!end_addr){
         printf("\r\nPlease enter an end address from %x to 08030000\r\n", start_addr);
-        scanf("%d", &end_addr);
+        scanf("%x", &end_addr);
 
         if(end_addr<start_addr || end_addr>0x08030000){
             printf("\r\nEnd address is invalid\r\n");
@@ -388,7 +388,7 @@ void main(void)
             printf("\r\nFor words or long words, please enter an even numbered address\r\n");
             end_addr = 0;
         } else{
-            printf("\r\nThe chosen ending address is: %x", end_addr);
+            printf("\r\nThe chosen ending address is: %x\r\n", end_addr);
         }
     }
 
@@ -420,7 +420,7 @@ void main(void)
     //reading data
     while(addr_point<end_addr){
         if(*addr_point != write_data){
-            printf("\r\nAn Error has occurred: data at address %x expected to be %x, instead is reading %x", addr_point, write_data, *addr_point);
+            printf("\r\nAn Error has occurred: data at address %x expected to be %x, instead is reading %x\r\n", addr_point, write_data, *addr_point);
             printf("\r\nMemory test failed.\r\n");
             break;
         }
