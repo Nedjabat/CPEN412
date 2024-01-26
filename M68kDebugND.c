@@ -1510,8 +1510,8 @@ void main(void)
     char c ;
     int i, j ;
 
-    char *BugMessage = "Anna Yun 94902673";
-    char *CopyrightMessage = "Copyright (C) PJ Davies 2016";
+    char *BugMessage = "CPEN412 - Lab 1";
+    char *CopyrightMessage = "Ryan Nedjabat 67501510; Anna Yun 94902673";
 
     KillAllBreakPoints() ;
 
