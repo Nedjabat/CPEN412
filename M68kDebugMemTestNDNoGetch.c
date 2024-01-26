@@ -1504,7 +1504,7 @@ void EnterString(void)
 
 void MemoryTest(void)
 {
-    char test_option, test_pattern;
+    unsigned int test_option = 0;
 unsigned int bit_num = 0;
 unsigned int test_pattern = 0;
 unsigned int select_pattern = 0;
@@ -1514,13 +1514,6 @@ unsigned int end_addr = 0;
 unsigned int *addr_point = NULL;
 unsigned int counter = 2000;
 
-    while(1)    {
-                       // dump unread characters from keyboard
-
-        c = toupper(_getch());
-
-        if( c == (char)('L'))                  // load s record file
-             Load_SRecordFile() ;
 
 //prompting user for test option BYTES, WORDS, or LONG WORDS
 while(!test_option){
@@ -1529,11 +1522,10 @@ while(!test_option){
     "\r\n1 - Bytes"
     "\r\n2 - Words"
     "\r\n3 - Long Words\r\n");
-    FlushKeyboard();
-    printf("\r\n#");
-    test_option= toupper(_getch());
 
-    if((test_option != (char)('1') && test_option != (char)('2') && test_option != (char)('3')) || test_option == (char)('0')){
+    scanf("%d", &test_option);
+
+    if((test_option != 1 && test_option != 2 && test_option != 3) || test_option == 0){
         printf("\r\nInvalid Selection\r\n");
         test_option = 0;
     }
@@ -1570,11 +1562,9 @@ while(!select_pattern){
     "\r\n3 - FF"
     "\r\n4 - 00\r\n");
 
-    FlushKeyboard();
-    printf("\r\n#");
-    select_pattern = toupper(_getch());
+    scanf("%d", &select_pattern);
 
-    if((select_pattern != (char)('1') && select_pattern != (char)('2') && select_pattern != (char)('3') && select_pattern != (char)('4')) || select_pattern == 0){
+    if((select_pattern != 1 && select_pattern != 2 && select_pattern != 3 && select_pattern != 4) || select_pattern == 0){
         printf("\r\nInvalid Selection\r\n");
         select_pattern = 0;
     }
@@ -1626,7 +1616,7 @@ switch(test_option){
 //prompting user to enter start address
 while(!start_addr){
     printf("\r\nPlease enter a starting address from 08020000 to 08030000\r\n");
-    start_addr = Get8HexDigits(0);
+    scanf("%x", &start_addr);
 
     if(start_addr<0x08020000 || start_addr>0x08030000){
         printf("\r\nStart address is invalid\r\n");
@@ -1642,7 +1632,7 @@ while(!start_addr){
 //prompting user to enter end address
 while(!end_addr){
     printf("\r\nPlease enter an end address from %x to 08030000\r\n", start_addr);
-    end_addr = Get8HexDigits(0);
+    scanf("%x", &end_addr);
 
     if(end_addr<start_addr || end_addr>0x08030000){
         printf("\r\nEnd address is invalid\r\n");
@@ -1713,7 +1703,7 @@ void main(void)
     int i, j ;
 
     char *BugMessage = "DE1-68k Bug V1.77";
-    char *CopyrightMessage = "Copyright (C) PJ Davies 2016 getch";
+    char *CopyrightMessage = "Copyright (C) PJ Davies 2016";
     char* Name1 = "Ryan Nedjabat 67501510";
     char* Name2 = "Anna Yun 94902673";
 
