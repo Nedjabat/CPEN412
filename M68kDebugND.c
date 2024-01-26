@@ -1454,20 +1454,11 @@ void MemoryTest(void)
     //writing data
     while(addr_point<end_addr){
 
-        *addr_point = write_data;
+        *addr_point++ = write_data;
         counter++;
         if(counter >= 2000){
             printf("\r\nWriting %x into address %x\r\n", *addr_point, addr_point);
             counter = 1;
-        }
-
-        //need to increment address pointer according to test option chosen (bytes, words, long words)
-        if(test_option == '1'){
-            addr_point = addr_point+1;
-        } else if(test_option == '2'){
-            addr_point = addr_point+2;
-        }else if(test_option == '3'){
-            addr_point = addr_point+4;
         }
     }
     printf("\r\nWriting completed. Will now start reading.\r\n");
@@ -1487,15 +1478,7 @@ void MemoryTest(void)
             printf("\r\nReading data value %x from address %x\r\n", *addr_point, addr_point);
             counter = 1;
         }
-
-        //need to increment address pointer according to test option chosen (bytes, words, long words)
-        if(test_option == '1'){
-            addr_point = addr_point+1;
-        } else if(test_option == '2'){
-            addr_point = addr_point+2;
-        }else if(test_option == '3'){
-            addr_point = addr_point+4;
-        }
+        addr_point++;
     }
 
     if(fail == 1){
