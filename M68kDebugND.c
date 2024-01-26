@@ -1447,11 +1447,13 @@ void MemoryTest(void)
         }
     }
 
+    FlushKeyboard();
     //set address pointer to start pointer
     addr_point = start_addr;
 
     //writing data
     while(addr_point<end_addr){
+
         *addr_point = write_data;
         counter++;
         if(counter >= 2000){
@@ -1460,11 +1462,11 @@ void MemoryTest(void)
         }
 
         //need to increment address pointer according to test option chosen (bytes, words, long words)
-        if(test_option == 1){
+        if(test_option == '1'){
             addr_point = addr_point+1;
-        } else if(test_option == 2){
+        } else if(test_option == '2'){
             addr_point = addr_point+2;
-        }else if(test_option == 3){
+        }else if(test_option == '3'){
             addr_point = addr_point+4;
         }
     }
@@ -1487,11 +1489,11 @@ void MemoryTest(void)
         }
 
         //need to increment address pointer according to test option chosen (bytes, words, long words)
-        if(test_option == 1){
+        if(test_option == '1'){
             addr_point = addr_point+1;
-        } else if(test_option == 2){
+        } else if(test_option == '2'){
             addr_point = addr_point+2;
-        }else if(test_option == 3){
+        }else if(test_option == '3'){
             addr_point = addr_point+4;
         }
     }
