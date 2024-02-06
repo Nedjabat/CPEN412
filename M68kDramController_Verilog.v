@@ -66,10 +66,10 @@ module M68kDramController_Verilog (
 		reg  CPU_Dtack_L;											// Dtack back to CPU
 		reg  CPUReset_L;
 
-		reg unsigned [15:0] RefreshCount;
-		reg unsigned [15:0] NOPCount;
-		reg unsigned [15:0] ProgNOPCount;
-		reg unsigned [15:0] RefreshNOPCount;		
+		reg unsigned [15:0] RefreshCount = 16'd0;
+		reg unsigned [15:0] NOPCount = 16'd0;
+		reg unsigned [15:0] ProgNOPCount = 16'd0;
+		reg unsigned [15:0] RefreshNOPCount = 16'd0;		
 
 		// 5 bit Commands to the SDRam
 
@@ -233,8 +233,8 @@ module M68kDramController_Verilog (
 		Command 	<= NOP ;												// assume no operation command for Dram chip
 		NextState <= InitialisingState ;							// assume next state will always be idle state unless overridden the value used here is not important, we cimple have to assign something to prevent storage on the signal so anything will do
 		
-		TimerValue <= 16'h0000;										// no timer value 
-		RefreshTimerValue <= 16'h0000 ;							// no refresh timer value
+		//TimerValue <= 16'h0000;										// no timer value 
+		//RefreshTimerValue <= 16'h0000 ;							// no refresh timer value
 		TimerLoad_H <= 0;												// don't load Timer
 		RefreshTimerLoad_H <= 0 ;									// don't load refresh timer
 		DramAddress <= 13'h0000 ;									// no particular dram address
@@ -249,100 +249,119 @@ module M68kDramController_Verilog (
 		// during the initialising state, the drams have to power up and we cannot access them for a specified period of time (100 us)
 		// we are going to load the timer above with a value equiv to 100us and then wait for timer to time out
 	
-		if(CurrentState == InitialisingState ) begin
-			TimerValue <= 16'h0000;									// chose a value equivalent to 100us at 50Mhz clock - you might want to shorten it to somthing small for simulation purposes
+		if(CurrentState == InitialisingState ) 
+		begin
+			TimerValue <= 16'h0000;		
+										// chose a value equivalent to 100us at 50Mhz clock - you might want to shorten it to somthing small for simulation purposes
 			TimerLoad_H <= 1 ;
-			NOPCount <= 0;
-			RefreshCount <= 0;			// on next edge of clock, timer will be loaded and start to time out
+			NOPCount <= 16'd0;
+			RefreshCount <= 16'd0;			// on next edge of clock, timer will be loaded and start to time out
 			Command <= PoweringUp ;									// clock enable and chip select to the Zentel Dram chip must be held low (disabled) during a power up phase
 			NextState <= WaitingForPowerUpState ;				// once we have loaded the timer, go to a new state where we wait for the 100us to elapse
 		end
-		
-		else if(CurrentState == WaitingForPowerUpState) begin
+		else if(CurrentState == WaitingForPowerUpState) 
+		begin
 			Command <= PoweringUp ;									// no DRam clock enable or CS while witing for 100us timer
-			if(TimerDone_H == 1) begin					// if timer has timed out i.e. 100us have elapsed
+			if(TimerDone_H == 1) 
+			begin					// if timer has timed out i.e. 100us have elapsed
 				NextState <= IssueFirstNOP ;				// take CKE and CS to active and issue a 1st NOP command
 			end
 			else begin
 				NextState <= WaitingForPowerUpState ;			// otherwise stay here until power up time delay finished
 			end
 		end
-		
-		else if(CurrentState == IssueFirstNOP) begin	 		// issue a valid NOP
+		else if(CurrentState == IssueFirstNOP) 
+		begin	 		// issue a valid NOP
 			CPUReset_L <= 0;
 			Command <= NOP ;											// send a valid NOP command to the dram chip
 			NextState <= PrechargingAllBanks;
 		end		
-		else if(CurrentState == PrechargingAllBanks) begin
+		else if(CurrentState == PrechargingAllBanks) 
+		begin
 			Command <= PrechargeAllBanks;
 			NextState <= IssueNOP;
 			DramAddress[10] <= 1;
 		end
-		else if(CurrentState == IssueNOP) begin
+		else if(CurrentState == IssueNOP) 
+		begin
 			Command <= NOP;
 			NextState <= Refresh;
 			DramAddress[10] <= 0;
 		end
-		else if(CurrentState == Refresh) begin
+		else if(CurrentState == Refresh) 
+		begin
 			Command <= AutoRefresh;
 			RefreshCount = RefreshCount + 16'd1;
-			if(RefreshCount == (16'd10)) begin
+			if(RefreshCount == (16'd10)) 
+			begin
 				NextState <= ProgMode;
-				RefreshCount = 0;
+				RefreshCount = 16'd0;
 			end
-			else begin
+			else 
+			begin
 				NextState <= NOPCheck;
 			end
 		end
-		else if (CurrentState == NOPCheck) begin
+		else if (CurrentState == NOPCheck) 
+		begin
 			Command <= NOP;
 			NOPCount = NOPCount + 16'd1;
-			if(NOPCount == (16'd3)) begin
+			if(NOPCount == (16'd3)) 
+			begin
 				NextState <= Refresh;
-				NOPCount = 0;
+				NOPCount = 16'd0;
 			end
-			else begin
+			else 
+			begin
 				NextState <= NOPCheck;
 			end
 		end	
-		else if (CurrentState == ProgMode) begin
+		else if (CurrentState == ProgMode) 
+		begin
 			Command <= ModeRegisterSet;
 			NextState <= IssueNOPPostProg;
 												//unsure if need to write load data
 			DramAddress[10] <= 0;
 			BankAddress <= 2'b00;
 		end
-		else if (CurrentState == IssueNOPPostProg) begin
+		else if (CurrentState == IssueNOPPostProg) 
+		begin
 			Command <= NOP;
 			ProgNOPCount = ProgNOPCount + 16'd1;
-			if (ProgNOPCount < 16'd3) begin
+			if (ProgNOPCount < 16'd3) 
+			begin
 				NextState <= IssueNOPPostProg;
-				ProgNOPCount = 0;
+				ProgNOPCount = 16'd0;
 			end
-			else begin
+			else 
+			begin
 				NextState <= LoadRefreshTimer;
 			end
 		end
-		else if (CurrentState == LoadRefreshTimer) begin
+		else if (CurrentState == LoadRefreshTimer) 
+		begin
 			Command <= NOP;
 			NextState <= Idle;
 			RefreshTimerLoad_H <= 1;
 			RefreshTimerValue <= 16'd375;
 		end
-		else if (CurrentState == Idle) begin
+		else if (CurrentState == Idle) 
+			begin
 			RefreshTimerLoad_H <= 0;
 			Command <= NOP;
 			CPUReset_L <= 1;
-			ProgNOPCount = 0;
-			NOPCount = 0;
-			if(RefreshTimerDone_H == 1) begin
+			ProgNOPCount = 16'd0;
+			NOPCount = 16'd0;
+			if(RefreshTimerDone_H == 1) 
+			begin
 				NextState <= IssueFirstNOP;
 			end
 			//else if ((DramSelect_L == 0) && (AS_L == 0)) begin
 				//DramAddress <= Address[23:11];
 				//BankAddress <= Address[25:24];
 				//Command <= BankActivate;
-			else begin
+			else 
+			begin
 				NextState <= Idle;	
 			end
 		end
@@ -351,26 +370,33 @@ module M68kDramController_Verilog (
 			NextState <= RefreshOneNOP;
 			DramAddress[10] <= 1;
 		end
-		else if (CurrentState == RefreshOneNOP) begin
+		else if (CurrentState == RefreshOneNOP) 
+			begin
 			Command <= NOP;
 			NextState <= RefreshRefresh;
-		end
-		else if (CurrentState == RefreshRefresh) begin
+			end
+		else if (CurrentState == RefreshRefresh) 
+			begin
 			Command <= AutoRefresh;		
 			NextState <= RefreshNOPCheck;
-		end
-		else if (CurrentState == RefreshNOPCheck) begin
+			end
+		else if (CurrentState == RefreshNOPCheck) 
+			begin
 			Command <= NOP;
 			RefreshNOPCount = RefreshNOPCount + 16'd1;
 			if(RefreshNOPCount == (16'd3)) begin
 				RefreshTimerLoad_H <= 1;
 				NextState <= Idle;
 			end
-			else begin
+			else 
+			begin
 				NextState <= RefreshNOPCheck;
 			end
 		end	
-			
-
+		else
+		begin
+			Command <= NOP;
+			NextState <= Idle;
+		end
 	end
 endmodule
