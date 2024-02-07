@@ -251,8 +251,8 @@ module M68kDramController_Verilog (
 	
 		if(CurrentState == InitialisingState ) 
 		begin
-			TimerValue <= 16'h0000;		
-			ProgNOPCount <= 16'd0;
+			TimerValue <= 16'h0000;
+			TimerLoad_H <= 1;			
 			//NOPCount <= 16'd0;							// chose a value equivalent to 100us at 50Mhz clock - you might want to shorten it to somthing small for simulation purposes
 			//RefreshCount <= 16'd0;
 			//RefreshNOPCount <= 0;			// on next edge of clock, timer will be loaded and start to time out
@@ -404,8 +404,7 @@ module M68kDramController_Verilog (
 	always@(posedge Clock)
 	begin
 		if(CurrentState == InitialisingState ) 
-		begin
-			TimerValue <= 16'h0000;		
+		begin	
 			ProgNOPCount <= 16'd0;
 			NOPCount <= 16'd0;							// chose a value equivalent to 100us at 50Mhz clock - you might want to shorten it to somthing small for simulation purposes
 			RefreshCount <= 16'd0;
