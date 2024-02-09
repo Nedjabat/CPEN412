@@ -114,7 +114,11 @@ module M68kDramController_Verilog (
       parameter RefreshOneNOP = 5'h0D;
 		parameter RefreshRefresh = 5'h0E;
 		parameter RefreshNOPCheck = 5'h0F;
-
+		parameter ReadState = 5'h10;
+		parameter WriteState = 5'h11;
+		parameter WaitCas = 5'h12;
+		parameter OneClock = 5'h13;
+		parameter TermBus = 5'h14;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // General Timer for timing and counting things: Loadable and counts down on each clock then produced a TimerDone signal and stops counting
@@ -244,7 +248,7 @@ module M68kDramController_Verilog (
 		DramDataLatch_H <= 0;										// don't latch data yet
 		CPU_Dtack_L <= 1 ;											// don't acknowledge back to 68000
 		SDramWriteData <= 16'h0000 ;								// nothing to write in particular
-		CPUReset_L <= 0 ;												// default is reset to CPU (for the moment, though this will change when design is complete so that reset-out goes high at the end of the dram initialisation phase to allow CPU to resume)
+		//CPUReset_L <= 0 ;												// default is reset to CPU (for the moment, though this will change when design is complete so that reset-out goes high at the end of the dram initialisation phase to allow CPU to resume)
 		FPGAWritingtoSDram_H <= 0 ;								// default is to tri-state the FPGA data lines leading to bi-directional SDRam data lines, i.e. assume a read operation
 
 		// put your current state/next state decision making logic here - here are a few states to get you started
@@ -259,7 +263,6 @@ module M68kDramController_Verilog (
 			//NOPCount <= 16'd0;							// chose a value equivalent to 100us at 50Mhz clock - you might want to shorten it to somthing small for simulation purposes
 			//RefreshCount <= 16'd0;
 			//RefreshNOPCount <= 0;			// on next edge of clock, timer will be loaded and start to time out
-			TimerLoad_H <= 1 ;
 			Command <= PoweringUp ;									// clock enable and chip select to the Zentel Dram chip must be held low (disabled) during a power up phase
 			NextState <= WaitingForPowerUpState ;				// once we have loaded the timer, go to a new state where we wait for the 100us to elapse
 		end
@@ -285,8 +288,8 @@ module M68kDramController_Verilog (
 		begin
 			//CPUReset_L <= 0;
 			Command <= PrechargeAllBanks;
-			DramAddress[10] <= 1;
 			NextState <= IssueNOP;
+			DramAddress[10] <= 1;
 		end
 		else if(CurrentState == IssueNOP) //0110
 		begin
@@ -315,7 +318,7 @@ module M68kDramController_Verilog (
 			//CPUReset_L <= 0;
 			Command <= NOP;
 			//NOPCount <= NOPCount + 16'd1;
-			if(NOPCount < (16'd3)) 
+			if(NOPCount < (16'd2)) 
 			begin
 				NextState <= NOPCheck;
 			end
@@ -338,7 +341,7 @@ module M68kDramController_Verilog (
 		begin
 			//CPUReset_L <= 0;
 			Command <= NOP;
-			if (ProgNOPCount < 16'd3) 
+			if (ProgNOPCount < 16'd2) 
 			begin
 				NextState <= IssueNOPPostProg;
 			end
@@ -359,15 +362,14 @@ module M68kDramController_Verilog (
 		else if (CurrentState == Idled) //0100
 			begin
 			CPUReset_L <= 1;
-			RefreshTimerLoad_H <= 0;
 			Command <= NOP;
-			CPUReset_L <= 1;
 			//RefreshNOPCount <= 0;
 			if(RefreshTimerDone_H == 1) 
 			begin
 				NextState <= RefreshPrecharge;
 			end
-			else if ((DramSelect_L == 0) && (AS_L == 0)) begin
+			else if ((DramSelect_L == 0) && (AS_L == 0)) 
+			begin
 				DramAddress <= Address[23:11];
 				BankAddress <= Address[25:24];
 				Command <= BankActivate;
@@ -377,7 +379,7 @@ module M68kDramController_Verilog (
 				begin
 					NextState <= WriteState;
 				end
-					
+			end
 			else 
 			begin
 				NextState <= Idled;	
@@ -403,7 +405,7 @@ module M68kDramController_Verilog (
 			begin
 			Command <= NOP;
 			//RefreshNOPCount <= RefreshNOPCount + 16'd1;
-			if(RefreshNOPCount < (16'd3)) 
+			if(RefreshNOPCount < (16'd2)) 
 			begin
 				NextState <= RefreshNOPCheck;
 			end
@@ -412,10 +414,82 @@ module M68kDramController_Verilog (
 				RefreshTimerLoad_H <= 1;
 				NextState <= Idled;
 			end
-		end	
+		end
+		else if(CurrentState == ReadState) begin 
+
+			CPUReset_L <= 1;
+			DramAddress[9:0] <= Address[10:1];
+			DramAddress[10] <= 1;
+			BankAddress <= Address[25:24];				///***///
+			Command <= ReadAutoPrecharge;
+			TimerLoad_H <= 1;
+			TimerValue <= 16'd2;
+			NextState <= WaitCas; 
+
+		end
+
+		else if(CurrentState == WriteState) begin
+
+			CPUReset_L <= 1;
+			if ((UDS_L == 0) || (LDS_L == 0)) begin    	
+				DramAddress[9:0] <= Address[10:1];
+				DramAddress[10] <= 1;
+				BankAddress <= Address[25:24];			///***///
+				Command <= WriteAutoPrecharge;
+				CPU_Dtack_L <= 0;
+				FPGAWritingtoSDram_H <= 1;
+				SDramWriteData <= DataIn; //pseudo code confusing with wording, could be potentially incorrect assignment
+				NextState <= OneClock;
+			end
+			else 
+				NextState <= WriteState;
+
+		end
+
+		else if(CurrentState == OneClock) begin
+
+			CPUReset_L <= 1;
+			CPU_Dtack_L <= 0;
+			Command <= NOP;
+			FPGAWritingtoSDram_H <= 1;
+			SDramWriteData <= DataIn;
+			NextState <= TermBus;
+
+		end
+
+		else if (CurrentState == WaitCas) begin
+
+			CPUReset_L <= 1;
+			CPU_Dtack_L <= 0;
+			DramDataLatch_H <= 1;
+			Command <= NOP;
+
+			if(TimerDone_H == 1) 
+			begin
+				NextState <= TermBus;
+			end
+			else 
+				NextState <= WaitCas;
+		
+		end
+
+		else if (CurrentState == TermBus) 
+		begin 
+
+			CPUReset_L <= 1;
+			Command <= NOP;
+			if((UDS_L == 0)||(LDS_L == 0)) 
+			begin
+				CPU_Dtack_L <= 0;
+				NextState <= TermBus;
+			end
+			else 
+				NextState <= Idled; 	
+		end
 		else
 		begin
 			Command <= NOP;
+			CPUReset_L <= 1;
 			NextState <= Idled;
 		end
 	end
@@ -426,7 +500,7 @@ module M68kDramController_Verilog (
 			ProgNOPCount <= 16'd0;
 			NOPCount <= 16'd0;							// chose a value equivalent to 100us at 50Mhz clock - you might want to shorten it to somthing small for simulation purposes
 			RefreshCount <= 16'd0;
-			RefreshNOPCount <= 0;			// on next edge of clock, timer will be loaded and start to time out
+			RefreshNOPCount <= 16'd0;			// on next edge of clock, timer will be loaded and start to time out
 			// once we have loaded the timer, go to a new state where we wait for the 100us to elapse
 		end	
 		else if(CurrentState == Refresh) 

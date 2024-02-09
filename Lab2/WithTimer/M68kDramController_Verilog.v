@@ -65,11 +65,7 @@ module M68kDramController_Verilog (
 		reg  FPGAWritingtoSDram_H;								// When '1' enables FPGA data out lines leading to SDRAM to allow writing, otherwise they are set to Tri-State "Z"
 		reg  CPU_Dtack_L;											// Dtack back to CPU
 		reg  CPUReset_L;
-
-		reg unsigned [15:0] RefreshCount;
-		reg unsigned [15:0] NOPCount;
-		reg unsigned [15:0] ProgNOPCount;
-		reg unsigned [15:0] RefreshNOPCount;		
+	
 
 		// 5 bit Commands to the SDRam
 
@@ -103,7 +99,7 @@ module M68kDramController_Verilog (
 		
 		
 		// TODO - Add your own states as per your own design
-		//parameter OneMoreNOP = 5'h05;
+		parameter NOPPostRefresh = 5'h05;
       parameter IssueNOP = 5'h06;
     	parameter Refresh = 5'h07;
       parameter NOPCheck = 5'h08;
@@ -114,7 +110,11 @@ module M68kDramController_Verilog (
       parameter RefreshOneNOP = 5'h0D;
 		parameter RefreshRefresh = 5'h0E;
 		parameter RefreshNOPCheck = 5'h0F;
-
+		parameter ReadState = 5'h10;
+		parameter WriteState = 5'h11;
+		parameter WaitCas = 5'h12;
+		parameter OneClock = 5'h13;
+		parameter TermBus = 5'h14;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // General Timer for timing and counting things: Loadable and counts down on each clock then produced a TimerDone signal and stops counting
@@ -235,7 +235,7 @@ module M68kDramController_Verilog (
 		Command 	<= NOP ;												// assume no operation command for Dram chip
 		NextState <= InitialisingState ;							// assume next state will always be idle state unless overridden the value used here is not important, we cimple have to assign something to prevent storage on the signal so anything will do
 		
-		//TimerValue <= 16'h0000;										// no timer value 
+		TimerValue <= 16'h0000;										// no timer value 
 		RefreshTimerValue <= 16'h0000 ;							// no refresh timer value
 		TimerLoad_H <= 0;												// don't load Timer
 		RefreshTimerLoad_H <= 0 ;									// don't load refresh timer
@@ -259,7 +259,6 @@ module M68kDramController_Verilog (
 			//NOPCount <= 16'd0;							// chose a value equivalent to 100us at 50Mhz clock - you might want to shorten it to somthing small for simulation purposes
 			//RefreshCount <= 16'd0;
 			//RefreshNOPCount <= 0;			// on next edge of clock, timer will be loaded and start to time out
-			TimerLoad_H <= 1 ;
 			Command <= PoweringUp ;									// clock enable and chip select to the Zentel Dram chip must be held low (disabled) during a power up phase
 			NextState <= WaitingForPowerUpState ;				// once we have loaded the timer, go to a new state where we wait for the 100us to elapse
 		end
@@ -285,13 +284,15 @@ module M68kDramController_Verilog (
 		begin
 			//CPUReset_L <= 0;
 			Command <= PrechargeAllBanks;
-			DramAddress[10] <= 1;
 			NextState <= IssueNOP;
+			DramAddress[10] <= 1;
 		end
 		else if(CurrentState == IssueNOP) //0110
 		begin
 			//CPUReset_L <= 0;
 			Command <= NOP;
+            TimerLoad_H <= 1'b1;
+            TimerValue <= 16'd40;
 			NextState <= Refresh;
 			DramAddress[10] <= 0;
 		end
@@ -300,52 +301,44 @@ module M68kDramController_Verilog (
 			//CPUReset_L <= 0;
 			Command <= AutoRefresh;
 			//RefreshCount = RefreshCount + 16'd1;
-			if(RefreshCount == (16'd10)) 
+			if(TimerDone_H == 1) 
 			begin
 				NextState <= ProgMode;
 				//RefreshCount = 16'd0;
 			end
-			else 
+			else if (Timer % 4 == 0)
 			begin
+                Command <= AutoRefresh;
 				NextState <= NOPCheck;
 			end
-		end
-		else if (CurrentState == NOPCheck) //1000
-		begin
-			//CPUReset_L <= 0;
-			Command <= NOP;
-			//NOPCount <= NOPCount + 16'd1;
-			if(NOPCount < (16'd3)) 
-			begin
-				NextState <= NOPCheck;
-			end
-			else 
-			begin
+            else
+            begin
+                Command <= NOP;
 				NextState <= Refresh;
-				//NOPCount <= 16'd0;
-			end
+            end
 		end	
 		else if (CurrentState == ProgMode) //1001
 		begin
 			//CPUReset_L <= 0;
+            DramAddress <= 16'h400;
 			Command <= ModeRegisterSet;
 			NextState <= IssueNOPPostProg;
 												//unsure if need to write load data
-			DramAddress[10] <= 0;
-			BankAddress <= 2'b00;
+			TimerValue <= 16'd3;
+			TimerLoad_H <= 1'b1;
 		end
 		else if (CurrentState == IssueNOPPostProg) //1010
 		begin
 			//CPUReset_L <= 0;
 			Command <= NOP;
-			if (ProgNOPCount < 16'd3) 
+			if (TimerDone_H) 
 			begin
-				NextState <= IssueNOPPostProg;
+				NextState <= LoadRefreshTimer;
 			end
 			else 
 			begin
 				//ProgNOPCount <= 16'd0;
-				NextState <= LoadRefreshTimer;
+				NextState <= IssueNOPPostProg;
 			end
 		end
 		else if (CurrentState == LoadRefreshTimer) //1011
@@ -359,25 +352,23 @@ module M68kDramController_Verilog (
 		else if (CurrentState == Idled) //0100
 			begin
 			CPUReset_L <= 1;
-			RefreshTimerLoad_H <= 0;
-			Command <= NOP;
-			CPUReset_L <= 1;
 			//RefreshNOPCount <= 0;
 			if(RefreshTimerDone_H == 1) 
 			begin
 				NextState <= RefreshPrecharge;
 			end
-			else if ((DramSelect_L == 0) && (AS_L == 0)) begin
-				DramAddress <= Address[23:11];
-				BankAddress <= Address[25:24];
-				Command <= BankActivate;
-				if (WE_L == 1)
-					NextState <= ReadState;
-				else 
-				begin
-					NextState <= WriteState;
-				end
-					
+			//else if ((DramSelect_L == 0) && (AS_L == 0)) 
+			//begin
+			//	DramAddress <= Address[23:11];
+			//	BankAddress <= Address[25:24];
+			//	Command <= BankActivate;
+			//	if (WE_L == 1)
+			//		NextState <= ReadState;
+			//	else 
+			//	begin
+			//		NextState <= WriteState;
+			//	end
+			//end
 			else 
 			begin
 				NextState <= Idled;	
@@ -386,77 +377,103 @@ module M68kDramController_Verilog (
 		else if (CurrentState == RefreshPrecharge) //1100
 		begin
 			Command <= PrechargeAllBanks;
+            CPUReset_L <= 1;
 			NextState <= RefreshOneNOP;
 			DramAddress[10] <= 1;
 		end
 		else if (CurrentState == RefreshOneNOP) //1101
 			begin
+            TimerLoad_H <= 1'b1;
+            TimerValue <= 16'd4;
 			Command <= NOP;
+            CPUReset_L <= 1;
 			NextState <= RefreshRefresh;
 			end
 		else if (CurrentState == RefreshRefresh) //1110
 			begin
 			Command <= AutoRefresh;		
-			NextState <= RefreshNOPCheck;
+            CPUReset_L <= 1;
+			NextState <= RefreshRefresh;
+            if (TimerDone_H) 
+            begin
+				NextState <= NOPPostRefresh;
+				end
+            else if (Timer % 4 == 0)
+            begin
+                Command <= AutoRefresh;
+                NextState <= RefreshRefresh;
+            end
 			end
-		else if (CurrentState == RefreshNOPCheck) //1111
-			begin
+		else if (CurrentState == NOPPostRefresh)
+		begin
+			CPUReset_L <= 1;
 			Command <= NOP;
-			//RefreshNOPCount <= RefreshNOPCount + 16'd1;
-			if(RefreshNOPCount < (16'd3)) 
-			begin
-				NextState <= RefreshNOPCheck;
+			NextState <= Idled;
+			RefreshTimerLoad_H <= 1;
+			RefreshTimerValue <= 16'd375;
+		end
+		else if(CurrentState == ReadState) begin 
+			CPUReset_L <= 1;
+			DramAddress[9:0] <= Address[10:1];
+			DramAddress[10] <= 1;
+			BankAddress <= Address[25:24];				///***///
+			Command <= ReadAutoPrecharge;
+			TimerLoad_H <= 1;
+			TimerValue <= 16'd2;
+			NextState <= WaitCas; 
+		end
+		else if(CurrentState == WriteState) begin
+			CPUReset_L <= 1;
+			if ((UDS_L == 0) || (LDS_L == 0)) begin    	
+				DramAddress[9:0] <= Address[10:1];
+				DramAddress[10] <= 1;
+				BankAddress <= Address[25:24];			///***///
+				Command <= WriteAutoPrecharge;
+				CPU_Dtack_L <= 0;
+				FPGAWritingtoSDram_H <= 1;
+				SDramWriteData <= DataIn; //pseudo code confusing with wording, could be potentially incorrect assignment
+				NextState <= OneClock;
 			end
 			else 
+				NextState <= WriteState;
+		end
+		else if(CurrentState == OneClock) begin
+			CPUReset_L <= 1;
+			CPU_Dtack_L <= 0;
+			Command <= NOP;
+			FPGAWritingtoSDram_H <= 1;
+			SDramWriteData <= DataIn;
+			NextState <= TermBus;
+		end
+		else if (CurrentState == WaitCas) begin
+			CPUReset_L <= 1;
+			CPU_Dtack_L <= 0;
+			DramDataLatch_H <= 1;
+			Command <= NOP;
+			if(TimerDone_H == 1) 
 			begin
-				RefreshTimerLoad_H <= 1;
-				NextState <= Idled;
+				NextState <= TermBus;
 			end
-		end	
+			else 
+				NextState <= WaitCas;
+		end
+		else if (CurrentState == TermBus) 
+		begin 
+			CPUReset_L <= 1;
+			Command <= NOP;
+			if((UDS_L == 0)||(LDS_L == 0)) 
+			begin
+				CPU_Dtack_L <= 0;
+				NextState <= TermBus;
+			end
+			else 
+				NextState <= Idled; 	
+		end
 		else
 		begin
 			Command <= NOP;
+			CPUReset_L <= 1;
 			NextState <= Idled;
 		end
-	end
-	always@(posedge Clock)
-	begin
-		if(CurrentState == InitialisingState ) 
-		begin	
-			ProgNOPCount <= 16'd0;
-			NOPCount <= 16'd0;							// chose a value equivalent to 100us at 50Mhz clock - you might want to shorten it to somthing small for simulation purposes
-			RefreshCount <= 16'd0;
-			RefreshNOPCount <= 0;			// on next edge of clock, timer will be loaded and start to time out
-			// once we have loaded the timer, go to a new state where we wait for the 100us to elapse
-		end	
-		else if(CurrentState == Refresh) 
-		begin
-			RefreshCount = RefreshCount + 16'd1;
-			NOPCount <= 16'd0;
-		end
-		else if (CurrentState == NOPCheck) 
-		begin
-			NOPCount <= NOPCount + 16'd1;
-		end	
-		else if (CurrentState == ProgMode) 
-		begin
-			RefreshCount = 16'd0;
-		end
-		else if (CurrentState == IssueNOPPostProg) 
-		begin
-			ProgNOPCount <= ProgNOPCount + 16'd1;
-		end
-		else if (CurrentState == LoadRefreshTimer) 
-		begin
-			ProgNOPCount <= 16'd0;
-		end
-		else if (CurrentState == Idled) 
-		begin
-			RefreshNOPCount <= 0;
-		end
-		else if (CurrentState == RefreshNOPCheck) 
-		begin
-			RefreshNOPCount <= RefreshNOPCount + 16'd1;
-		end	
 	end
 endmodule
