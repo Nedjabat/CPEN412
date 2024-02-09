@@ -314,7 +314,7 @@ module M68kDramController_Verilog (
 			else if (Timer % 4 == 0)
 			begin
                 Command <= AutoRefresh;
-				NextState <= NOPCheck;
+				NextState <= IssueNOP;
 			end
             else
             begin
