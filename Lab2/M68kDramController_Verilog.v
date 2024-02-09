@@ -117,6 +117,8 @@ module M68kDramController_Verilog (
 		parameter WaitCas = 5'h12;
 		parameter PostWrite = 5'h13;
 		parameter TerminateBusCycle = 5'h14;
+		
+		parameter WaitTimerDone = 5'h15;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // General Timer for timing and counting things: Loadable and counts down on each clock then produced a TimerDone signal and stops counting
@@ -159,9 +161,10 @@ module M68kDramController_Verilog (
 
    always@(posedge Clock, negedge Reset_L)
 	begin
+		ResetOut_L <= CPUReset_L;
 		if(Reset_L == 0) 				// asynchronous reset
 		begin
-			ResetOut_L <= Reset_L;	
+			//ResetOut_L <= Reset_L;	
 			CurrentState <= InitialisingState ;
 		end
 		else 	begin									// state can change only on low-to-high transition of clock
@@ -182,7 +185,7 @@ module M68kDramController_Verilog (
 			// signals back to the 68000
 
 			Dtack_L 		<= CPU_Dtack_L ;			// output the Dtack back to the 68000
-			ResetOut_L 	<= CPUReset_L ;			// output the Reset out back to the 68000
+			//ResetOut_L 	<= CPUReset_L ;			// output the Reset out back to the 68000
 			
 			// The signal FPGAWritingtoSDram_H can be driven by you when you need to turn on or tri-state the data bus out signals to the dram chip data lines DQ0-15
 			// when you are reading from the dram you have to ensure they are tristated (so the dram chip can drive them)
@@ -335,7 +338,9 @@ module M68kDramController_Verilog (
 			Command <= NOP;
 			if (TimerDone_H) 
 			begin
-				NextState <= LoadRefreshTimer;
+				NextState <= Idled;
+				RefreshTimerLoad_H <= 1;
+				RefreshTimerValue <= 16'h176;
 			end
 			else 
 			begin
@@ -349,7 +354,7 @@ module M68kDramController_Verilog (
 			Command <= NOP;
 			NextState <= Idled;
 			RefreshTimerLoad_H <= 1;
-			RefreshTimerValue <= 16'd8;
+			RefreshTimerValue <= 16'h176;
 		end
 		
 		
@@ -377,7 +382,6 @@ module M68kDramController_Verilog (
 					NextState <= Reading;
 				end
 				else NextState <= PreWrite;
-				
 			end
 			else NextState <= Idled;
 		end
@@ -385,43 +389,47 @@ module M68kDramController_Verilog (
 		
 		
 		else if (CurrentState == RefreshPrecharge) //1100
-		begin
+			begin
 			Command <= PrechargeAllBanks;
-            CPUReset_L <= 1;
+         CPUReset_L <= 1;
 			NextState <= RefreshOneNOP;
 			DramAddress[10] <= 1;
-		end
+			end
+		
 		else if (CurrentState == RefreshOneNOP) //1101
 			begin
             TimerLoad_H <= 1'b1;
-            TimerValue <= 16'd4;
-			Command <= NOP;
+            TimerValue <= 16'd3;
+				Command <= NOP;
             CPUReset_L <= 1;
-			NextState <= RefreshRefresh;
+				NextState <= RefreshRefresh;
 			end
+			
 		else if (CurrentState == RefreshRefresh) //1110
 			begin
 			Command <= AutoRefresh;		
-            CPUReset_L <= 1;
-			NextState <= RefreshRefresh;
-            if (TimerDone_H) 
-            begin
-				NextState <= NOPPostRefresh;
-				end
-            else if (Timer % 4 == 0)
-            begin
-                Command <= AutoRefresh;
-                NextState <= RefreshRefresh;
-            end
+         CPUReset_L <= 1;
+			NextState <= NOPPostRefresh;
 			end
+			
+			
 		else if (CurrentState == NOPPostRefresh)
 		begin
+			if (TimerDone_H)	begin
+			NextState <= Idled; 
+			RefreshTimerLoad_H <= 1;
+			RefreshTimerValue <= 16'h176;
+			end
+			
+			else NextState <= NOPPostRefresh;
+
 			CPUReset_L <= 1;
 			Command <= NOP;
-			NextState <= Idled;
-			RefreshTimerLoad_H <= 1;
-			RefreshTimerValue <= 16'd8;
+			
 		end
+		
+		
+		
 		
 		// state associated with a 68k write where we wait for UDS or LDS or both to go low
 		else if (CurrentState == PreWrite) begin
