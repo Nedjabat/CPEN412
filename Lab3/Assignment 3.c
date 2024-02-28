@@ -91,6 +91,16 @@ int WriteSPIChar(int c)
     return data;
 }
 
+void WaitWriteSPIComplete(void)
+{
+    Enable_SPI_CS();
+    WriteSPIChar(0x05);
+    while(WriteSPIChar(0x00) & 0x01){
+        
+    };
+    Disable_SPI_CS();
+}
+
 void WriteSPIData(char *memory_address, int flash_address, int size)
 {
     int i = 0;
