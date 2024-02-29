@@ -25,7 +25,7 @@ void WaitWriteSPIComplete(void)
 {
     Enable_SPI_CS();
     WriteSPIChar(0x05);
-    while(WriteSPIChar(0x00) & 0x01){
+    while(WriteSPIChar(0x00) & 0x01){ //check if busy
         
     };
     Disable_SPI_CS();
