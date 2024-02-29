@@ -21,6 +21,15 @@
 *******************************************************************************************/
 // return true if the SPI has finished transmitting a byte (to say the Flash chip) return false otherwise
 // this can be used in a polling algorithm to know when the controller is busy or idle.
+void WaitWriteSPIComplete(void)
+{
+    Enable_SPI_CS();
+    WriteSPIChar(0x05);
+    while(WriteSPIChar(0x00) & 0x01){
+        
+    };
+    Disable_SPI_CS();
+}
 
 int TestForSPITransmitDataComplete(void) {
  /* TODO replace 0 below with a test for status register SPIF bit and if set, return true */
@@ -91,15 +100,6 @@ int WriteSPIChar(int c)
     return data;
 }
 
-void WaitWriteSPIComplete(void)
-{
-    Enable_SPI_CS();
-    WriteSPIChar(0x05);
-    while(WriteSPIChar(0x00) & 0x01){
-        
-    };
-    Disable_SPI_CS();
-}
 
 void WriteSPIData(char *memory_address, int flash_address, int size)
 {
