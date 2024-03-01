@@ -522,7 +522,7 @@ void WaitForSPITransmitComplete(void)
 ************************************************************************************/
 int WriteSPIChar(int c)
 {
-    // DONE: TODO 
+    // DONE: TODO
     // STEP 1 - Write the byte in parameter 'c' to the SPI data register, this will start it transmitting to the flash device
     // STEP 2 - wait for completion of transmission
     // STEP 3 - Return the received data from Flash chip (which may not be relevent depending upon what we are doing)
@@ -530,19 +530,19 @@ int WriteSPIChar(int c)
     // note however that in order to get data from an SPI slave device (e.g. flash) chip we have to write a dummy byte to it
     //
     // modify '0' below to return back read byte from data register
-    
+
     // Dummy byte
     int received_data = 0;
-    
+
     // STEP 1
     SPI_Data = c;
-    
+
     // STEP 2
     WaitForSPITransmitComplete();
     received_data = SPI_Data;
 
     // STEP 3
-    return received_data;                   
+    return received_data;
 }
 
 /************************************************************************************
@@ -569,7 +569,7 @@ void WriteDataToSPI(char *MemAddress, int FlashAddress, int size)
     WriteSPIChar(FlashAddress >> 8);
     WriteSPIChar(FlashAddress);
 
-    // can now send up to 256 bytes of data by writing one byte at a time to 
+    // can now send up to 256 bytes of data by writing one byte at a time to
     // SPI controller data register
     for(i=0; i<size; i++)
     {
@@ -620,7 +620,7 @@ void ReadDataFromSPI(char *MemAddress, int FlashAddress, int size)
 
     for(i=0; i<size; i++)
     {
-        // can write dummy bytes to device 
+        // can write dummy bytes to device
         // any data is fine, they are ignored by mem chip since we are in READ mode
         // teach write will return data stored in successive incremental locations
         MemAddress[i] = (unsigned char) WriteSPIChar(0x00);
@@ -651,7 +651,7 @@ void ProgramFlashChip(void)
     // TODO : then verify by reading it back and comparing to memory
     //
     unsigned char *ramPointer = 0x08000000;
-    
+
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int flashAddress = 0;
@@ -676,7 +676,7 @@ void ProgramFlashChip(void)
         ramPointer = ramPointer + 256;
         flashAddress = flashAddress + 256;
         // getting some feedback while its programming
-        if((i%128) == 0) printf(". "); 
+        if((i%128) == 0) printf(". ");
     }
 
     printf("\r\nProgramming flash chip complete.");
@@ -701,7 +701,7 @@ void ProgramFlashChip(void)
         ramPointer = ramPointer + 256;
         flashAddress = flashAddress +  256;
         // getting some feedback while its programming
-        if((i%128) == 0) printf(". "); 
+        if((i%128) == 0) printf(". ");
     }
 
     printf("\r\nReading from flash chip complete.");
@@ -716,7 +716,7 @@ void ProgramFlashChip(void)
 void LoadFromFlashChip(void)
 {
     unsigned char *ramPointer = 0x08000000;
-    
+
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int flashAddress = 0;
@@ -737,7 +737,7 @@ void LoadFromFlashChip(void)
         ramPointer = ramPointer + 256;
         flashAddress = flashAddress + 256;
         // getting some feedback while its programming
-        if((i%128) == 0) printf(". "); 
+        if((i%128) == 0) printf(". ");
     }
 
     printf("\r\nFinished loading program from SPI flash.");
