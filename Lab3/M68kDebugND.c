@@ -11,7 +11,6 @@
 #define   Enable_SPI_CS()             SPI_CS = 0xFE
 #define   Disable_SPI_CS()            SPI_CS = 0xFF
 
-
 /* DO NOT INITIALISE GLOBAL VARIABLES - DO IT in MAIN() */
 unsigned int i, x, y, z, PortA_Count;
 int     Trace, GoFlag, Echo;                       // used in tracing/single stepping
@@ -461,7 +460,9 @@ void MemoryChange(void)
 }
 
 /******************************************************************************************
-** The following code is for the SPI controller
+** The following code is for the
+
+  controller
 *******************************************************************************************/
 // return true if the SPI has finished transmitting a byte (to say the Flash chip) return false otherwise
 // this can be used in a polling algorithm to know when the controller is busy or idle.
