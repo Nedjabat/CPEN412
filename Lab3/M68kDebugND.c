@@ -469,7 +469,7 @@ void MemoryChange(void)
 int TestForSPITransmitDataComplete(void)    {
 
     /* DONE: TODO replace 0 below with a test for status register SPIF bit and if set, return true */
-    return (SPI_Status & 0x80)
+    return (SPI_Status & 0x80);
 }
 
 /************************************************************************************
