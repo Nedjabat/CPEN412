@@ -469,11 +469,7 @@ void MemoryChange(void)
 int TestForSPITransmitDataComplete(void)    {
 
     /* DONE: TODO replace 0 below with a test for status register SPIF bit and if set, return true */
-    // SPIF bit is 7th bit --> shift by 7
-    // 1000_0000 -> 0x80
-    if((SPI_Status & 0x80) >> 7)
-        return 1;
-    else return 0;
+    return (SPI_Status & 0x80)
 }
 
 /************************************************************************************
@@ -503,7 +499,7 @@ void SPI_Init(void)
 
     // SPSR = {SPIF, WCOL, x, x, x, x, x} = 11xx_xxxx = 0xC0
     // Use bitwise OR because we dont want to overrite data in other bits, only ensure that SPIF and WCOL are 1
-    SPI_Status |= 0xC0;
+    //SPI_Status |= 0xC0;
 }
 
 /************************************************************************************
@@ -537,7 +533,7 @@ int WriteSPIChar(int c)
     // modify '0' below to return back read byte from data register
 
     // Dummy byte
-    int received_data = 0;
+    int received_data;
 
     // STEP 1
     SPI_Data = c;
@@ -556,7 +552,7 @@ int WriteSPIChar(int c)
 ************************************************************************************/
 
 // (1) Writing to SPI
-void WriteDataToSPI(char *MemAddress, int FlashAddress, int size)
+void WriteDataToSPI(unsigned char *MemAddress, int FlashAddress, int size)
 {
     int i = 0;
 
@@ -587,14 +583,16 @@ void WriteDataToSPI(char *MemAddress, int FlashAddress, int size)
 }
 
 // (2) Waiting for write to complete
-void WaitForSPIWriteComplete()
+void WaitForSPIWriteComplete(void)
 {
     Enable_SPI_CS();
     // status register (SPSR) reset value: 0x05
     WriteSPIChar(0x05);
     // WriteSPIChar will return received data, if bit 0 (RFEMPTY) is high,
     // FIFO is empty and write is complete
-    while(WriteSPIChar(0x00)&0x01);
+    while(WriteSPIChar(0x00)&0x01){
+        printf("wahoo");
+    }
     Disable_SPI_CS();
 }
 
@@ -610,9 +608,10 @@ void WriteCommandSPI(int cmd)
 }
 
 // (4) Reading from SPI
-void ReadDataFromSPI(char *MemAddress, int FlashAddress, int size)
+void ReadDataFromSPI(unsigned char *MemAddress, int FlashAddress, int size)
 {
     int i =0;
+    int dummy = 0;
 
     // still manually enabling/disabling CS for more complicated transmissions
     Enable_SPI_CS();
@@ -628,7 +627,8 @@ void ReadDataFromSPI(char *MemAddress, int FlashAddress, int size)
         // can write dummy bytes to device
         // any data is fine, they are ignored by mem chip since we are in READ mode
         // teach write will return data stored in successive incremental locations
-        MemAddress[i] = (unsigned char) WriteSPIChar(0x00);
+        dummy = WriteSPIChar(0x00);
+        MemAddress[i] = (unsigned char) dummy;
     }
 
     Disable_SPI_CS();
