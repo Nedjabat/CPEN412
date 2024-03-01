@@ -642,6 +642,7 @@ void EraseFlashChip(void)
     // either writing hex C7 or 60 erases the chip
     WriteCommandSPI(0xC7);
     // Wait for write to complete
+    WaitForSPIWriteComplete();
 
 }
 
@@ -1761,7 +1762,7 @@ void main(void)
     char c ;
     int i, j ;
 
-    char *BugMessage = "CPEN412 - Lab 2";
+    char *BugMessage = "CPEN412 - Lab 3";
     char *CopyrightMessage = "Ryan Nedjabat 67501510; Anna Yun 94902673";
 
     KillAllBreakPoints() ;
