@@ -570,7 +570,8 @@ void main()
 *************************************************************************************************/
     SPI_Init();
 
-    
+    printf("This proves SPI works\n");
+
 
    // programs should NOT exit as there is nothing to Exit TO !!!!!!
    // There is no OS - just press the reset button to end program and call debug
