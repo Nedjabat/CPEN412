@@ -467,8 +467,8 @@ int TestForSPITransmitDataComplete(void)    {
     // SPIF bit is 7th bit --> shift by 7
     // 1000_0000 -> 0x80
     if((SPI_Status & 0x80) >> 7)
-        return true;
-    else return false;
+        return 1;
+    else return 0;
 }
 
 /************************************************************************************
@@ -511,7 +511,7 @@ void WaitForSPITransmitComplete(void)
     // just in case they were set
 
     // need to keep checking until data fully transmitted
-    while(TestForSPITransmitDataComplete() == false) {}
+    while(!TestForSPITransmitDataComplete()) {}
     SPI_Status |= 0xC0;
 }
 
@@ -680,7 +680,7 @@ void ProgramFlashChip(void)
     }
 
     printf("\r\nProgramming flash chip complete.");
-    printf("\r\nReading from flash chip.")
+    printf("\r\nReading from flash chip.");
 
     flashAddress = 0;
     ramPointer = 0x08000000;
@@ -729,10 +729,10 @@ void LoadFromFlashChip(void)
     //
     for(i = 0; i < 1024; i++)
     {
-        ReadDataFromSPI(readBuffer, flashAddress, sizeof(readBuffer))
+        ReadDataFromSPI(readBuffer, flashAddress, sizeof(readBuffer));
         for(j = 0; j <sizeof(readBuffer); j++)
         {
-            ramPointer[j] = readBuffer;
+            ramPointer[j] = readBuffer[j];
         }
         ramPointer = ramPointer + 256;
         flashAddress = flashAddress + 256;

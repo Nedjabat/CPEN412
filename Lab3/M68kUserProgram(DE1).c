@@ -353,8 +353,8 @@ int TestForSPITransmitDataComplete(void)    {
     // SPIF bit is 7th bit --> shift by 7
     // 1000_0000 -> 0x80
     if((SPI_Status & 0x80) >> 7)
-        return true;
-    else return false;
+        return 1;
+    else return 0 ;
 }
 
 void SPI_Init(void)
@@ -391,7 +391,7 @@ void WaitForSPITransmitComplete(void)
     // just in case they were set
 
     // need to keep checking until data fully transmitted
-    while(TestForSPITransmitDataComplete() == false) {}
+    while(!TestForSPITransmitDataComplete()) {}
     SPI_Status |= 0xC0;
 }
 
