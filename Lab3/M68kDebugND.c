@@ -512,8 +512,11 @@ void WaitForSPITransmitComplete(void)
     // just in case they were set
 
     // need to keep checking until data fully transmitted
+
+    printf("\r\nChecking for SPI transmit complete");
     while(!TestForSPITransmitDataComplete()) {}
     SPI_Status |= 0xC0;
+    printf("\r\nSPI transmit complete!");
 }
 
 
@@ -543,6 +546,7 @@ int WriteSPIChar(int c)
     received_data = SPI_Data;
 
     // STEP 3
+    printf("\r\nchar hooray");
     return received_data;
 }
 
@@ -590,9 +594,10 @@ void WaitForSPIWriteComplete(void)
     WriteSPIChar(0x05);
     // WriteSPIChar will return received data, if bit 0 (RFEMPTY) is high,
     // FIFO is empty and write is complete
+    printf("\r\nWAITING FOR FIFO EMPTY");
     while(WriteSPIChar(0x00)&0x01){
-        printf("wahoo");
     }
+    printf("\r\nFIFO EMPTY!");
     Disable_SPI_CS();
 }
 
@@ -602,8 +607,11 @@ void WriteCommandSPI(int cmd)
     // need to enable flash chip before speaking to it
     // this is done by setting CS# low by writing to SPI controller CS register
     // need to disable this when we are finished each interaction
+    printf("\r\nEnabling CS");
     Enable_SPI_CS();
+    printf("\r\nWriting command via WriteSPIChar");
     WriteSPIChar(cmd);
+    printf("\r\nDisabling CS");
     Disable_SPI_CS();
 }
 
@@ -638,11 +646,15 @@ void ReadDataFromSPI(unsigned char *MemAddress, int FlashAddress, int size)
 void EraseFlashChip(void)
 {
     // enabling device for writing
+    printf("\r\nErase Sequence: writing 06");
     WriteCommandSPI(0x06);
     // either writing hex C7 or 60 erases the chip
+    printf("\r\nErase Sequence: writing C7");
     WriteCommandSPI(0xC7);
     // Wait for write to complete
+    printf("\r\nSTARTING WAIT FOR SPI WRITE COMPLETE");
     WaitForSPIWriteComplete();
+    printf("\r\nSPI flash chip has been erased!");
 
 }
 
