@@ -8,6 +8,10 @@
 //#define TopOfStack 0x08040000
 #define TopOfStack 0x0C000000
 
+#define   Enable_SPI_CS()             SPI_CS = 0xFE
+#define   Disable_SPI_CS()            SPI_CS = 0xFF
+
+
 /* DO NOT INITIALISE GLOBAL VARIABLES - DO IT in MAIN() */
 unsigned int i, x, y, z, PortA_Count;
 int     Trace, GoFlag, Echo;                       // used in tracing/single stepping
