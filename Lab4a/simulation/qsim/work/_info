@@ -1,0 +1,188 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Courses/Elec 465 - Microcomputer systems design/M68k Systems/M68kV6.0 - 800by480 - DE1 for 465 students Q15.0/simulation/qsim
+vMC68K
+!s110 1708114623
+!i10b 1
+!s100 3=m1@l^1F<84c`iSKV5o`3
+IO`>QnmV8e3]RPR<4WR4cb1
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/M68K/simulation/qsim
+w1708114618
+8MC68K.vo
+FMC68K.vo
+L0 31
+Z2 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1708114620.000000
+!s107 MC68K.vo|
+!s90 -work|work|MC68K.vo|
+!i113 1
+Z3 o-work work
+Z4 tCvgOpt 0
+n@m@c68@k
+Emc68k
+Z5 w1706073701
+Z6 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
+Z7 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
+Z8 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+Z9 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z10 DPx6 altera 11 dffeas_pack 0 22 :S1C`o89Vbe5bV6`:6CaB3
+Z11 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z12 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z13 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z14 DPx6 altera 28 altera_primitives_components 0 22 z?[99Tn<@QGNik3V1c6ah1
+R1
+Z15 8MC68K.vho
+Z16 FMC68K.vho
+l0
+L38
+V[>jDdG``ikZ4iSG[[;fER1
+!s100 TmzR8C<M52P]0K13bfKm^0
+Z17 OV;C;10.5b;63
+32
+!s110 1706073709
+!i10b 1
+Z18 !s108 1706073708.000000
+Z19 !s90 -work|work|MC68K.vho|
+Z20 !s107 MC68K.vho|
+!i113 1
+R3
+Z21 tExplicit 1 CvgOpt 0
+Astructure
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+DEx4 work 5 mc68k 0 22 [>jDdG``ikZ4iSG[[;fER1
+l10323
+L359
+V7fi[=;hnAD3oM4RBN8P2A3
+!s100 E1g5MXf<1]?<nc@?[e0Y[3
+R17
+32
+!s110 1706073711
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R3
+R21
+Emc68k_vhd_vec_tst
+Z22 w1706073691
+R12
+R13
+R1
+Z23 8Waveform68k-V15.0-DE1SoC_Short7us.vwf.vht
+Z24 FWaveform68k-V15.0-DE1SoC_Short7us.vwf.vht
+l0
+L31
+V7KUl2>kKafJ;_Y[Y7<gHI1
+!s100 lZn`R3Bb1Jm9U<_O1o8iG1
+R17
+32
+Z25 !s110 1706073714
+!i10b 1
+Z26 !s108 1706073714.000000
+Z27 !s90 -work|work|Waveform68k-V15.0-DE1SoC_Short7us.vwf.vht|
+Z28 !s107 Waveform68k-V15.0-DE1SoC_Short7us.vwf.vht|
+!i113 1
+R3
+R21
+Amc68k_arch
+R12
+R13
+DEx4 work 17 mc68k_vhd_vec_tst 0 22 7KUl2>kKafJ;_Y[Y7<gHI1
+l174
+L33
+VLb[P5:SAjVlS`MJU6lHin0
+!s100 M56GB1Lkeo7^T9lTA6LSW2
+R17
+32
+R25
+!i10b 1
+R26
+R27
+R28
+!i113 1
+R3
+R21
+vMC68K_vlg_check_tst
+Z29 !s110 1587408640
+!i10b 1
+!s100 cZeZMkFa<n[H9_?>=6Nk31
+I?Q78HYBWh;a0MT@mLF;Ul3
+Z30 V`JN@9S9cnhjKRR_L]QIcM3
+Z31 dC:/Users/paul/Desktop/M68kV6.0 - 800by480 - (Verilog) For Students/simulation/qsim
+Z32 w1587408629
+Z33 8Waveform68k-V15.0-DE1SoC_Short7us.vwf.vt
+Z34 FWaveform68k-V15.0-DE1SoC_Short7us.vwf.vt
+L0 82
+Z35 OV;L;10.3d;59
+r1
+!s85 0
+31
+Z36 !s108 1587408640.272000
+Z37 !s107 Waveform68k-V15.0-DE1SoC_Short7us.vwf.vt|
+Z38 !s90 -work|work|Waveform68k-V15.0-DE1SoC_Short7us.vwf.vt|
+!i113 1
+R3
+n@m@c68@k_vlg_check_tst
+vMC68K_vlg_sample_tst
+R29
+!i10b 1
+!s100 c43RoeQOQ5B@bj:Mc51DO2
+I=FZ?:W0kiNi7HRdm>JE2I2
+R30
+R31
+R32
+R33
+R34
+L0 30
+R35
+r1
+!s85 0
+31
+R36
+R37
+R38
+!i113 1
+R3
+n@m@c68@k_vlg_sample_tst
+vMC68K_vlg_vec_tst
+!s110 1708114624
+!i10b 1
+!s100 WNfXUUlG`OFF][ca76Uf:0
+IzjnPII9IGjRbb9H]4;oj93
+R0
+R1
+w1708114610
+R33
+R34
+L0 29
+R2
+r1
+!s85 0
+31
+!s108 1708114623.000000
+R37
+R38
+!i113 1
+R3
+R4
+n@m@c68@k_vlg_vec_tst
