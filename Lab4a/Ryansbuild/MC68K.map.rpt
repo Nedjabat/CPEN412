@@ -1,0 +1,368 @@
+Analysis & Synthesis report for MC68K
+Thu Mar 07 17:29:03 2024
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Messages
+  6. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                              ;
++-----------------------------+---------------------------------------------+
+; Analysis & Synthesis Status ; Failed - Thu Mar 07 17:29:03 2024           ;
+; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name               ; MC68K                                       ;
+; Top-level Entity Name       ; MC68K                                       ;
+; Family                      ; Cyclone V                                   ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
+; Total registers             ; N/A until Partition Merge                   ;
+; Total pins                  ; N/A until Partition Merge                   ;
+; Total virtual pins          ; N/A until Partition Merge                   ;
+; Total block memory bits     ; N/A until Partition Merge                   ;
+; Total PLLs                  ; N/A until Partition Merge                   ;
+; Total DLLs                  ; N/A until Partition Merge                   ;
++-----------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; MC68K              ; MC68K              ;
+; Family name                                                                     ; Cyclone V          ; Cyclone IV GX      ;
+; Restructure Multiplexers                                                        ; Off                ; Auto               ;
+; Ignore LCELL Buffers                                                            ; On                 ; Off                ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; On                 ; Off                ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; Off                ; Off                ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; Off                ; Off                ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Thu Mar 07 17:28:49 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MC68K -c MC68K
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file cacheddramcontroller.bdf
+    Info (12023): Found entity 1: CachedDramController
+Warning (12019): Can't analyze file -- file VGAClockGen.vhd is missing
+Warning (12019): Can't analyze file -- file Rom4kword.vhd is missing
+Warning (12019): Can't analyze file -- file lpm_rom0.vhd is missing
+Warning (12019): Can't analyze file -- file lpm_bustri1.vhd is missing
+Warning (12019): Can't analyze file -- file gaphicsclocl.vhd is missing
+Info (12021): Found 2 design units, including 1 entities, in source file colourpallette_2portram.vhd
+    Info (12022): Found design unit 1: colourpallette_2portram-SYN File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ColourPallette_2PortRam.vhd Line: 57
+    Info (12023): Found entity 1: ColourPallette_2PortRam File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ColourPallette_2PortRam.vhd Line: 43
+Warning (12019): Can't analyze file -- file ClockPLL.vhd is missing
+Warning (12019): Can't analyze file -- file ClockGenerator.vhd is missing
+Warning (12019): Can't analyze file -- file AddressTriState.vhd is missing
+Info (12021): Found 1 design units, including 1 entities, in source file dramcache.bdf
+    Info (12023): Found entity 1: DramCache
+Info (12021): Found 1 design units, including 1 entities, in source file addressexception.bdf
+    Info (12023): Found entity 1: AddressException
+Error (10170): Verilog HDL syntax error at Valid_Data_inst.v(1) near text: "(";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Valid_Data_inst.v Line: 1
+Error (10839): Verilog HDL error at Valid_Data_inst.v(1): declaring global objects is a SystemVerilog feature File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Valid_Data_inst.v Line: 1
+Info (12021): Found 0 design units, including 0 entities, in source file valid_data_inst.v
+Info (12021): Found 1 design units, including 1 entities, in source file valid_data_bb.v
+    Info (12023): Found entity 1: Valid_Data File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Valid_Data_bb.v Line: 34
+Error (10170): Verilog HDL syntax error at Tag_Data_inst.v(1) near text: "(";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Tag_Data_inst.v Line: 1
+Error (10839): Verilog HDL error at Tag_Data_inst.v(1): declaring global objects is a SystemVerilog feature File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Tag_Data_inst.v Line: 1
+Info (12021): Found 0 design units, including 0 entities, in source file tag_data_inst.v
+Info (12021): Found 1 design units, including 1 entities, in source file tag_data_bb.v
+    Info (12023): Found entity 1: Tag_Data File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Tag_Data_bb.v Line: 34
+Info (12021): Found 1 design units, including 1 entities, in source file spi_bus_decoder.v
+    Info (12023): Found entity 1: SPI_BUS_Decoder File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/SPI_BUS_Decoder.v Line: 1
+Warning (12019): Can't analyze file -- file OnChipRom16KWord_inst.v is missing
+Warning (12019): Can't analyze file -- file OnChipRom16KWord_bb.v is missing
+Info (12021): Found 1 design units, including 1 entities, in source file lpm_bustri1_syn.v
+    Info (12023): Found entity 1: lpm_bustri1 File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/lpm_bustri1_syn.v Line: 31
+Error (10170): Verilog HDL syntax error at CacheData_inst.v(1) near text: "(";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CacheData_inst.v Line: 1
+Error (10839): Verilog HDL error at CacheData_inst.v(1): declaring global objects is a SystemVerilog feature File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CacheData_inst.v Line: 1
+Info (12021): Found 0 design units, including 0 entities, in source file cachedata_inst.v
+Info (12021): Found 1 design units, including 1 entities, in source file cachedata_bb.v
+    Info (12023): Found entity 1: CacheData File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CacheData_bb.v Line: 34
+Info (12021): Found 2 design units, including 1 entities, in source file lpm_bustri0.vhd
+    Info (12022): Found design unit 1: lpm_bustri0-SYN File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/lpm_bustri0.vhd Line: 52
+    Info (12023): Found entity 1: lpm_bustri0 File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/lpm_bustri0.vhd Line: 42
+Info (12021): Found 1 design units, including 1 entities, in source file mc68k.bdf
+    Info (12023): Found entity 1: MC68K
+Info (12021): Found 2 design units, including 1 entities, in source file latch8bit.vhd
+    Info (12022): Found design unit 1: Latch8Bit-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Latch8Bit.vhd Line: 18
+    Info (12023): Found entity 1: Latch8Bit File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Latch8Bit.vhd Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file onchipio.bdf
+    Info (12023): Found entity 1: OnChipIO
+Info (12021): Found 2 design units, including 1 entities, in source file interruptpriorityencoder.vhd
+    Info (12022): Found design unit 1: InterruptPriorityEncoder-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/InterruptPriorityEncoder.vhd Line: 21
+    Info (12023): Found entity 1: InterruptPriorityEncoder File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/InterruptPriorityEncoder.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file iodecoder.vhd
+    Info (12022): Found design unit 1: IODecoder-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/IODecoder.vhd Line: 56
+    Info (12023): Found entity 1: IODecoder File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/IODecoder.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file lcd_controller.vhd
+    Info (12022): Found design unit 1: LCD_Controller-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/LCD_Controller.vhd Line: 24
+    Info (12023): Found entity 1: LCD_Controller File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/LCD_Controller.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file hexto7segmentdisplay.vhd
+    Info (12022): Found design unit 1: HexTo7SegmentDisplay-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/HexTo7SegmentDisplay.vhd Line: 17
+    Info (12023): Found entity 1: HexTo7SegmentDisplay File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/HexTo7SegmentDisplay.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file timer.vhd
+    Info (12022): Found design unit 1: Timer-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Timer.vhd Line: 28
+    Info (12023): Found entity 1: Timer File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Timer.vhd Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file dram.bdf
+    Info (12023): Found entity 1: Dram
+Info (12021): Found 2 design units, including 1 entities, in source file lpm_bustri2.vhd
+    Info (12022): Found design unit 1: lpm_bustri2-SYN File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/lpm_bustri2.vhd Line: 52
+    Info (12023): Found entity 1: lpm_bustri2 File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/lpm_bustri2.vhd Line: 42
+Info (12021): Found 2 design units, including 1 entities, in source file tg68.vhd
+    Info (12022): Found design unit 1: TG68-logic File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/TG68.vhd Line: 66
+    Info (12023): Found entity 1: TG68 File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/TG68.vhd Line: 48
+Info (12021): Found 2 design units, including 1 entities, in source file datamapper68k.vhd
+    Info (12022): Found design unit 1: DataMapper68k-a File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/DataMapper68k.vhd Line: 15
+    Info (12023): Found entity 1: DataMapper68k File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/DataMapper68k.vhd Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file acia_6850.vhd
+    Info (12022): Found design unit 1: ACIA_6850-rtl File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_6850.vhd Line: 87
+    Info (12023): Found entity 1: ACIA_6850 File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_6850.vhd Line: 58
+Info (12021): Found 2 design units, including 1 entities, in source file acia_rx.vhd
+    Info (12022): Found design unit 1: ACIA_RX-rtl File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_RX.vhd Line: 76
+    Info (12023): Found entity 1: ACIA_RX File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_RX.vhd Line: 55
+Info (12021): Found 2 design units, including 1 entities, in source file acia_tx.vhd
+    Info (12022): Found design unit 1: ACIA_TX-rtl File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_TX.vhd Line: 65
+    Info (12023): Found entity 1: ACIA_TX File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_TX.vhd Line: 48
+Info (12021): Found 2 design units, including 1 entities, in source file m68xxiodecoder.vhd
+    Info (12022): Found design unit 1: M68xxIODecoder-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/M68xxIODecoder.vhd Line: 19
+    Info (12023): Found entity 1: M68xxIODecoder File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/M68xxIODecoder.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file latch3bit.vhd
+    Info (12022): Found design unit 1: Latch3Bit-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Latch3Bit.vhd Line: 18
+    Info (12023): Found entity 1: Latch3Bit File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Latch3Bit.vhd Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file onchipm68xxio.bdf
+    Info (12023): Found entity 1: OnChipM68xxIO
+Info (12021): Found 1 design units, including 1 entities, in source file acia_baudrate_generator.bdf
+    Info (12023): Found entity 1: ACIA_BaudRate_Generator
+Info (12021): Found 4 design units, including 1 entities, in source file acia_clock.vhd
+    Info (12022): Found design unit 1: bit_funcs File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_Clock.vhd Line: 12
+    Info (12022): Found design unit 2: bit_funcs-body File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_Clock.vhd Line: 21
+    Info (12022): Found design unit 3: ACIA_Clock-rtl File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_Clock.vhd Line: 58
+    Info (12023): Found entity 1: ACIA_Clock File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ACIA_Clock.vhd Line: 47
+Info (12021): Found 2 design units, including 1 entities, in source file tg68_fast.vhd
+    Info (12022): Found design unit 1: TG68_fast-logic File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/TG68_fast.vhd Line: 87
+    Info (12023): Found entity 1: TG68_fast File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/TG68_fast.vhd Line: 71
+Info (12021): Found 2 design units, including 1 entities, in source file traceexceptiongenerator.vhd
+    Info (12022): Found design unit 1: TraceExceptionGenerator-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/TraceExceptionGenerator.vhd Line: 20
+    Info (12023): Found entity 1: TraceExceptionGenerator File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/TraceExceptionGenerator.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file traceexceptioncontrolbit.vhd
+    Info (12022): Found design unit 1: TraceExceptionControlBit-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/TraceExceptionControlBit.vhd Line: 18
+    Info (12023): Found entity 1: TraceExceptionControlBit File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/TraceExceptionControlBit.vhd Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file m68000cpu.bdf
+    Info (12023): Found entity 1: M68000CPU
+Info (12021): Found 2 design units, including 1 entities, in source file busrequestlogic.vhd
+    Info (12022): Found design unit 1: BusRequestLogic-fsm File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/BusRequestLogic.vhd Line: 16
+    Info (12023): Found entity 1: BusRequestLogic File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/BusRequestLogic.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file singlebittristate.vhd
+    Info (12022): Found design unit 1: singlebittristate-SYN File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/SingleBitTriState.vhd Line: 52
+    Info (12023): Found entity 1: SingleBitTriState File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/SingleBitTriState.vhd Line: 42
+Info (12021): Found 1 design units, including 1 entities, in source file dmacontroller.bdf
+    Info (12023): Found entity 1: DMAController
+Info (12021): Found 2 design units, including 1 entities, in source file cpu_dma_mux.vhd
+    Info (12022): Found design unit 1: CPU_DMA_Mux-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CPU_DMA_Mux.vhd Line: 37
+    Info (12023): Found entity 1: CPU_DMA_Mux File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CPU_DMA_Mux.vhd Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file onchiprom16kwords.bdf
+    Info (12023): Found entity 1: OnChipROM16KWords
+Info (12021): Found 1 design units, including 1 entities, in source file graphicsframebuffermemory.bdf
+    Info (12023): Found entity 1: GraphicsFrameBufferMemory
+Info (12021): Found 1 design units, including 1 entities, in source file iic_spi_interface.bdf
+    Info (12023): Found entity 1: IIC_SPI_Interface
+Info (12021): Found 1 design units, including 1 entities, in source file canbus.bdf
+    Info (12023): Found entity 1: CanBus
+Info (12021): Found 1 design units, including 1 entities, in source file onchipram256kbyte.bdf
+    Info (12023): Found entity 1: OnChipRam256kbyte
+Info (12021): Found 1 design units, including 1 entities, in source file video_controller800x480.bdf
+    Info (12023): Found entity 1: Video_Controller800x480
+Info (12021): Found 2 design units, including 1 entities, in source file clockgen.vhd
+    Info (12022): Found design unit 1: ClockGen-rtl File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ClockGen.vhd Line: 23
+    Info (12023): Found entity 1: ClockGen File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ClockGen.vhd Line: 11
+Info (12021): Found 1 design units, including 1 entities, in source file clockgen/clockgen_0002.v
+    Info (12023): Found entity 1: ClockGen_0002 File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/ClockGen/ClockGen_0002.v Line: 2
+Warning (12019): Can't analyze file -- file OnChip32KWord.vhd is missing
+Info (12021): Found 1 design units, including 1 entities, in source file m68kdramcontroller_verilog.v
+    Info (12023): Found entity 1: M68kDramController_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/M68kDramController_Verilog.v Line: 14
+Info (12021): Found 1 design units, including 1 entities, in source file graphicslcd_controller_verilog.v
+    Info (12023): Found entity 1: GraphicsLCD_Controller_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/GraphicsLCD_Controller_verilog.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ramaddressmapper_verilog.v
+    Info (12023): Found entity 1: RamAddressMapper_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/RamAddressMapper_Verilog.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file graphicscontroller_verilog.v
+    Info (12023): Found entity 1: GraphicsController_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/GraphicsController_Verilog.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file vgadatamux_verilog.v
+    Info (12023): Found entity 1: VGADataMux_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/VGADataMux_Verilog.v Line: 1
+Info (12021): Found 2 design units, including 1 entities, in source file ram32kbyte.vhd
+    Info (12022): Found design unit 1: ram32kbyte-SYN File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Ram32kByte.vhd Line: 55
+    Info (12023): Found entity 1: Ram32kByte File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Ram32kByte.vhd Line: 43
+Info (12021): Found 1 design units, including 1 entities, in source file sramblock_32kword.bdf
+    Info (12023): Found entity 1: SramBlock_32KWord
+Info (12021): Found 1 design units, including 1 entities, in source file sramblockdecoder_verilog.v
+    Info (12023): Found entity 1: SramBlockDecoder_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/SramBlockDecoder_Verilog.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file addressdecoder_verilog.v
+    Info (12023): Found entity 1: AddressDecoder_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/AddressDecoder_Verilog.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file dtack_generator_verilog.v
+    Info (12023): Found entity 1: Dtack_Generator_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Dtack_Generator_Verilog.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file onchiprom16kword.v
+    Info (12023): Found entity 1: OnChipRom16KWord File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/OnChipRom16KWord.v Line: 39
+Info (12021): Found 2 design units, including 2 entities, in source file simple_spi_top.v
+    Info (12023): Found entity 1: fifo4 File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/simple_spi_top.v Line: 59
+    Info (12023): Found entity 2: simple_spi_top File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/simple_spi_top.v Line: 217
+Error (10228): Verilog HDL error at Valid_Data.v(39): module "Valid_Data" cannot be declared more than once File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Valid_Data.v Line: 39
+Info (10499): HDL info at Valid_Data_bb.v(34): see declaration for object "Valid_Data" File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Valid_Data_bb.v Line: 34
+Info (12021): Found 0 design units, including 0 entities, in source file valid_data.v
+Info (12021): Found 1 design units, including 1 entities, in source file valid.bdf
+    Info (12023): Found entity 1: Valid
+Error (10228): Verilog HDL error at Tag_Data.v(39): module "Tag_Data" cannot be declared more than once File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Tag_Data.v Line: 39
+Info (10499): HDL info at Tag_Data_bb.v(34): see declaration for object "Tag_Data" File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/Tag_Data_bb.v Line: 34
+Info (12021): Found 0 design units, including 0 entities, in source file tag_data.v
+Info (12021): Found 1 design units, including 1 entities, in source file tagmemory.bdf
+    Info (12023): Found entity 1: TagMemory
+Error (10228): Verilog HDL error at CacheData.v(39): module "CacheData" cannot be declared more than once File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CacheData.v Line: 39
+Info (10499): HDL info at CacheData_bb.v(34): see declaration for object "CacheData" File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CacheData_bb.v Line: 34
+Info (12021): Found 0 design units, including 0 entities, in source file cachedata.v
+Info (12021): Found 1 design units, including 1 entities, in source file cachedatamemory.bdf
+    Info (12023): Found entity 1: CacheDataMemory
+Info (12021): Found 2 design units, including 1 entities, in source file addresscomparator.vhd
+    Info (12022): Found design unit 1: AddressComparator-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/AddressComparator.vhd Line: 16
+    Info (12023): Found entity 1: AddressComparator File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/AddressComparator.vhd Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file m68kcachecontroller.v
+    Info (12023): Found entity 1: M68kCacheController_Verilog File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/M68kCacheController.v Line: 10
+Info (12021): Found 2 design units, including 1 entities, in source file cacheenableddramcontroller.vhd
+    Info (12022): Found design unit 1: CacheEnabledDramController-bhvr File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CacheEnabledDramController.vhd Line: 40
+    Info (12023): Found entity 1: CacheEnabledDramController File: C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/CacheEnabledDramController.vhd Line: 15
+Info (144001): Generated suppressed messages file C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/MC68K.map.smsg
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 9 errors, 12 warnings
+    Error: Peak virtual memory: 4857 megabytes
+    Error: Processing ended: Thu Mar 07 17:29:03 2024
+    Error: Elapsed time: 00:00:14
+    Error: Total CPU time (on all processors): 00:00:13
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4a/Ryansbuild/MC68K.map.smsg.
+
+
