@@ -340,7 +340,7 @@ module M68kAssociativeCacheController_Verilog (
                 NextState <= ReadDataFromDramIntoCache;
             end
 			LRU_WE_L    <= 0;
-            LoadReplaceBlockNumberData_H <= 1;
+            LoadReplacementBlockNumber_H <= 1;
             NextState <= ReadDataFromDramIntoCache;
 		end
 ///////////////////////////////////////////////////////////////////////////////////////////////
