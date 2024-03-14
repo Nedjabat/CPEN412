@@ -288,11 +288,11 @@ module M68kAssociativeCacheController_Verilog (
                 if ((LRUBits[0] == 0) && (LRUBits[1]==0))
                     LRUBits_Out <= {LRUBits[2],2'b11};
                 else if ((LRUBits[0] == 0) && (LRUBits[1]==1))
-                    LRUBits_Out <= {LRUBits[2],2'b10};
-                else if ((LRUBits[0] == 1) && (LRUBits[2]==0))
                     LRUBits_Out <= {LRUBits[2],2'b01};
+                else if ((LRUBits[0] == 1) && (LRUBits[2]==0))
+                    LRUBits_Out <= {1'b1,LRUBits[1],1'b0};
                 else if ((LRUBits[0] == 1) && (LRUBits[1] == 1))
-                    LRUBits_Out <= {LRUBits[2],2'b00};
+                    LRUBits_Out <= {1'b0,LRUBits[1],1'b1};
                 LRU_WE_L	<= 0;
                 end
             else begin
@@ -316,7 +316,7 @@ module M68kAssociativeCacheController_Verilog (
                 NextState <= ReadDataFromDramIntoCache;
             end
 			LRU_WE_L    <= 0;
-            LoadReplacementBlockNumber_H <= 1; 
+            LoadReplacementBlockNumber_H <= 1;
             NextState <= ReadDataFromDramIntoCache;
 		end
 ///////////////////////////////////////////////////////////////////////////////////////////////

@@ -291,7 +291,7 @@ module M68kAssociativeCacheController_Verilog (
                     LRUBits_Out <= {LRUBits[2],2'b01};
                 else if ((LRUBits[0] == 1) && (LRUBits[2]==0))
                     LRUBits_Out <= {1'b1,LRUBits[1],1'b0};
-                else if ((LRUBits[0] == 1) && (LRUBit[1] == 1))
+                else if ((LRUBits[0] == 1) && (LRUBits[1] == 1))
                     LRUBits_Out <= {1'b0,LRUBits[1],1'b1};
                 LRU_WE_L	<= 0;
                 end

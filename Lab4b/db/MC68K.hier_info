@@ -1498,112 +1498,112 @@ DtackOut_L <= DtackOut_L.DB_MAX_OUTPUT_PORT_TYPE
 DRAM_CKE <= CacheEnabledDramController:inst2.SDram_CKE_H
 Clock_Inverted => CacheEnabledDramController:inst2.Clock
 Reset_L => CacheEnabledDramController:inst2.Reset_L
-Reset_L => AssociativeDramCache:inst.Reset_L
-Clock => AssociativeDramCache:inst.Clock
+Reset_L => AssociativeDramCache:inst3.Reset_L
+Clock => AssociativeDramCache:inst3.Clock
 Clock => DRAM_CLK.DATAIN
-DramSelect_H => AssociativeDramCache:inst.DramSelectFrom68k_H
-UDS_L => AssociativeDramCache:inst.UDS_L
-LDS_L => AssociativeDramCache:inst.LDS_L
-RW => AssociativeDramCache:inst.RW
-AS_L => AssociativeDramCache:inst.AS_L
-AddressBus[0] => AssociativeDramCache:inst.AddressBusInFrom68k[0]
-AddressBus[1] => AssociativeDramCache:inst.AddressBusInFrom68k[1]
-AddressBus[2] => AssociativeDramCache:inst.AddressBusInFrom68k[2]
-AddressBus[3] => AssociativeDramCache:inst.AddressBusInFrom68k[3]
-AddressBus[4] => AssociativeDramCache:inst.AddressBusInFrom68k[4]
-AddressBus[5] => AssociativeDramCache:inst.AddressBusInFrom68k[5]
-AddressBus[6] => AssociativeDramCache:inst.AddressBusInFrom68k[6]
-AddressBus[7] => AssociativeDramCache:inst.AddressBusInFrom68k[7]
-AddressBus[8] => AssociativeDramCache:inst.AddressBusInFrom68k[8]
-AddressBus[9] => AssociativeDramCache:inst.AddressBusInFrom68k[9]
-AddressBus[10] => AssociativeDramCache:inst.AddressBusInFrom68k[10]
-AddressBus[11] => AssociativeDramCache:inst.AddressBusInFrom68k[11]
-AddressBus[12] => AssociativeDramCache:inst.AddressBusInFrom68k[12]
-AddressBus[13] => AssociativeDramCache:inst.AddressBusInFrom68k[13]
-AddressBus[14] => AssociativeDramCache:inst.AddressBusInFrom68k[14]
-AddressBus[15] => AssociativeDramCache:inst.AddressBusInFrom68k[15]
-AddressBus[16] => AssociativeDramCache:inst.AddressBusInFrom68k[16]
-AddressBus[17] => AssociativeDramCache:inst.AddressBusInFrom68k[17]
-AddressBus[18] => AssociativeDramCache:inst.AddressBusInFrom68k[18]
-AddressBus[19] => AssociativeDramCache:inst.AddressBusInFrom68k[19]
-AddressBus[20] => AssociativeDramCache:inst.AddressBusInFrom68k[20]
-AddressBus[21] => AssociativeDramCache:inst.AddressBusInFrom68k[21]
-AddressBus[22] => AssociativeDramCache:inst.AddressBusInFrom68k[22]
-AddressBus[23] => AssociativeDramCache:inst.AddressBusInFrom68k[23]
-AddressBus[24] => AssociativeDramCache:inst.AddressBusInFrom68k[24]
-AddressBus[25] => AssociativeDramCache:inst.AddressBusInFrom68k[25]
-AddressBus[26] => AssociativeDramCache:inst.AddressBusInFrom68k[26]
-AddressBus[27] => AssociativeDramCache:inst.AddressBusInFrom68k[27]
-AddressBus[28] => AssociativeDramCache:inst.AddressBusInFrom68k[28]
-AddressBus[29] => AssociativeDramCache:inst.AddressBusInFrom68k[29]
-AddressBus[30] => AssociativeDramCache:inst.AddressBusInFrom68k[30]
-AddressBus[31] => AssociativeDramCache:inst.AddressBusInFrom68k[31]
-DataBusIn[0] => AssociativeDramCache:inst.DataBusInFrom68k[0]
-DataBusIn[1] => AssociativeDramCache:inst.DataBusInFrom68k[1]
-DataBusIn[2] => AssociativeDramCache:inst.DataBusInFrom68k[2]
-DataBusIn[3] => AssociativeDramCache:inst.DataBusInFrom68k[3]
-DataBusIn[4] => AssociativeDramCache:inst.DataBusInFrom68k[4]
-DataBusIn[5] => AssociativeDramCache:inst.DataBusInFrom68k[5]
-DataBusIn[6] => AssociativeDramCache:inst.DataBusInFrom68k[6]
-DataBusIn[7] => AssociativeDramCache:inst.DataBusInFrom68k[7]
-DataBusIn[8] => AssociativeDramCache:inst.DataBusInFrom68k[8]
-DataBusIn[9] => AssociativeDramCache:inst.DataBusInFrom68k[9]
-DataBusIn[10] => AssociativeDramCache:inst.DataBusInFrom68k[10]
-DataBusIn[11] => AssociativeDramCache:inst.DataBusInFrom68k[11]
-DataBusIn[12] => AssociativeDramCache:inst.DataBusInFrom68k[12]
-DataBusIn[13] => AssociativeDramCache:inst.DataBusInFrom68k[13]
-DataBusIn[14] => AssociativeDramCache:inst.DataBusInFrom68k[14]
-DataBusIn[15] => AssociativeDramCache:inst.DataBusInFrom68k[15]
+DramSelect_H => AssociativeDramCache:inst3.DramSelectFrom68k_H
+UDS_L => AssociativeDramCache:inst3.UDS_L
+LDS_L => AssociativeDramCache:inst3.LDS_L
+RW => AssociativeDramCache:inst3.RW
+AS_L => AssociativeDramCache:inst3.AS_L
+AddressBus[0] => AssociativeDramCache:inst3.AddressBusInFrom68k[0]
+AddressBus[1] => AssociativeDramCache:inst3.AddressBusInFrom68k[1]
+AddressBus[2] => AssociativeDramCache:inst3.AddressBusInFrom68k[2]
+AddressBus[3] => AssociativeDramCache:inst3.AddressBusInFrom68k[3]
+AddressBus[4] => AssociativeDramCache:inst3.AddressBusInFrom68k[4]
+AddressBus[5] => AssociativeDramCache:inst3.AddressBusInFrom68k[5]
+AddressBus[6] => AssociativeDramCache:inst3.AddressBusInFrom68k[6]
+AddressBus[7] => AssociativeDramCache:inst3.AddressBusInFrom68k[7]
+AddressBus[8] => AssociativeDramCache:inst3.AddressBusInFrom68k[8]
+AddressBus[9] => AssociativeDramCache:inst3.AddressBusInFrom68k[9]
+AddressBus[10] => AssociativeDramCache:inst3.AddressBusInFrom68k[10]
+AddressBus[11] => AssociativeDramCache:inst3.AddressBusInFrom68k[11]
+AddressBus[12] => AssociativeDramCache:inst3.AddressBusInFrom68k[12]
+AddressBus[13] => AssociativeDramCache:inst3.AddressBusInFrom68k[13]
+AddressBus[14] => AssociativeDramCache:inst3.AddressBusInFrom68k[14]
+AddressBus[15] => AssociativeDramCache:inst3.AddressBusInFrom68k[15]
+AddressBus[16] => AssociativeDramCache:inst3.AddressBusInFrom68k[16]
+AddressBus[17] => AssociativeDramCache:inst3.AddressBusInFrom68k[17]
+AddressBus[18] => AssociativeDramCache:inst3.AddressBusInFrom68k[18]
+AddressBus[19] => AssociativeDramCache:inst3.AddressBusInFrom68k[19]
+AddressBus[20] => AssociativeDramCache:inst3.AddressBusInFrom68k[20]
+AddressBus[21] => AssociativeDramCache:inst3.AddressBusInFrom68k[21]
+AddressBus[22] => AssociativeDramCache:inst3.AddressBusInFrom68k[22]
+AddressBus[23] => AssociativeDramCache:inst3.AddressBusInFrom68k[23]
+AddressBus[24] => AssociativeDramCache:inst3.AddressBusInFrom68k[24]
+AddressBus[25] => AssociativeDramCache:inst3.AddressBusInFrom68k[25]
+AddressBus[26] => AssociativeDramCache:inst3.AddressBusInFrom68k[26]
+AddressBus[27] => AssociativeDramCache:inst3.AddressBusInFrom68k[27]
+AddressBus[28] => AssociativeDramCache:inst3.AddressBusInFrom68k[28]
+AddressBus[29] => AssociativeDramCache:inst3.AddressBusInFrom68k[29]
+AddressBus[30] => AssociativeDramCache:inst3.AddressBusInFrom68k[30]
+AddressBus[31] => AssociativeDramCache:inst3.AddressBusInFrom68k[31]
+DataBusIn[0] => AssociativeDramCache:inst3.DataBusInFrom68k[0]
+DataBusIn[1] => AssociativeDramCache:inst3.DataBusInFrom68k[1]
+DataBusIn[2] => AssociativeDramCache:inst3.DataBusInFrom68k[2]
+DataBusIn[3] => AssociativeDramCache:inst3.DataBusInFrom68k[3]
+DataBusIn[4] => AssociativeDramCache:inst3.DataBusInFrom68k[4]
+DataBusIn[5] => AssociativeDramCache:inst3.DataBusInFrom68k[5]
+DataBusIn[6] => AssociativeDramCache:inst3.DataBusInFrom68k[6]
+DataBusIn[7] => AssociativeDramCache:inst3.DataBusInFrom68k[7]
+DataBusIn[8] => AssociativeDramCache:inst3.DataBusInFrom68k[8]
+DataBusIn[9] => AssociativeDramCache:inst3.DataBusInFrom68k[9]
+DataBusIn[10] => AssociativeDramCache:inst3.DataBusInFrom68k[10]
+DataBusIn[11] => AssociativeDramCache:inst3.DataBusInFrom68k[11]
+DataBusIn[12] => AssociativeDramCache:inst3.DataBusInFrom68k[12]
+DataBusIn[13] => AssociativeDramCache:inst3.DataBusInFrom68k[13]
+DataBusIn[14] => AssociativeDramCache:inst3.DataBusInFrom68k[14]
+DataBusIn[15] => AssociativeDramCache:inst3.DataBusInFrom68k[15]
 DRAM_CS_N <= CacheEnabledDramController:inst2.SDram_CS_L
 DRAM_RAS_N <= CacheEnabledDramController:inst2.SDram_RAS_L
 DRAM_CAS_N <= CacheEnabledDramController:inst2.SDram_CAS_L
 DRAM_WE_N <= CacheEnabledDramController:inst2.SDram_WE_L
 ResetOutTo68k <= CacheEnabledDramController:inst2.ResetOut_L
 DRAM_CLK <= Clock.DB_MAX_OUTPUT_PORT_TYPE
-DRAM_LDQM <= AssociativeDramCache:inst.LDS_DramController_L
-DRAM_UDQM <= AssociativeDramCache:inst.UDS_DramController_L
-CacheDtackTo68k_L <= AssociativeDramCache:inst.DtackTo68k_L
-CacheDataOut[0] <= AssociativeDramCache:inst.CacheDataOut[0]
-CacheDataOut[1] <= AssociativeDramCache:inst.CacheDataOut[1]
-CacheDataOut[2] <= AssociativeDramCache:inst.CacheDataOut[2]
-CacheDataOut[3] <= AssociativeDramCache:inst.CacheDataOut[3]
-CacheDataOut[4] <= AssociativeDramCache:inst.CacheDataOut[4]
-CacheDataOut[5] <= AssociativeDramCache:inst.CacheDataOut[5]
-CacheDataOut[6] <= AssociativeDramCache:inst.CacheDataOut[6]
-CacheDataOut[7] <= AssociativeDramCache:inst.CacheDataOut[7]
-CacheDataOut[8] <= AssociativeDramCache:inst.CacheDataOut[8]
-CacheDataOut[9] <= AssociativeDramCache:inst.CacheDataOut[9]
-CacheDataOut[10] <= AssociativeDramCache:inst.CacheDataOut[10]
-CacheDataOut[11] <= AssociativeDramCache:inst.CacheDataOut[11]
-CacheDataOut[12] <= AssociativeDramCache:inst.CacheDataOut[12]
-CacheDataOut[13] <= AssociativeDramCache:inst.CacheDataOut[13]
-CacheDataOut[14] <= AssociativeDramCache:inst.CacheDataOut[14]
-CacheDataOut[15] <= AssociativeDramCache:inst.CacheDataOut[15]
-CacheState[0] <= AssociativeDramCache:inst.CacheState[0]
-CacheState[1] <= AssociativeDramCache:inst.CacheState[1]
-CacheState[2] <= AssociativeDramCache:inst.CacheState[2]
-CacheState[3] <= AssociativeDramCache:inst.CacheState[3]
-CacheState[4] <= AssociativeDramCache:inst.CacheState[4]
-DataBusOut[0] <= AssociativeDramCache:inst.DataBusOutTo68k[0]
-DataBusOut[1] <= AssociativeDramCache:inst.DataBusOutTo68k[1]
-DataBusOut[2] <= AssociativeDramCache:inst.DataBusOutTo68k[2]
-DataBusOut[3] <= AssociativeDramCache:inst.DataBusOutTo68k[3]
-DataBusOut[4] <= AssociativeDramCache:inst.DataBusOutTo68k[4]
-DataBusOut[5] <= AssociativeDramCache:inst.DataBusOutTo68k[5]
-DataBusOut[6] <= AssociativeDramCache:inst.DataBusOutTo68k[6]
-DataBusOut[7] <= AssociativeDramCache:inst.DataBusOutTo68k[7]
-DataBusOut[8] <= AssociativeDramCache:inst.DataBusOutTo68k[8]
-DataBusOut[9] <= AssociativeDramCache:inst.DataBusOutTo68k[9]
-DataBusOut[10] <= AssociativeDramCache:inst.DataBusOutTo68k[10]
-DataBusOut[11] <= AssociativeDramCache:inst.DataBusOutTo68k[11]
-DataBusOut[12] <= AssociativeDramCache:inst.DataBusOutTo68k[12]
-DataBusOut[13] <= AssociativeDramCache:inst.DataBusOutTo68k[13]
-DataBusOut[14] <= AssociativeDramCache:inst.DataBusOutTo68k[14]
-DataBusOut[15] <= AssociativeDramCache:inst.DataBusOutTo68k[15]
-DataCacheWE_L[0] <= AssociativeDramCache:inst.DataCacheWE_L[0]
-DataCacheWE_L[1] <= AssociativeDramCache:inst.DataCacheWE_L[1]
-DataCacheWE_L[2] <= AssociativeDramCache:inst.DataCacheWE_L[2]
-DataCacheWE_L[3] <= AssociativeDramCache:inst.DataCacheWE_L[3]
+DRAM_LDQM <= AssociativeDramCache:inst3.LDS_DramController_L
+DRAM_UDQM <= AssociativeDramCache:inst3.UDS_DramController_L
+CacheDtackTo68k_L <= AssociativeDramCache:inst3.DtackTo68k_L
+CacheDataOut[0] <= AssociativeDramCache:inst3.CacheDataOut[0]
+CacheDataOut[1] <= AssociativeDramCache:inst3.CacheDataOut[1]
+CacheDataOut[2] <= AssociativeDramCache:inst3.CacheDataOut[2]
+CacheDataOut[3] <= AssociativeDramCache:inst3.CacheDataOut[3]
+CacheDataOut[4] <= AssociativeDramCache:inst3.CacheDataOut[4]
+CacheDataOut[5] <= AssociativeDramCache:inst3.CacheDataOut[5]
+CacheDataOut[6] <= AssociativeDramCache:inst3.CacheDataOut[6]
+CacheDataOut[7] <= AssociativeDramCache:inst3.CacheDataOut[7]
+CacheDataOut[8] <= AssociativeDramCache:inst3.CacheDataOut[8]
+CacheDataOut[9] <= AssociativeDramCache:inst3.CacheDataOut[9]
+CacheDataOut[10] <= AssociativeDramCache:inst3.CacheDataOut[10]
+CacheDataOut[11] <= AssociativeDramCache:inst3.CacheDataOut[11]
+CacheDataOut[12] <= AssociativeDramCache:inst3.CacheDataOut[12]
+CacheDataOut[13] <= AssociativeDramCache:inst3.CacheDataOut[13]
+CacheDataOut[14] <= AssociativeDramCache:inst3.CacheDataOut[14]
+CacheDataOut[15] <= AssociativeDramCache:inst3.CacheDataOut[15]
+CacheState[0] <= AssociativeDramCache:inst3.CacheState[0]
+CacheState[1] <= AssociativeDramCache:inst3.CacheState[1]
+CacheState[2] <= AssociativeDramCache:inst3.CacheState[2]
+CacheState[3] <= AssociativeDramCache:inst3.CacheState[3]
+CacheState[4] <= AssociativeDramCache:inst3.CacheState[4]
+DataBusOut[0] <= AssociativeDramCache:inst3.DataBusOutTo68k[0]
+DataBusOut[1] <= AssociativeDramCache:inst3.DataBusOutTo68k[1]
+DataBusOut[2] <= AssociativeDramCache:inst3.DataBusOutTo68k[2]
+DataBusOut[3] <= AssociativeDramCache:inst3.DataBusOutTo68k[3]
+DataBusOut[4] <= AssociativeDramCache:inst3.DataBusOutTo68k[4]
+DataBusOut[5] <= AssociativeDramCache:inst3.DataBusOutTo68k[5]
+DataBusOut[6] <= AssociativeDramCache:inst3.DataBusOutTo68k[6]
+DataBusOut[7] <= AssociativeDramCache:inst3.DataBusOutTo68k[7]
+DataBusOut[8] <= AssociativeDramCache:inst3.DataBusOutTo68k[8]
+DataBusOut[9] <= AssociativeDramCache:inst3.DataBusOutTo68k[9]
+DataBusOut[10] <= AssociativeDramCache:inst3.DataBusOutTo68k[10]
+DataBusOut[11] <= AssociativeDramCache:inst3.DataBusOutTo68k[11]
+DataBusOut[12] <= AssociativeDramCache:inst3.DataBusOutTo68k[12]
+DataBusOut[13] <= AssociativeDramCache:inst3.DataBusOutTo68k[13]
+DataBusOut[14] <= AssociativeDramCache:inst3.DataBusOutTo68k[14]
+DataBusOut[15] <= AssociativeDramCache:inst3.DataBusOutTo68k[15]
+DataCacheWE_L[0] <= AssociativeDramCache:inst3.DataCacheWE_L[0]
+DataCacheWE_L[1] <= AssociativeDramCache:inst3.DataCacheWE_L[1]
+DataCacheWE_L[2] <= AssociativeDramCache:inst3.DataCacheWE_L[2]
+DataCacheWE_L[3] <= AssociativeDramCache:inst3.DataCacheWE_L[3]
 DRAM_ADDR[0] <= CacheEnabledDramController:inst2.SDram_Addr[0]
 DRAM_ADDR[1] <= CacheEnabledDramController:inst2.SDram_Addr[1]
 DRAM_ADDR[2] <= CacheEnabledDramController:inst2.SDram_Addr[2]
@@ -1635,21 +1635,21 @@ DRAM_DQ[12] <= CacheEnabledDramController:inst2.SDram_DQ[12]
 DRAM_DQ[13] <= CacheEnabledDramController:inst2.SDram_DQ[13]
 DRAM_DQ[14] <= CacheEnabledDramController:inst2.SDram_DQ[14]
 DRAM_DQ[15] <= CacheEnabledDramController:inst2.SDram_DQ[15]
-TagCacheWE_L[0] <= AssociativeDramCache:inst.TagCacheWE_L[0]
-TagCacheWE_L[1] <= AssociativeDramCache:inst.TagCacheWE_L[1]
-TagCacheWE_L[2] <= AssociativeDramCache:inst.TagCacheWE_L[2]
-TagCacheWE_L[3] <= AssociativeDramCache:inst.TagCacheWE_L[3]
-Valid_H[0] <= AssociativeDramCache:inst.Valid_H[0]
-Valid_H[1] <= AssociativeDramCache:inst.Valid_H[1]
-Valid_H[2] <= AssociativeDramCache:inst.Valid_H[2]
-Valid_H[3] <= AssociativeDramCache:inst.Valid_H[3]
-ValidHit_H[0] <= AssociativeDramCache:inst.ValidHit_H[0]
-ValidHit_H[1] <= AssociativeDramCache:inst.ValidHit_H[1]
-ValidHit_H[2] <= AssociativeDramCache:inst.ValidHit_H[2]
-ValidHit_H[3] <= AssociativeDramCache:inst.ValidHit_H[3]
-WordAddress[0] <= AssociativeDramCache:inst.WordAddress[0]
-WordAddress[1] <= AssociativeDramCache:inst.WordAddress[1]
-WordAddress[2] <= AssociativeDramCache:inst.WordAddress[2]
+TagCacheWE_L[0] <= AssociativeDramCache:inst3.TagCacheWE_L[0]
+TagCacheWE_L[1] <= AssociativeDramCache:inst3.TagCacheWE_L[1]
+TagCacheWE_L[2] <= AssociativeDramCache:inst3.TagCacheWE_L[2]
+TagCacheWE_L[3] <= AssociativeDramCache:inst3.TagCacheWE_L[3]
+Valid_H[0] <= AssociativeDramCache:inst3.Valid_H[0]
+Valid_H[1] <= AssociativeDramCache:inst3.Valid_H[1]
+Valid_H[2] <= AssociativeDramCache:inst3.Valid_H[2]
+Valid_H[3] <= AssociativeDramCache:inst3.Valid_H[3]
+ValidHit_H[0] <= AssociativeDramCache:inst3.ValidHit_H[0]
+ValidHit_H[1] <= AssociativeDramCache:inst3.ValidHit_H[1]
+ValidHit_H[2] <= AssociativeDramCache:inst3.ValidHit_H[2]
+ValidHit_H[3] <= AssociativeDramCache:inst3.ValidHit_H[3]
+WordAddress[0] <= AssociativeDramCache:inst3.WordAddress[0]
+WordAddress[1] <= AssociativeDramCache:inst3.WordAddress[1]
+WordAddress[2] <= AssociativeDramCache:inst3.WordAddress[2]
 
 
 |MC68K|AssociativeCachedDramController:inst3|CacheEnabledDramController:inst2
@@ -1933,14 +1933,14 @@ Dtack_L <= Dtack_L~reg0.DB_MAX_OUTPUT_PORT_TYPE
 ResetOut_L <= ResetOut_L~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3
 DtackTo68k_L <= M68kAssociativeCacheController_Verilog:inst4.DtackTo68k_L
 Clock => M68kAssociativeCacheController_Verilog:inst4.Clock
 Clock => AssociativeCache_Set:inst10.Clock
 Clock => AssociativeCache_Set:inst11.Clock
 Clock => AssociativeCache_Set:inst14.Clock
 Clock => AssociativeCache_Set:inst15.Clock
-Clock => PseudoLRU_Bits:inst.Clock
+Clock => PseudoLRU_Bits:inst5.Clock
 Reset_L => M68kAssociativeCacheController_Verilog:inst4.Reset_L
 DramSelectFrom68k_H => M68kAssociativeCacheController_Verilog:inst4.DramSelect68k_H
 DramSelectFrom68k_H => inst32.IN1
@@ -2191,7 +2191,7 @@ WordAddress[1] <= M68kAssociativeCacheController_Verilog:inst4.WordAddress[1]
 WordAddress[2] <= M68kAssociativeCacheController_Verilog:inst4.WordAddress[2]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|M68kAssociativeCacheController_Verilog:inst4
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|M68kAssociativeCacheController_Verilog:inst4
 Clock => LRUBits[0].CLK
 Clock => LRUBits[1].CLK
 Clock => LRUBits[2].CLK
@@ -2553,7 +2553,7 @@ CacheState[3] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
 CacheState[4] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|CacheDataMux:inst2
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|CacheDataMux:inst2
 ValidHit0_H => DataOut.OUTPUTSELECT
 ValidHit0_H => DataOut.OUTPUTSELECT
 ValidHit0_H => DataOut.OUTPUTSELECT
@@ -2685,7 +2685,7 @@ DataOut[14] <= DataOut.DB_MAX_OUTPUT_PORT_TYPE
 DataOut[15] <= DataOut.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10
 Valid_H <= ValidBit_Associative:inst1.ValidityBit_out
 ValidBitIn => ValidBit_Associative:inst1.ValidityBitIn
 ValidWE_L => ValidBit_Associative:inst1.WE_L
@@ -2793,7 +2793,7 @@ WordAddress[1] => CacheData_Associative:inst3.Word[1]
 WordAddress[2] => CacheData_Associative:inst3.Word[2]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|ValidBit_Associative:inst1
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|ValidBit_Associative:inst1
 ValidityBit_out <= Valid_Bit_Associative:inst.q[0]
 WE_L => inst2.IN0
 Clock => Valid_Bit_Associative:inst.clock
@@ -2803,7 +2803,7 @@ Index[2] => Valid_Bit_Associative:inst.address[2]
 ValidityBitIn => Valid_Bit_Associative:inst.data[0]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|ValidBit_Associative:inst1|Valid_Bit_Associative:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|ValidBit_Associative:inst1|Valid_Bit_Associative:inst
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -2813,7 +2813,7 @@ wren => wren.IN1
 q[0] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component
 wren_a => altsyncram_68m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -2843,7 +2843,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component|altsyncram_68m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component|altsyncram_68m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[1] => ram_block1a0.PORTAADDR1
 address_a[2] => ram_block1a0.PORTAADDR2
@@ -2853,7 +2853,7 @@ q_a[0] <= ram_block1a0.PORTADATAOUT
 wren_a => ram_block1a0.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|AddressComparator_Associative:inst4
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|AddressComparator_Associative:inst4
 AddressBus[0] => Equal0.IN24
 AddressBus[1] => Equal0.IN23
 AddressBus[2] => Equal0.IN22
@@ -2907,7 +2907,7 @@ TagData[24] => Equal0.IN25
 Hit_H <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|TagMemory_Associative:inst2
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|TagMemory_Associative:inst2
 TagDataOut[0] <= Tag_Data_Associative:inst.q[0]
 TagDataOut[1] <= Tag_Data_Associative:inst.q[1]
 TagDataOut[2] <= Tag_Data_Associative:inst.q[2]
@@ -2965,7 +2965,7 @@ TagDataIn[23] => Tag_Data_Associative:inst.data[23]
 TagDataIn[24] => Tag_Data_Associative:inst.data[24]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|TagMemory_Associative:inst2|Tag_Data_Associative:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|TagMemory_Associative:inst2|Tag_Data_Associative:inst
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -3023,7 +3023,7 @@ q[23] <= altsyncram:altsyncram_component.q_a
 q[24] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component
 wren_a => altsyncram_s9m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -3101,7 +3101,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component|altsyncram_s9m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component|altsyncram_s9m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -3279,7 +3279,7 @@ wren_a => ram_block1a23.PORTAWE
 wren_a => ram_block1a24.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|CacheData_Associative:inst3
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|CacheData_Associative:inst3
 DataOut[0] <= CachedData_Associative:inst1.q[0]
 DataOut[1] <= CachedData_Associative:inst1.q[1]
 DataOut[2] <= CachedData_Associative:inst1.q[2]
@@ -3332,7 +3332,7 @@ DataIn[15] => CachedData_Associative:inst0.data[7]
 LDS_L => inst2.IN0
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst0
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst0
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -3359,7 +3359,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component
 wren_a => altsyncram_2am1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -3406,7 +3406,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -3489,7 +3489,7 @@ wren_a => ram_block1a6.PORTAWE
 wren_a => ram_block1a7.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst1
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst1
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -3516,7 +3516,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component
 wren_a => altsyncram_2am1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -3563,7 +3563,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst10|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -3646,7 +3646,7 @@ wren_a => ram_block1a6.PORTAWE
 wren_a => ram_block1a7.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11
 Valid_H <= ValidBit_Associative:inst1.ValidityBit_out
 ValidBitIn => ValidBit_Associative:inst1.ValidityBitIn
 ValidWE_L => ValidBit_Associative:inst1.WE_L
@@ -3754,7 +3754,7 @@ WordAddress[1] => CacheData_Associative:inst3.Word[1]
 WordAddress[2] => CacheData_Associative:inst3.Word[2]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|ValidBit_Associative:inst1
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|ValidBit_Associative:inst1
 ValidityBit_out <= Valid_Bit_Associative:inst.q[0]
 WE_L => inst2.IN0
 Clock => Valid_Bit_Associative:inst.clock
@@ -3764,7 +3764,7 @@ Index[2] => Valid_Bit_Associative:inst.address[2]
 ValidityBitIn => Valid_Bit_Associative:inst.data[0]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|ValidBit_Associative:inst1|Valid_Bit_Associative:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|ValidBit_Associative:inst1|Valid_Bit_Associative:inst
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -3774,7 +3774,7 @@ wren => wren.IN1
 q[0] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component
 wren_a => altsyncram_68m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -3804,7 +3804,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component|altsyncram_68m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component|altsyncram_68m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[1] => ram_block1a0.PORTAADDR1
 address_a[2] => ram_block1a0.PORTAADDR2
@@ -3814,7 +3814,7 @@ q_a[0] <= ram_block1a0.PORTADATAOUT
 wren_a => ram_block1a0.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|AddressComparator_Associative:inst4
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|AddressComparator_Associative:inst4
 AddressBus[0] => Equal0.IN24
 AddressBus[1] => Equal0.IN23
 AddressBus[2] => Equal0.IN22
@@ -3868,7 +3868,7 @@ TagData[24] => Equal0.IN25
 Hit_H <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|TagMemory_Associative:inst2
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|TagMemory_Associative:inst2
 TagDataOut[0] <= Tag_Data_Associative:inst.q[0]
 TagDataOut[1] <= Tag_Data_Associative:inst.q[1]
 TagDataOut[2] <= Tag_Data_Associative:inst.q[2]
@@ -3926,7 +3926,7 @@ TagDataIn[23] => Tag_Data_Associative:inst.data[23]
 TagDataIn[24] => Tag_Data_Associative:inst.data[24]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|TagMemory_Associative:inst2|Tag_Data_Associative:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|TagMemory_Associative:inst2|Tag_Data_Associative:inst
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -3984,7 +3984,7 @@ q[23] <= altsyncram:altsyncram_component.q_a
 q[24] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component
 wren_a => altsyncram_s9m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -4062,7 +4062,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component|altsyncram_s9m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component|altsyncram_s9m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -4240,7 +4240,7 @@ wren_a => ram_block1a23.PORTAWE
 wren_a => ram_block1a24.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|CacheData_Associative:inst3
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|CacheData_Associative:inst3
 DataOut[0] <= CachedData_Associative:inst1.q[0]
 DataOut[1] <= CachedData_Associative:inst1.q[1]
 DataOut[2] <= CachedData_Associative:inst1.q[2]
@@ -4293,7 +4293,7 @@ DataIn[15] => CachedData_Associative:inst0.data[7]
 LDS_L => inst2.IN0
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst0
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst0
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -4320,7 +4320,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component
 wren_a => altsyncram_2am1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -4367,7 +4367,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -4450,7 +4450,7 @@ wren_a => ram_block1a6.PORTAWE
 wren_a => ram_block1a7.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst1
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst1
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -4477,7 +4477,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component
 wren_a => altsyncram_2am1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -4524,7 +4524,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst11|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -4607,7 +4607,7 @@ wren_a => ram_block1a6.PORTAWE
 wren_a => ram_block1a7.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14
 Valid_H <= ValidBit_Associative:inst1.ValidityBit_out
 ValidBitIn => ValidBit_Associative:inst1.ValidityBitIn
 ValidWE_L => ValidBit_Associative:inst1.WE_L
@@ -4715,7 +4715,7 @@ WordAddress[1] => CacheData_Associative:inst3.Word[1]
 WordAddress[2] => CacheData_Associative:inst3.Word[2]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|ValidBit_Associative:inst1
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|ValidBit_Associative:inst1
 ValidityBit_out <= Valid_Bit_Associative:inst.q[0]
 WE_L => inst2.IN0
 Clock => Valid_Bit_Associative:inst.clock
@@ -4725,7 +4725,7 @@ Index[2] => Valid_Bit_Associative:inst.address[2]
 ValidityBitIn => Valid_Bit_Associative:inst.data[0]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|ValidBit_Associative:inst1|Valid_Bit_Associative:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|ValidBit_Associative:inst1|Valid_Bit_Associative:inst
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -4735,7 +4735,7 @@ wren => wren.IN1
 q[0] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component
 wren_a => altsyncram_68m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -4765,7 +4765,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component|altsyncram_68m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component|altsyncram_68m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[1] => ram_block1a0.PORTAADDR1
 address_a[2] => ram_block1a0.PORTAADDR2
@@ -4775,7 +4775,7 @@ q_a[0] <= ram_block1a0.PORTADATAOUT
 wren_a => ram_block1a0.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|AddressComparator_Associative:inst4
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|AddressComparator_Associative:inst4
 AddressBus[0] => Equal0.IN24
 AddressBus[1] => Equal0.IN23
 AddressBus[2] => Equal0.IN22
@@ -4829,7 +4829,7 @@ TagData[24] => Equal0.IN25
 Hit_H <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|TagMemory_Associative:inst2
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|TagMemory_Associative:inst2
 TagDataOut[0] <= Tag_Data_Associative:inst.q[0]
 TagDataOut[1] <= Tag_Data_Associative:inst.q[1]
 TagDataOut[2] <= Tag_Data_Associative:inst.q[2]
@@ -4887,7 +4887,7 @@ TagDataIn[23] => Tag_Data_Associative:inst.data[23]
 TagDataIn[24] => Tag_Data_Associative:inst.data[24]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|TagMemory_Associative:inst2|Tag_Data_Associative:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|TagMemory_Associative:inst2|Tag_Data_Associative:inst
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -4945,7 +4945,7 @@ q[23] <= altsyncram:altsyncram_component.q_a
 q[24] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component
 wren_a => altsyncram_s9m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -5023,7 +5023,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component|altsyncram_s9m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component|altsyncram_s9m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -5201,7 +5201,7 @@ wren_a => ram_block1a23.PORTAWE
 wren_a => ram_block1a24.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|CacheData_Associative:inst3
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|CacheData_Associative:inst3
 DataOut[0] <= CachedData_Associative:inst1.q[0]
 DataOut[1] <= CachedData_Associative:inst1.q[1]
 DataOut[2] <= CachedData_Associative:inst1.q[2]
@@ -5254,7 +5254,7 @@ DataIn[15] => CachedData_Associative:inst0.data[7]
 LDS_L => inst2.IN0
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst0
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst0
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -5281,7 +5281,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component
 wren_a => altsyncram_2am1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -5328,7 +5328,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -5411,7 +5411,7 @@ wren_a => ram_block1a6.PORTAWE
 wren_a => ram_block1a7.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst1
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst1
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -5438,7 +5438,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component
 wren_a => altsyncram_2am1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -5485,7 +5485,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst14|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -5568,7 +5568,7 @@ wren_a => ram_block1a6.PORTAWE
 wren_a => ram_block1a7.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15
 Valid_H <= ValidBit_Associative:inst1.ValidityBit_out
 ValidBitIn => ValidBit_Associative:inst1.ValidityBitIn
 ValidWE_L => ValidBit_Associative:inst1.WE_L
@@ -5676,7 +5676,7 @@ WordAddress[1] => CacheData_Associative:inst3.Word[1]
 WordAddress[2] => CacheData_Associative:inst3.Word[2]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|ValidBit_Associative:inst1
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|ValidBit_Associative:inst1
 ValidityBit_out <= Valid_Bit_Associative:inst.q[0]
 WE_L => inst2.IN0
 Clock => Valid_Bit_Associative:inst.clock
@@ -5686,7 +5686,7 @@ Index[2] => Valid_Bit_Associative:inst.address[2]
 ValidityBitIn => Valid_Bit_Associative:inst.data[0]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|ValidBit_Associative:inst1|Valid_Bit_Associative:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|ValidBit_Associative:inst1|Valid_Bit_Associative:inst
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -5696,7 +5696,7 @@ wren => wren.IN1
 q[0] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component
 wren_a => altsyncram_68m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -5726,7 +5726,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component|altsyncram_68m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|ValidBit_Associative:inst1|Valid_Bit_Associative:inst|altsyncram:altsyncram_component|altsyncram_68m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[1] => ram_block1a0.PORTAADDR1
 address_a[2] => ram_block1a0.PORTAADDR2
@@ -5736,7 +5736,7 @@ q_a[0] <= ram_block1a0.PORTADATAOUT
 wren_a => ram_block1a0.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|AddressComparator_Associative:inst4
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|AddressComparator_Associative:inst4
 AddressBus[0] => Equal0.IN24
 AddressBus[1] => Equal0.IN23
 AddressBus[2] => Equal0.IN22
@@ -5790,7 +5790,7 @@ TagData[24] => Equal0.IN25
 Hit_H <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|TagMemory_Associative:inst2
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|TagMemory_Associative:inst2
 TagDataOut[0] <= Tag_Data_Associative:inst.q[0]
 TagDataOut[1] <= Tag_Data_Associative:inst.q[1]
 TagDataOut[2] <= Tag_Data_Associative:inst.q[2]
@@ -5848,7 +5848,7 @@ TagDataIn[23] => Tag_Data_Associative:inst.data[23]
 TagDataIn[24] => Tag_Data_Associative:inst.data[24]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|TagMemory_Associative:inst2|Tag_Data_Associative:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|TagMemory_Associative:inst2|Tag_Data_Associative:inst
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -5906,7 +5906,7 @@ q[23] <= altsyncram:altsyncram_component.q_a
 q[24] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component
 wren_a => altsyncram_s9m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -5984,7 +5984,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component|altsyncram_s9m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|TagMemory_Associative:inst2|Tag_Data_Associative:inst|altsyncram:altsyncram_component|altsyncram_s9m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -6162,7 +6162,7 @@ wren_a => ram_block1a23.PORTAWE
 wren_a => ram_block1a24.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|CacheData_Associative:inst3
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|CacheData_Associative:inst3
 DataOut[0] <= CachedData_Associative:inst1.q[0]
 DataOut[1] <= CachedData_Associative:inst1.q[1]
 DataOut[2] <= CachedData_Associative:inst1.q[2]
@@ -6215,7 +6215,7 @@ DataIn[15] => CachedData_Associative:inst0.data[7]
 LDS_L => inst2.IN0
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst0
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst0
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -6242,7 +6242,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component
 wren_a => altsyncram_2am1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -6289,7 +6289,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst0|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -6372,7 +6372,7 @@ wren_a => ram_block1a6.PORTAWE
 wren_a => ram_block1a7.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst1
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst1
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -6399,7 +6399,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component
 wren_a => altsyncram_2am1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -6446,7 +6446,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|AssociativeCache_Set:inst15|CacheData_Associative:inst3|CachedData_Associative:inst1|altsyncram:altsyncram_component|altsyncram_2am1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -6529,21 +6529,21 @@ wren_a => ram_block1a6.PORTAWE
 wren_a => ram_block1a7.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|PseudoLRU_Bits:inst
-LRUBitsOut[0] <= PLRU_Bits:inst.q[0]
-LRUBitsOut[1] <= PLRU_Bits:inst.q[1]
-LRUBitsOut[2] <= PLRU_Bits:inst.q[2]
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|PseudoLRU_Bits:inst5
+LRUBitsOut[0] <= PLRU_Bits:inst22.q[0]
+LRUBitsOut[1] <= PLRU_Bits:inst22.q[1]
+LRUBitsOut[2] <= PLRU_Bits:inst22.q[2]
 LRU_WE_L => inst1.IN0
-Clock => PLRU_Bits:inst.clock
-Index[0] => PLRU_Bits:inst.address[0]
-Index[1] => PLRU_Bits:inst.address[1]
-Index[2] => PLRU_Bits:inst.address[2]
-LRUBitsIn[0] => PLRU_Bits:inst.data[0]
-LRUBitsIn[1] => PLRU_Bits:inst.data[1]
-LRUBitsIn[2] => PLRU_Bits:inst.data[2]
+Clock => PLRU_Bits:inst22.clock
+Index[0] => PLRU_Bits:inst22.address[0]
+Index[1] => PLRU_Bits:inst22.address[1]
+Index[2] => PLRU_Bits:inst22.address[2]
+LRUBitsIn[0] => PLRU_Bits:inst22.data[0]
+LRUBitsIn[1] => PLRU_Bits:inst22.data[1]
+LRUBitsIn[2] => PLRU_Bits:inst22.data[2]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|PseudoLRU_Bits:inst|PLRU_Bits:inst
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|PseudoLRU_Bits:inst5|PLRU_Bits:inst22
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -6557,7 +6557,7 @@ q[1] <= altsyncram:altsyncram_component.q_a
 q[2] <= altsyncram:altsyncram_component.q_a
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|PseudoLRU_Bits:inst|PLRU_Bits:inst|altsyncram:altsyncram_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|PseudoLRU_Bits:inst5|PLRU_Bits:inst22|altsyncram:altsyncram_component
 wren_a => altsyncram_88m1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -6591,7 +6591,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|PseudoLRU_Bits:inst|PLRU_Bits:inst|altsyncram:altsyncram_component|altsyncram_88m1:auto_generated
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|PseudoLRU_Bits:inst5|PLRU_Bits:inst22|altsyncram:altsyncram_component|altsyncram_88m1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -6615,7 +6615,7 @@ wren_a => ram_block1a1.PORTAWE
 wren_a => ram_block1a2.PORTAWE
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|lpm_bustri0:inst3
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|lpm_bustri0:inst3
 data[0] => lpm_bustri:lpm_bustri_component.data[0]
 data[1] => lpm_bustri:lpm_bustri_component.data[1]
 data[2] => lpm_bustri:lpm_bustri_component.data[2]
@@ -6651,7 +6651,7 @@ tridata[14] <> lpm_bustri:lpm_bustri_component.tridata[14]
 tridata[15] <> lpm_bustri:lpm_bustri_component.tridata[15]
 
 
-|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component
+|MC68K|AssociativeCachedDramController:inst3|AssociativeDramCache:inst3|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component
 tridata[0] <> dout[0]
 tridata[1] <> dout[1]
 tridata[2] <> dout[2]
