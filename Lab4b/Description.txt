@@ -1,0 +1,80 @@
+The 7 LRU bits are modified to select the block in the cache that data will be replaced in. The format used to select blocks is a binary tree 
+
+							  Bit0
+							1|	0|
+						   Bit1		Bit2
+						|	0|	1|	0|	
+					      Bit3    Bit4    Bit5	Bit6	
+				  	    1|   0| 1|   0|  1|  0|   1|   0|
+					     B0  B1  B2  B3  B4  B5   B6   B7			
+
+If there’s a cache hit, we update LRUBits_Out to the concatenated values that corresponds to the block. If there isn’t a cache hit, we generate a burst fill and update the LRUbits.
+
+When the a read/write occurs in a line in a block a corresponding set of LRU bits is chosen. This can be seen in our code below
+
+else if(CurrentState == CheckForCacheHit) begin	  			// if we are looking for Cache hit			
+
+			UDS_DramController_L <= 0;
+			LDS_DramController_L <= 0;
+            if (|ValidHit_H[7:0]) begin
+                WordAddress <= AddressBusInFrom68k[3:1];
+                DtackTo68k_L <= 0;
+                NextState <= WaitForEndOfCacheRead;
+                if((LRUBits[0] == 0) && (LRUBits[1]==0) && (LRUBits[3]==0))
+					LRUBits_Out <= {LRUBits[6:4],1'b1,LRUBits[2],2'b11};
+				else if((LRUBits[0] == 0) && (LRUBits[1]==0) && (LRUBits[3]==1))
+					LRUBits_Out <= {LRUBits[6:4],1'b0,LRUBits[2],2'b11};
+				else if((LRUBits[0] == 0) && (LRUBits[1]==1) && (LRUBits[4]==0))
+					LRUBits_Out <= {LRUBits[6:5],1'b1,LRUBits[3:2],2'b01};
+				else if((LRUBits[0] == 0) && (LRUBits[1]==1) && (LRUBits[4]==1))
+					LRUBits_Out <= {LRUBits[6:5],1'b0,LRUBits[3:2],2'b01};
+				else if((LRUBits[0] == 1) && (LRUBits[2]==0) && (LRUBits[5]==0))
+					LRUBits_Out <= {LRUBits[6],1'b1,LRUBits[4:3],1'b1,LRUBits[1],1'b0};
+				else if((LRUBits[0] == 1) && (LRUBits[2]==0) && (LRUBits[5]==1))
+					LRUBits_Out <= {LRUBits[6],1'b0,LRUBits[4:3],1'b1,LRUBits[1],1'b0};
+				else if((LRUBits[0] == 1) && (LRUBits[2]==1) && (LRUBits[6]==0))
+					LRUBits_Out <= {1'b1,LRUBits[5:3],1'b0,LRUBits[1],1'b0};
+				else
+					LRUBits_Out <= {1'b0,LRUBits[5:3],1'b0,LRUBits[1],1'b0};
+				LRU_WE_L <= 0;
+                end
+            else begin
+                DramSelectFromCache_L <= 0;
+                if((LRUBits[0] == 0) && (LRUBits[1]==0) && (LRUBits[3]==0)) begin
+					ReplaceBlockNumberData <= 3'd0;
+					LRUBits_Out <= {LRUBits[6:4],1'b1,LRUBits[2],2'b11};
+				end
+				else if((LRUBits[0] == 0) && (LRUBits[1]==0) && (LRUBits[3]==1)) begin
+					ReplaceBlockNumberData <= 3'd1;
+					LRUBits_Out <= {LRUBits[6:4],1'b0,LRUBits[2],2'b11};
+				end
+				else if((LRUBits[0] == 0) && (LRUBits[1]==1) && (LRUBits[4]==0)) begin
+					ReplaceBlockNumberData <= 3'd2;
+					LRUBits_Out <= {LRUBits[6:5],1'b1,LRUBits[3:2],2'b01};
+				end
+				else if((LRUBits[0] == 0) && (LRUBits[1]==1) && (LRUBits[4]==1)) begin
+					ReplaceBlockNumberData <= 3'd3;
+					LRUBits_Out <= {LRUBits[6:5],1'b0,LRUBits[3:2],2'b01};
+				end
+				else if((LRUBits[0] == 1) && (LRUBits[2]==0) && (LRUBits[5]==0)) begin
+					ReplaceBlockNumberData <= 3'd4;
+					LRUBits_Out <= {LRUBits[6],1'b1,LRUBits[4:3],1'b1,LRUBits[1],1'b0};
+				end	
+				else if((LRUBits[0] == 1) && (LRUBits[2]==0) && (LRUBits[5]==1)) begin
+					ReplaceBlockNumberData <= 3'd5;
+					LRUBits_Out <= {LRUBits[6],1'b0,LRUBits[4:3],1'b1,LRUBits[1],1'b0};
+				end	
+				else if((LRUBits[0] == 1) && (LRUBits[2]==1) && (LRUBits[6]==0)) begin
+					ReplaceBlockNumberData <= 3'd6;
+					LRUBits_Out <= {1'b1,LRUBits[5:3],1'b0,LRUBits[1],1'b0};
+				end
+				else begin
+					ReplaceBlockNumberData <= 3'd7;
+					LRUBits_Out <= {1'b0,LRUBits[5:3],1'b0,LRUBits[1],1'b0};
+				end
+            	LRU_WE_L    <= 0;
+            	LoadReplacementBlockNumber_H <= 1;
+            	NextState <= ReadDataFromDramIntoCache;
+            end
+			
+		end
