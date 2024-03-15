@@ -1,0 +1,46 @@
+25MHz, non-cached program runtime:
+1 min, 46s
+
+----------------------------------------------
+
+Direct Mapped Cache
+
+45MHz, 32 line cache
+1 min, 23s
+
+40MHz, 32 line cache 
+1 min, 34s
+
+45MHz, 512 line cache
+1 min, 4s
+
+40MHz, 512 line cache
+1 min, 12s
+
+
+32 line -> 512 line becomes 1.3x faster
+
+----------------------------------------------
+
+Associative Cache
+
+NOTE: Had to reduce to 40Hz because of issues with printing lines on hyperterminal; speedtest technically DID work with 45Hz, it just printed weirdly
+
+40Hz, 4 way
+1 min, 17s
+
+
+40MHz, 8 way
+1 min, 10s
+
+Baseline to 8 way -> 1.51x faster
+
+---------------------------------------------
+
+Youtube Links
+
+4 way
+https://youtu.be/hAjtxx4XJTs?si=LLIIIWiSoW3uNv0v
+
+8 way
+https://youtu.be/EZQeQVxBVyk?si=a9yaxmQC0Coz20Ne
