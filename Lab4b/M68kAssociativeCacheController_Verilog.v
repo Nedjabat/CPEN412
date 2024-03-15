@@ -221,83 +221,56 @@ module M68kAssociativeCacheController_Verilog (
 			end
 		end
 
-		else if(CurrentState == Idle) begin	  							// if we are in the idle state				
-			/*Otherwise if we are in the Idle state {				
-			if AS_L is active and DramSelect68_H  is active {
-				if the 68k's access is a read, i.e. WE_L is high 
-					activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram regardless of what 68k asks
-					Next state = CheckForCacheHit					
-				}
-				else { 		-- must be a write, so write the 68k data to Dram and invalidate the line as we don’t cache written data
-					if(ValidBitIn_H  is active) {
-						Set ValidBitOut_H to invalid
-						Activate ValidBit_WE_L to perform the write to the Valid memory in the cache. This occurs  on next clock edge 
-					}
-					Activate DramSelectFromCache_L to zero to start the Dram controller to perform the write a.s.a.p.
-					Next state = WriteDataToDram to perform the write
-				}
-			} 
-			*/
+///////////////////////////////////////////////
+// Main IDLE state: 
+///////////////////////////////////////////////
+
+		else if(CurrentState == Idle) begin									// if we are in the idle state				
 			if ((AS_L == 0) && (DramSelect68k_H == 1)) begin
-                LRUBits_Load_H <= 1;
-				if (WE_L == 1) begin
-					UDS_DramController_L			<= 0;
-					LDS_DramController_L	   	<= 0;
-					NextState 						<= CheckForCacheHit;
+				LRUBits_Load_H <= 1;
+				if(WE_L == 1) begin
+					UDS_DramController_L <= 1'b0;
+					LDS_DramController_L <= 1'b0;
+					NextState <= CheckForCacheHit;
 				end
 				else begin
-                    ValidBitOut_H 					<= 0;
-                    if(|ValidHit_H[3:0]) begin
-                        ValidBit_WE_L				<= ~ValidHit_H;
-                    end
-					DramSelectFromCache_L 		<= 0;
-					NextState 						<= WriteDataToDram;
+					ValidBitOut_H <= 1'b0;
+					if(|ValidHit_H[3:0]) begin
+						ValidBit_WE_L <= ~ValidHit_H;
+					end
+
+					DramSelectFromCache_L <= 1'b0;
+					NextState <= WriteDataToDram;
 				end
 			end
+
 		end
-
+		
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Check if we have a Cache HIT. If so give data to 68k or if not, go generate a burst fill 
+// Check if we have a Cache HIT. If so give data to 68k or if not, go generate a burst fill
+// update the Least Recently Used Bits (LRUBits)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		else if(CurrentState == CheckForCacheHit) begin	  			// if we are looking for Cache hit			
-		// Otherwise if we are in the CheckForCacheHit state {	  	
-			// Keep activating UDS and LDS to Dram/Cache Memory controller to grab both bytes
-			
-			// -- at this point, the Tag and Valid block will have clocked in the CPU address and output their Valid and Tag address
-			// -- to the comparator so we can see if the cache has a hit or not
-			
-			// If CacheHit_H is active and the ValidBitIn_H is active {		-- give the 68k the data from the cache
-			// 	-- remember by default  DataBusOutTo68k is set to DataBusInFromCache,							
-			// 	-- so get the data from the Cache corresponding to the CPU address we are reading from 
-
-			// 	Set WordAddress to AddressBusInFrom68k [3:1]		-- give the cache line the correct 3 bit word address specified by 68k
-			// 	Activate the DtackTo68k_L signal
-			// 	Next state = WaitForEndOfCacheRead;
-			// }
-			// Otherwise {						-- we don't have the data Cached so get it from the Dram and Cache data and address
-			// 	activate DramSelectFromCache_L  signal			-- start the Dram controller to perform the read a.s.a.p.
-			// 	Next state =  ReadDataFromDramIntoCache;
-			// }
-			UDS_DramController_L <= 0;
-			LDS_DramController_L <= 0;
-            if (|ValidHit_H[3:0]) begin
-                WordAddress <= AddressBusInFrom68k[3:1];
-                DtackTo68k_L <= 0;
-                NextState <= WaitForEndOfCacheRead;
-                if ((LRUBits[0] == 0) && (LRUBits[1]==0))
-                    LRUBits_Out <= {LRUBits[2],2'b11};
-                else if ((LRUBits[0] == 0) && (LRUBits[1]==1))
-                    LRUBits_Out <= {LRUBits[2],2'b01};
-                else if ((LRUBits[0] == 1) && (LRUBits[2]==0))
-                    LRUBits_Out <= {1'b1,LRUBits[1],1'b0};
-                else 
-                    LRUBits_Out <= {1'b0,LRUBits[1],1'b0};
-                LRU_WE_L	<= 0;
-                end
-            else begin
-                DramSelectFromCache_L <= 0;
-                if((LRUBits[0] == 0) && (LRUBits[1]==0)) begin
+		else if(CurrentState == CheckForCacheHit) begin				// we are looking for a Cache hit		
+			UDS_DramController_L <= 1'b0;
+			LDS_DramController_L <= 1'b0;
+			if(|ValidHit_H[3:0]) begin
+				WordAddress <= AddressBusInFrom68k[3:1];
+				DtackTo68k_L <= 1'b0;
+				NextState <= WaitForEndOfCacheRead;
+				if((LRUBits[0] == 0) && (LRUBits[1]==0))
+					LRUBits_Out <= {LRUBits[2],2'b11};
+				else if((LRUBits[0] == 0) && (LRUBits[1]==1))
+					LRUBits_Out <= {LRUBits[2],2'b01};
+				else if((LRUBits[0] == 1) && (LRUBits[2]==0))
+					LRUBits_Out <= {1'b1, LRUBits[1],1'b0};
+				else
+					LRUBits_Out <= {1'b0, LRUBits[1],1'b0};
+				LRU_WE_L <= 0;
+			end
+			else begin
+				DramSelectFromCache_L <= 0;
+				if((LRUBits[0] == 0) && (LRUBits[1]==0)) begin
 					ReplaceBlockNumberData <= 2'b00;
 					LRUBits_Out <= {LRUBits[2],2'b11};
 				end
@@ -313,150 +286,80 @@ module M68kAssociativeCacheController_Verilog (
 					ReplaceBlockNumberData <= 2'b11;
 					LRUBits_Out <= {1'b0, LRUBits[1],1'b0};
 				end
-			LRU_WE_L    <= 0;
-            LoadReplacementBlockNumber_H <= 1;
-            NextState <= ReadDataFromDramIntoCache;
+				LRU_WE_L <= 0;
+				LoadReplacementBlockNumber_H <= 1;
+				NextState <= ReadDataFromDramIntoCache;
 			end
+
 		end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Got a Cache hit, so give the 68k the Cache data now, then wait for the 68k to end bus cycle 
+// Got a Cache hit, so give the 68k the Cache data now then wait for the 68k to end bus cycle 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 		else if(CurrentState == WaitForEndOfCacheRead) begin		
-			/*Otherwise if we are in the WaitForEndOfCacheRead state {		
-			Keep activating UDS and LDS to Dram/Cache Memory controller to grab both bytes
-			
-			--remember by default  DataBusOutTo68k is set to DataBusInFromCache,
-
-			Set WordAddress to AddressBusInFrom68k bits [3:1]		-- give the cache line the correct 3 bit address specified by 68k
-			Active the DtackTo68k_L signal
-			
-			If AS_L is active 	{
-				Next state = WaitForEndOfCacheRead 		-- stay in this state until AS_L deactivated
-			}
-		}	
-		*/
-			UDS_DramController_L <= 0;
-			LDS_DramController_L <= 0;
+			UDS_DramController_L <= 1'b0;
+			LDS_DramController_L <= 1'b0;
 			WordAddress <= AddressBusInFrom68k[3:1];
-			DtackTo68k_L <= 0;
-			
-			if (AS_L == 0) begin
+			DtackTo68k_L <= 1'b0;
+			if (AS_L ==0) begin
 				NextState <= WaitForEndOfCacheRead;
 			end
 		end
 			
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Didn't get a cache hit during read so
 // Start of operation to Read from Dram State : Remember that CAS latency is 2 clocks before 1st item of burst data appears
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		else if(CurrentState == ReadDataFromDramIntoCache) begin
-			/*
-			Otherwise if we are in the ReadDataFromDramIntoCache state {
-			Set Next state =  ReadDataFromDramIntoCache			--   unless overridden below
-			
-			-- we need to wait for a valid CAS signal to be presented to the Dram by the Dram controller.
-			-- we can’t just look at CAS, since a refresh also drives CAS low
-			
-			If CAS_Dram_L is active and RAS_Dram_L is INactive  {		-- a read and not a refresh
-				Go to new state CASDelay1 ;					-- move to next state to wait 2 Clock period (CAS  latency) 
-			}
-
-			-- Keep Kicking the Dram controller to perform a burst read and fill a Line in the cache
-			Activate the DramSelectFromCache_L signal				-- keep reading from Dram
-			Deactivate DtackTo68k_L  signal					-- no dtack to 68k until burst fill complete
-
-			-- Because we are burst filling a line of cache from Dram, we have to store the TAG (i.e. the 68k's m.s.bits of address bus)
-			-- into the Tag Cache to mark the fact that we will have the data at that address and move on to next state to get Dram data
-
-			-- By Default:  TagDataOut set to AddressBusInFrom68k(31 downto 9);
-			Activate TagCache_WE_L signal			-- write the 68k's address with each clock as long as we are in this state
-			
-			-- we also have to set the Valid bit in the Valid Memory to indicate line in the cache is now valid
-			Activate ValidBitOut_H signal			--  Make Cache Line Valid
-			Activate ValidBit_WE_L signal			-- Write the above Valid Bit
-			
-			-- perform a Dram WORD READ(i.e. 16 bits), even if 68k is only reading a BYTE so we get both bytes as cache word is 16 bits wide
-			-- By Default : Address bus to Dram is already set to the 68k's address bus by default
-			-- By Default: AS_L, WE_L to Dram are already set to 68k's equivalent by default
-
-			Keep activating UDS and LDS to Dram/Cache Memory controller to grab both bytes
-		}
-		*/
-			NextState <= ReadDataFromDramIntoCache;			// unless overridden below
-			UDS_DramController_L <= 0;
-			LDS_DramController_L <= 0;
-            DramSelectFromCache_L <= 0;
-			if ((CAS_Dram_L == 0) && (RAS_Dram_L == 1)) begin
+			UDS_DramController_L <= 1'b0;
+			LDS_DramController_L <= 1'b0;
+			DramSelectFromCache_L <= 1'b0;
+			NextState <= ReadDataFromDramIntoCache;
+			if((CAS_Dram_L==0) && (RAS_Dram_L==1)) begin
 				NextState <= CASDelay1;
 			end
-            ValidBitOut_H <= 1;
-            if (ReplaceBlockNumberData == 2'b00) begin
-                ValidBit_WE_L[0] <= 0;
-                TagCache_WE_L[0] <= 0;
-            end
-            else if (ReplaceBlockNumberData == 2'b01) begin
-                ValidBit_WE_L[1] <= 0;
-                TagCache_WE_L[1] <= 0;
-            end
-            else if (ReplaceBlockNumberData == 2'b10) begin
-                ValidBit_WE_L[2] <= 0;
-                TagCache_WE_L[2] <= 0;
-            end
-            else begin
-                ValidBit_WE_L[3] <= 0;
-                TagCache_WE_L[3] <= 0;
-            end
+			ValidBitOut_H <= 1;
+			if (ReplaceBlockNumber == 2'b00) begin
+				TagCache_WE_L[0] <= 0;
+				ValidBit_WE_L[0] <= 0;
+			end
+			if (ReplaceBlockNumber == 2'b01) begin
+				TagCache_WE_L[1] <= 0;
+				ValidBit_WE_L[1] <= 0;
+			end
+			if (ReplaceBlockNumber == 2'b10) begin
+				TagCache_WE_L[2] <= 0;
+				ValidBit_WE_L[2] <= 0;
+			end
+			else begin
+				TagCache_WE_L[3] <= 0;
+				ValidBit_WE_L[3] <= 0;
+			end
+
 		end
 						
 ///////////////////////////////////////////////////////////////////////////////////////
 // Wait for 1st CAS clock (latency)
 ///////////////////////////////////////////////////////////////////////////////////////
 			
-		else if(CurrentState == CASDelay1) begin						// wait for Dram case signal to go low
-			/*Otherwise if we are in the  CASDelay1 state  {				-- wait for Dram case signal to go low
-			Keep activating UDS and LDS to Dram/Cache Memory controller to grab both bytes
-			
-			-- By Default : Address bus to Dram is already set to the 68k's address bus by default
-			-- By Default: AS_L, WE_L to Dram are already set to 68k's equivalent by default
-
-			Keep activating DramSelectFromCache_L 				-- keep reading from Dram
-			Deactivate DtackTo68k_L  signal					-- no dtack to 68k until burst fill complete
-
-			Next state = CASDelay2 ;					-- go and wait for 2nd CAS clock latency
-		}	
-		*/
-			UDS_DramController_L <= 0;
-			LDS_DramController_L <= 0;
-			DramSelectFromCache_L <= 0;
-			//DtackTo68k_L <= 1;
+		else if(CurrentState == CASDelay1) begin						
+			UDS_DramController_L <= 1'b0;
+			LDS_DramController_L <= 1'b0;
+			DramSelectFromCache_L <= 1'b0;
 			NextState <= CASDelay2;
 		end
-				
+		
 ///////////////////////////////////////////////////////////////////////////////////////
 // Wait for 2nd CAS Clock Latency
 ///////////////////////////////////////////////////////////////////////////////////////
 			
-		else if(CurrentState == CASDelay2) begin						// wait for Dram case signal to go low
-			/*
-			Otherwise if we are in the  CASDelay2 state {				-- wait for Dram case signal to go low
-			Keep activating UDS and LDS to Dram/Cache Memory controller to grab both bytes
-			
-			-- By Default : Address bus to Dram is already set to the 68k's address bus by default
-			-- By Default: AS_L, WE_L to Dram are already set to 68k's equivalent by default
-
-			Keep activating DramSelectFromCache_L 				-- keep reading from Dram
-			Deactivate DtackTo68k_L  signal					-- no dtack to 68k until burst fill complete
-
-			Activate BurstCounterReset_L	signal					-- reset the counter to supply 3 bit burst address to Cache memory
-			Next state = BurstFill ;						
-		}
-		*/
-			UDS_DramController_L <= 0;
-			LDS_DramController_L <= 0;
-			DramSelectFromCache_L <= 0;
-			//DtackTo68k_L <= 1;
-			BurstCounterReset_L <= 0;
+		else if(CurrentState == CASDelay2) begin						
+			UDS_DramController_L <= 1'b0;
+			LDS_DramController_L <= 1'b0;
+			DramSelectFromCache_L <= 1'b0;
+			BurstCounterReset_L <= 1'b0;
 			NextState <= BurstFill;
 		end
 
@@ -464,128 +367,62 @@ module M68kAssociativeCacheController_Verilog (
 // Start of burst fill from Dram into Cache (data should be available at Dram in this  state)
 /////////////////////////////////////////////////////////////////////////////////////////////
 		
-		else if(CurrentState == BurstFill) begin						// wait for Dram case signal to go low
-			/*
-			Otherwise if we are in the BurstFill state {					-- wait for Dram case signal to go low
-			Keep activating UDS and LDS to Dram/Cache Memory controller to grab both bytes
-			
-			-- By Default : Address bus to Dram is already set to the 68k's address bus by default
-			-- By Default: AS_L, WE_L to Dram are already set to 68k's equivalent by default
-
-			Keep activating DramSelectFromCache_L  signal			-- keep reading from Dram
-			Deactivate DtackTo68k_L signal						-- no dtack to 68k until burst fill complete
-
-			-- burst counter should now be 0 when we first enter this state, as reset was synchronous and will count with each clock
-			If BurstCounter = 8  {							-- if we have read 8 words, it's time to stop
-				Next state = EndBurstFill;
-			}
-			else {
-				Set WordAddress to cache memory to lowest 3 bits of BurstCounter
-				
-				-- By Default: Index address to cache Memory is bits [8:4] of the 68ks address bus for a 32 line cache
-				
-				Activate DataCache_WE_L to store  next word from Dram into data Cache on next clock edge
-				Next state = BurstFill					-- stay in this state until counter reaches 8 above
-			}
-		}	 
-		*/
-			UDS_DramController_L <= 0;
-			LDS_DramController_L <= 0;
-			DramSelectFromCache_L <= 0;
-            NextState <= BurstFill;
-			//DtackTo68k_L <= 1;
-			if (BurstCounter == 8) begin
+		else if(CurrentState == BurstFill) begin
+			UDS_DramController_L <= 1'b0;
+			LDS_DramController_L <= 1'b0;
+			DramSelectFromCache_L <= 1'b0;
+			NextState <= BurstFill;
+			if(BurstCounter == 8) begin
 				NextState <= EndBurstFill;
 			end
 			else begin
 				WordAddress <= BurstCounter[2:0];
-                if (ReplaceBlockNumber == 2'b00) begin
-                    DataCache_WE_L[0] <= 0;
-                end
-                else if (ReplaceBlockNumber == 2'b01) begin
-                    DataCache_WE_L[1] <= 0;
-                end
-                else if (ReplaceBlockNumber == 2'b10) begin
-                    DataCache_WE_L[2] <= 0;
-                end
-                else begin
-                    DataCache_WE_L[3] <= 0;
-                end
+				if (ReplaceBlockNumber == 2'b00) begin
+					DataCache_WE_L[0] <= 1'b0;
+				end
+				if (ReplaceBlockNumber == 2'b01) begin
+					DataCache_WE_L[1] <= 1'b0;
+				end
+				if (ReplaceBlockNumber == 2'b10) begin
+					DataCache_WE_L[2] <= 1'b0;
+				end
+				else begin
+					DataCache_WE_L[3] <= 1'b0;
+				end
 			end
 		end
 			
 ///////////////////////////////////////////////////////////////////////////////////////
-// End Burst fill
+// End Burst fill and give the CPU the data from the cache
 ///////////////////////////////////////////////////////////////////////////////////////
 		else if(CurrentState == EndBurstFill) begin							// wait for Dram case signal to go low
-			/*
-			Otherwise if we are in the EndBurstFill state {					-- wait for Dram case signal to go low
-			Deactivate DramSelectFromCache_L 	signal					-- deactivate Dram controller
-			Activate DtackTo68k_L signal							-- give dtack to 68k until end of 68k's bus cycle
-			
-			Keep activating UDS and LDS to Dram/Cache Memory controller to grab both bytes
-
-			-- get the data from the Cache corresponding the REAL 68k address we are reading from			
-			Set WordAddress (to cache memory) to AddressBusInFrom68k bits [3:1]
-			Set DataBusOutTo68k to DataBusInFromCache;				-- get data from the Cache and give to cpu
-
-			-- now wait for the 68k to terminate the read by removing either AS_L or DRamSelect68k_H			
-			if AS_L is INactive or DramSelect68k_H is INactive { 
-				Next state = IDLE;								-- go to Idle state ending the Dram access
-			}	
-			else	{
-				Next state = EndBurstFill							-- else stay in this state
-			}
-		}
-		*/
-			DramSelectFromCache_L <= 1;
-			DtackTo68k_L <= 0;
-			UDS_DramController_L <= 0;
-			LDS_DramController_L <= 0;
+			UDS_DramController_L <= 1'b0;
+			LDS_DramController_L <= 1'b0;
+			DramSelectFromCache_L <= 1'b1;
+			DtackTo68k_L <= 1'b0;
 			WordAddress <= AddressBusInFrom68k[3:1];
 			DataBusOutTo68k <= DataBusInFromCache;
-			
-			if ((AS_L == 1) || (DramSelect68k_H == 0)) begin
+			if((AS_L == 1) || (DramSelect68k_H == 0)) begin
 				NextState <= Idle;
 			end
 			else begin
 				NextState <= EndBurstFill;
 			end
 		end
-
+		
 ///////////////////////////////////////////////
 // Write Data to Dram State (no Burst)
 ///////////////////////////////////////////////
 		else if(CurrentState == WriteDataToDram) begin	  					// if we are writing data to Dram
-			/*
-			Otherwise if we are in the WriteDataToDram state {	  				-- if we are writing data to Dram
-			Set AddressBusOutToDramController	to AddressBusInFrom68k;		-- override lower 3 bits
-			
-			-- Data Bus out to Dram is already set to 68k's data bus out by default
-			-- By Default: AS_L, WE_L to Dram are already set to 68k's equivalent by default
-			
-			Keep Activating  DramSelectFromCache_L  signal					-- keep kicking the Dram controller to perform the write
-			Set  DtackTo68k_L 	=  DtackFromDram_L;						-- give the 68k the dtack from the Dram controller
-			
-			-- now wait for the 68k to terminate the read by removing either AS_L or DRamSelect68k_H			
-			if AS_L is INactive or DramSelect68k_H is INactive { 
-				Next state = IDLE;								-- go to Idle state ending the Dram access
-			}
-			else	{
-				Next state = WriteDataToDram						-- else stay in this state until the 68k finishes the write	
-			}
-		}
-		*/
-			AddressBusOutToDramController <= AddressBusInFrom68k;									// all writes to Dram have lower 3 address lines set to 0 for a Cache line regardless of 68k address
-			DramSelectFromCache_L <= 0;
+			AddressBusOutToDramController <= AddressBusInFrom68k;
+			DramSelectFromCache_L <= 1'b0;
 			DtackTo68k_L <= DtackFromDram_L;
-			
-			if ((AS_L == 1) || (DramSelect68k_H == 0)) begin
+			if((AS_L == 1) || (DramSelect68k_H == 0)) begin
 				NextState <= Idle;
 			end
 			else begin
 				NextState <= WriteDataToDram;
 			end
-		end
+		end		
 	end
 endmodule
