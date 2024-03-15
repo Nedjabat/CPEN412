@@ -391,15 +391,15 @@ module M68kAssociativeCacheController_Verilog (
 				NextState <= CASDelay1;
 			end
             ValidBitOut_H <= 1;
-            if (ReplaceBlockNumberData == 2'b00) begin
+            if (ReplaceBlockNumber == 2'b00) begin
                 ValidBit_WE_L[0] <= 0;
                 TagCache_WE_L[0] <= 0;
             end
-            else if (ReplaceBlockNumberData == 2'b01) begin
+            else if (ReplaceBlockNumber == 2'b01) begin
                 ValidBit_WE_L[1] <= 0;
                 TagCache_WE_L[1] <= 0;
             end
-            else if (ReplaceBlockNumberData == 2'b10) begin
+            else if (ReplaceBlockNumber == 2'b10) begin
                 ValidBit_WE_L[2] <= 0;
                 TagCache_WE_L[2] <= 0;
             end
