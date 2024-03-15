@@ -241,13 +241,13 @@ module M68kAssociativeCacheController_Verilog (
 			if ((AS_L == 0) && (DramSelect68k_H == 1)) begin
                 LRUBits_Load_H <= 1;
 				if (WE_L == 1) begin
-					UDS_DramController_L			<= 0;
+					UDS_DramController_L		<= 0;
 					LDS_DramController_L	   	<= 0;
 					NextState 						<= CheckForCacheHit;
 				end
 				else begin
                     ValidBitOut_H 					<= 0;
-                    if(ValidHit_H[3:0] | 1 ) begin
+                    if(ValidHit_H[3:0]|1) begin
                         ValidBit_WE_L				<= ~ValidHit_H;
                     end
 					DramSelectFromCache_L 		<= 0;
@@ -281,7 +281,7 @@ module M68kAssociativeCacheController_Verilog (
 			// }
 			UDS_DramController_L <= 0;
 			LDS_DramController_L <= 0;
-            if (ValidHit_H[3:0] | 1) begin
+            if (ValidHit_H[3:0]|1) begin
                 WordAddress <= AddressBusInFrom68k[3:1];
                 DtackTo68k_L <= 0;
                 NextState <= WaitForEndOfCacheRead;
@@ -291,33 +291,32 @@ module M68kAssociativeCacheController_Verilog (
                     LRUBits_Out <= {LRUBits[2],2'b01};
                 else if ((LRUBits[0] == 1) && (LRUBits[2]==0))
                     LRUBits_Out <= {1'b1,LRUBits[1],1'b0};
-                else if ((LRUBits[0] == 1) && (LRUBits[1] == 1))
+                else 
                     LRUBits_Out <= {1'b0,LRUBits[1],1'b1};
                 LRU_WE_L	<= 0;
                 end
             else begin
                 DramSelectFromCache_L <= 0;
                 if((LRUBits[0] == 0) && (LRUBits[1]==0)) begin
-					ReplaceBlockNumberData <= 2'b00;
+					ReplaceBlockNumber <= 2'b00;
 					LRUBits_Out <= {LRUBits[2],2'b11};
 				end
 				else if((LRUBits[0] == 0) && (LRUBits[1]==1)) begin
-					ReplaceBlockNumberData <= 2'b01;
+					ReplaceBlockNumber <= 2'b01;
 					LRUBits_Out <= {LRUBits[2],2'b01};
 				end
 				else if((LRUBits[0] == 1) && (LRUBits[2]==0)) begin
-					ReplaceBlockNumberData <= 2'b10;
+					ReplaceBlockNumber <= 2'b10;
 					LRUBits_Out <= {1'b1, LRUBits[1],1'b0};
 				end
 				else begin
-					ReplaceBlockNumberData <= 2'b11;
+					ReplaceBlockNumber <= 2'b11;
 					LRUBits_Out <= {1'b0, LRUBits[1],1'b0};
 				end
-                NextState <= ReadDataFromDramIntoCache;
-            end
-			LRU_WE_L    <= 0;
+				LRU_WE_L    <= 0;
             LoadReplacementBlockNumber_H <= 1;
             NextState <= ReadDataFromDramIntoCache;
+          end
 		end
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Got a Cache hit, so give the 68k the Cache data now, then wait for the 68k to end bus cycle 

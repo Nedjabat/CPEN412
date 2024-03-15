@@ -241,13 +241,13 @@ module M68kAssociativeCacheController_Verilog (
 			if ((AS_L == 0) && (DramSelect68k_H == 1)) begin
                 LRUBits_Load_H <= 1;
 				if (WE_L == 1) begin
-					UDS_DramController_L		<= 0;
+					UDS_DramController_L			<= 0;
 					LDS_DramController_L	   	<= 0;
 					NextState 						<= CheckForCacheHit;
 				end
 				else begin
                     ValidBitOut_H 					<= 0;
-                    if(|ValidHit_H[3:0] ) begin
+                    if(|ValidHit_H[3:0]) begin
                         ValidBit_WE_L				<= ~ValidHit_H;
                     end
 					DramSelectFromCache_L 		<= 0;
@@ -291,8 +291,8 @@ module M68kAssociativeCacheController_Verilog (
                     LRUBits_Out <= {LRUBits[2],2'b01};
                 else if ((LRUBits[0] == 1) && (LRUBits[2]==0))
                     LRUBits_Out <= {1'b1,LRUBits[1],1'b0};
-                else if ((LRUBits[0] == 1) && (LRUBits[1] == 1))
-                    LRUBits_Out <= {1'b0,LRUBits[1],1'b1};
+                else 
+                    LRUBits_Out <= {1'b0,LRUBits[1],1'b0};
                 LRU_WE_L	<= 0;
                 end
             else begin
@@ -313,10 +313,10 @@ module M68kAssociativeCacheController_Verilog (
 					ReplaceBlockNumberData <= 2'b11;
 					LRUBits_Out <= {1'b0, LRUBits[1],1'b0};
 				end
-            end
 			LRU_WE_L    <= 0;
             LoadReplacementBlockNumber_H <= 1;
             NextState <= ReadDataFromDramIntoCache;
+			end
 		end
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Got a Cache hit, so give the 68k the Cache data now, then wait for the 68k to end bus cycle 

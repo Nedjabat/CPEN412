@@ -118,3 +118,23 @@ C:/M68K/lpm_bustri0.vhd
 
 Jan 19 12PM:22:13>: Megafunction LPM_BUSTRI is not listed in any 
 wizard.lst file in the specified library path(s).Wizard launch aborted
+
+C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4b/ClockGen.vhd
+
+Mar 14 04PM:36:02>: Megafunction PLL Intel FPGA IP v18.1 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted
+
+C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4b/ClockGen.vhd
+
+Mar 14 04PM:36:08>: Megafunction PLL Intel FPGA IP v18.1 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted
+
+C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4b/ClockGen.vhd
+
+Mar 14 04PM:36:09>: Megafunction PLL Intel FPGA IP v18.1 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted
+
+C:/Users/Ryann/Documents/GitHub/CPEN412/Lab4b/ClockGen.vhd
+
+Mar 14 04PM:36:09>: Megafunction PLL Intel FPGA IP v18.1 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted
