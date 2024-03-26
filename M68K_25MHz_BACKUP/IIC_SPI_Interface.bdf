@@ -279,7 +279,7 @@ refer to the applicable agreement for further details.
 	(text "VCC" (rect 4 7 24 17)(font "Arial" (font_size 6)))
 )
 (symbol
-	(rect 312 16 536 128)
+	(rect 312 -48 536 64)
 	(text "SPI_BUS_Decoder" (rect 5 0 98 12)(font "Arial" ))
 	(text "inst2" (rect 8 96 30 113)(font "Intel Clear" ))
 	(port
@@ -402,139 +402,6 @@ refer to the applicable agreement for further details.
 		(line (pt 13 25)(pt 31 16))
 		(circle (rect 31 12 39 20))
 	)
-)
-(symbol
-	(rect 568 232 784 440)
-	(text "i2c_master_top" (rect 5 0 80 12)(font "Arial" ))
-	(text "inst9" (rect 8 192 30 209)(font "Intel Clear" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "wb_clk_i" (rect 0 0 41 12)(font "Arial" ))
-		(text "wb_clk_i" (rect 21 27 62 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "wb_rst_i" (rect 0 0 40 12)(font "Arial" ))
-		(text "wb_rst_i" (rect 21 43 61 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48))
-	)
-	(port
-		(pt 0 64)
-		(input)
-		(text "arst_i" (rect 0 0 27 12)(font "Arial" ))
-		(text "arst_i" (rect 21 59 48 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64))
-	)
-	(port
-		(pt 0 80)
-		(input)
-		(text "wb_adr_i[2..0]" (rect 0 0 68 12)(font "Arial" ))
-		(text "wb_adr_i[2..0]" (rect 21 75 89 87)(font "Arial" ))
-		(line (pt 0 80)(pt 16 80)(line_width 3))
-	)
-	(port
-		(pt 0 96)
-		(input)
-		(text "wb_dat_i[7..0]" (rect 0 0 68 12)(font "Arial" ))
-		(text "wb_dat_i[7..0]" (rect 21 91 89 103)(font "Arial" ))
-		(line (pt 0 96)(pt 16 96)(line_width 3))
-	)
-	(port
-		(pt 0 112)
-		(input)
-		(text "wb_we_i" (rect 0 0 40 12)(font "Arial" ))
-		(text "wb_we_i" (rect 21 107 61 119)(font "Arial" ))
-		(line (pt 0 112)(pt 16 112))
-	)
-	(port
-		(pt 0 128)
-		(input)
-		(text "wb_stb_i" (rect 0 0 42 12)(font "Arial" ))
-		(text "wb_stb_i" (rect 21 123 63 135)(font "Arial" ))
-		(line (pt 0 128)(pt 16 128))
-	)
-	(port
-		(pt 0 144)
-		(input)
-		(text "wb_cyc_i" (rect 0 0 46 12)(font "Arial" ))
-		(text "wb_cyc_i" (rect 21 139 67 151)(font "Arial" ))
-		(line (pt 0 144)(pt 16 144))
-	)
-	(port
-		(pt 0 160)
-		(input)
-		(text "scl_pad_i" (rect 0 0 46 12)(font "Arial" ))
-		(text "scl_pad_i" (rect 21 155 67 167)(font "Arial" ))
-		(line (pt 0 160)(pt 16 160))
-	)
-	(port
-		(pt 0 176)
-		(input)
-		(text "sda_pad_i" (rect 0 0 49 12)(font "Arial" ))
-		(text "sda_pad_i" (rect 21 171 70 183)(font "Arial" ))
-		(line (pt 0 176)(pt 16 176))
-	)
-	(port
-		(pt 216 32)
-		(output)
-		(text "wb_dat_o[7..0]" (rect 0 0 71 12)(font "Arial" ))
-		(text "wb_dat_o[7..0]" (rect 135 27 206 39)(font "Arial" ))
-		(line (pt 216 32)(pt 200 32)(line_width 3))
-	)
-	(port
-		(pt 216 48)
-		(output)
-		(text "wb_ack_o" (rect 0 0 48 12)(font "Arial" ))
-		(text "wb_ack_o" (rect 155 43 203 55)(font "Arial" ))
-		(line (pt 216 48)(pt 200 48))
-	)
-	(port
-		(pt 216 64)
-		(output)
-		(text "wb_inta_o" (rect 0 0 48 12)(font "Arial" ))
-		(text "wb_inta_o" (rect 155 59 203 71)(font "Arial" ))
-		(line (pt 216 64)(pt 200 64))
-	)
-	(port
-		(pt 216 80)
-		(output)
-		(text "scl_pad_o" (rect 0 0 49 12)(font "Arial" ))
-		(text "scl_pad_o" (rect 154 75 203 87)(font "Arial" ))
-		(line (pt 216 80)(pt 200 80))
-	)
-	(port
-		(pt 216 96)
-		(output)
-		(text "scl_padoen_o" (rect 0 0 67 12)(font "Arial" ))
-		(text "scl_padoen_o" (rect 139 91 206 103)(font "Arial" ))
-		(line (pt 216 96)(pt 200 96))
-	)
-	(port
-		(pt 216 112)
-		(output)
-		(text "sda_pad_o" (rect 0 0 53 12)(font "Arial" ))
-		(text "sda_pad_o" (rect 151 107 204 119)(font "Arial" ))
-		(line (pt 216 112)(pt 200 112))
-	)
-	(port
-		(pt 216 128)
-		(output)
-		(text "sda_padoen_o" (rect 0 0 70 12)(font "Arial" ))
-		(text "sda_padoen_o" (rect 136 123 206 135)(font "Arial" ))
-		(line (pt 216 128)(pt 200 128))
-	)
-	(parameter
-		"ARST_LVL"
-		"'0'"
-		""
-		(type "PARAMETER_ENUM")	)
-	(drawing
-		(rectangle (rect 16 16 200 192))
-	)
-	(annotation_block (parameter)(rect 704 80 864 120))
 )
 (symbol
 	(rect 472 264 504 296)
@@ -679,6 +546,139 @@ refer to the applicable agreement for further details.
 		(rectangle (rect 16 16 184 96))
 	)
 )
+(symbol
+	(rect 568 232 784 440)
+	(text "i2c_master_top" (rect 5 0 80 12)(font "Arial" ))
+	(text "inst6" (rect 8 192 30 209)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "wb_clk_i" (rect 0 0 41 12)(font "Arial" ))
+		(text "wb_clk_i" (rect 21 27 62 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "wb_rst_i" (rect 0 0 40 12)(font "Arial" ))
+		(text "wb_rst_i" (rect 21 43 61 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "arst_i" (rect 0 0 27 12)(font "Arial" ))
+		(text "arst_i" (rect 21 59 48 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "wb_adr_i[2..0]" (rect 0 0 68 12)(font "Arial" ))
+		(text "wb_adr_i[2..0]" (rect 21 75 89 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "wb_dat_i[7..0]" (rect 0 0 68 12)(font "Arial" ))
+		(text "wb_dat_i[7..0]" (rect 21 91 89 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "wb_we_i" (rect 0 0 40 12)(font "Arial" ))
+		(text "wb_we_i" (rect 21 107 61 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "wb_stb_i" (rect 0 0 42 12)(font "Arial" ))
+		(text "wb_stb_i" (rect 21 123 63 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "wb_cyc_i" (rect 0 0 46 12)(font "Arial" ))
+		(text "wb_cyc_i" (rect 21 139 67 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "scl_pad_i" (rect 0 0 46 12)(font "Arial" ))
+		(text "scl_pad_i" (rect 21 155 67 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "sda_pad_i" (rect 0 0 49 12)(font "Arial" ))
+		(text "sda_pad_i" (rect 21 171 70 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176))
+	)
+	(port
+		(pt 216 32)
+		(output)
+		(text "wb_dat_o[7..0]" (rect 0 0 71 12)(font "Arial" ))
+		(text "wb_dat_o[7..0]" (rect 135 27 206 39)(font "Arial" ))
+		(line (pt 216 32)(pt 200 32)(line_width 3))
+	)
+	(port
+		(pt 216 48)
+		(output)
+		(text "wb_ack_o" (rect 0 0 48 12)(font "Arial" ))
+		(text "wb_ack_o" (rect 155 43 203 55)(font "Arial" ))
+		(line (pt 216 48)(pt 200 48))
+	)
+	(port
+		(pt 216 64)
+		(output)
+		(text "wb_inta_o" (rect 0 0 48 12)(font "Arial" ))
+		(text "wb_inta_o" (rect 155 59 203 71)(font "Arial" ))
+		(line (pt 216 64)(pt 200 64))
+	)
+	(port
+		(pt 216 80)
+		(output)
+		(text "scl_pad_o" (rect 0 0 49 12)(font "Arial" ))
+		(text "scl_pad_o" (rect 154 75 203 87)(font "Arial" ))
+		(line (pt 216 80)(pt 200 80))
+	)
+	(port
+		(pt 216 96)
+		(output)
+		(text "scl_padoen_o" (rect 0 0 67 12)(font "Arial" ))
+		(text "scl_padoen_o" (rect 139 91 206 103)(font "Arial" ))
+		(line (pt 216 96)(pt 200 96))
+	)
+	(port
+		(pt 216 112)
+		(output)
+		(text "sda_pad_o" (rect 0 0 53 12)(font "Arial" ))
+		(text "sda_pad_o" (rect 151 107 204 119)(font "Arial" ))
+		(line (pt 216 112)(pt 200 112))
+	)
+	(port
+		(pt 216 128)
+		(output)
+		(text "sda_padoen_o" (rect 0 0 70 12)(font "Arial" ))
+		(text "sda_padoen_o" (rect 136 123 206 135)(font "Arial" ))
+		(line (pt 216 128)(pt 200 128))
+	)
+	(parameter
+		"ARST_LVL"
+		"'0'"
+		""
+		(type "PARAMETER_ENUM")	)
+	(drawing
+		(rectangle (rect 16 16 200 192))
+	)
+	(annotation_block (parameter)(rect 664 80 824 120))
+)
 (connector
 	(pt 232 80)
 	(pt 256 80)
@@ -770,59 +770,12 @@ refer to the applicable agreement for further details.
 	(pt 568 344)
 )
 (connector
-	(pt 288 80)
-	(pt 312 80)
-)
-(connector
-	(pt 256 48)
-	(pt 312 48)
-	(bus)
-)
-(connector
 	(pt 584 200)
 	(pt 584 48)
 )
 (connector
-	(pt 272 96)
-	(pt 272 64)
-)
-(connector
-	(pt 272 64)
-	(pt 312 64)
-)
-(connector
-	(pt 288 144)
-	(pt 288 80)
-)
-(connector
-	(pt 240 144)
-	(pt 288 144)
-)
-(connector
-	(pt 288 144)
-	(pt 296 144)
-)
-(connector
-	(pt 256 48)
-	(pt 256 80)
-	(bus)
-)
-(connector
-	(pt 256 80)
-	(pt 256 312)
-	(bus)
-)
-(connector
 	(pt 568 360)
 	(pt 552 360)
-)
-(connector
-	(pt 552 360)
-	(pt 552 48)
-)
-(connector
-	(pt 536 48)
-	(pt 552 48)
 )
 (connector
 	(pt 552 48)
@@ -903,42 +856,6 @@ refer to the applicable agreement for further details.
 	(pt 824 360)
 )
 (connector
-	(pt 784 328)
-	(pt 816 328)
-)
-(connector
-	(pt 816 328)
-	(pt 816 376)
-)
-(connector
-	(pt 840 376)
-	(pt 816 376)
-)
-(connector
-	(pt 784 344)
-	(pt 808 344)
-)
-(connector
-	(pt 808 344)
-	(pt 808 392)
-)
-(connector
-	(pt 840 392)
-	(pt 808 392)
-)
-(connector
-	(pt 784 360)
-	(pt 800 360)
-)
-(connector
-	(pt 800 360)
-	(pt 800 408)
-)
-(connector
-	(pt 840 408)
-	(pt 800 408)
-)
-(connector
 	(pt 1040 376)
 	(pt 1064 376)
 )
@@ -985,6 +902,93 @@ refer to the applicable agreement for further details.
 (connector
 	(pt 1040 408)
 	(pt 1160 408)
+)
+(connector
+	(pt 784 360)
+	(pt 792 360)
+)
+(connector
+	(pt 792 360)
+	(pt 792 408)
+)
+(connector
+	(pt 840 408)
+	(pt 792 408)
+)
+(connector
+	(pt 784 344)
+	(pt 800 344)
+)
+(connector
+	(pt 800 344)
+	(pt 800 392)
+)
+(connector
+	(pt 840 392)
+	(pt 800 392)
+)
+(connector
+	(pt 784 328)
+	(pt 808 328)
+)
+(connector
+	(pt 808 328)
+	(pt 808 376)
+)
+(connector
+	(pt 840 376)
+	(pt 808 376)
+)
+(connector
+	(pt 288 16)
+	(pt 312 16)
+)
+(connector
+	(pt 256 -16)
+	(pt 312 -16)
+	(bus)
+)
+(connector
+	(pt 272 96)
+	(pt 272 0)
+)
+(connector
+	(pt 272 0)
+	(pt 312 0)
+)
+(connector
+	(pt 288 144)
+	(pt 288 16)
+)
+(connector
+	(pt 552 -16)
+	(pt 536 -16)
+)
+(connector
+	(pt 240 144)
+	(pt 288 144)
+)
+(connector
+	(pt 288 144)
+	(pt 296 144)
+)
+(connector
+	(pt 256 -16)
+	(pt 256 80)
+	(bus)
+)
+(connector
+	(pt 256 80)
+	(pt 256 312)
+	(bus)
+)
+(connector
+	(pt 552 -16)
+	(pt 552 48)
+)
+(connector
+	(pt 552 48)
+	(pt 552 360)
 )
 (junction (pt 256 80))
 (junction (pt 240 424))

@@ -260,8 +260,8 @@ GND                          : AF1       : gnd    :                   :         
 GND                          : AF2       : gnd    :                   :         :           :                
 GND                          : AF3       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF4       :        :                   :         : 3A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF5       :        :                   :         : 3A        :                
-DRAM_State[4]                : AF6       : output : 3.3-V LVTTL       :         : 3A        : N              
+DRAM_State[2]                : AF5       : output : 3.3-V LVTTL       :         : 3A        : N              
+DRAM_State[3]                : AF6       : output : 3.3-V LVTTL       :         : 3A        : N              
 VCCIO3A                      : AF7       : power  :                   : 3.3V    : 3A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF8       :        :                   :         : 3A        :                
 SW[2]                        : AF9       : input  : 3.3-V LVTTL       :         : 3A        : Y              
@@ -271,7 +271,7 @@ GND                          : AF12      : gnd    :                   :         
 DRAM_BA[0]                   : AF13      : output : 3.3-V LVTTL       :         : 3B        : Y              
 CLOCK_50                     : AF14      : input  : 3.3-V LVTTL       :         : 3B        : Y              
 DRAM_ADDR[7]                 : AF15      : output : 3.3-V LVTTL       :         : 3B        : Y              
-DRAM_State[1]                : AF16      : output : 3.3-V LVTTL       :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AF16      :        :                   :         : 4A        :                
 GND                          : AF17      : gnd    :                   :         :           :                
 DataBusIn[6]                 : AF18      : output : 3.3-V LVTTL       :         : 4A        : Y              
 DataBusIn[5]                 : AF19      : output : 3.3-V LVTTL       :         : 4A        : Y              
@@ -301,8 +301,8 @@ DRAM_ADDR[10]                : AG12      : output : 3.3-V LVTTL       :         
 DRAM_ADDR[9]                 : AG13      : output : 3.3-V LVTTL       :         : 3B        : Y              
 GND                          : AG14      : gnd    :                   :         :           :                
 DRAM_ADDR[2]                 : AG15      : output : 3.3-V LVTTL       :         : 3B        : Y              
-DRAM_State[0]                : AG16      : output : 3.3-V LVTTL       :         : 4A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG17      :        :                   :         : 4A        :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : AG16      :        :                   :         : 4A        :                
+DRAM_State[0]                : AG17      : output : 3.3-V LVTTL       :         : 4A        : N              
 DataBusIn[7]                 : AG18      : output : 3.3-V LVTTL       :         : 4A        : Y              
 VCCIO4A                      : AG19      : power  :                   : 3.3V    : 4A        :                
 DataBusIn[9]                 : AG20      : output : 3.3-V LVTTL       :         : 4A        : Y              
@@ -317,7 +317,7 @@ HEX0[5]                      : AG28      : output : 3.3-V LVTTL       :         
 VCCIO5A                      : AG29      : power  :                   : 3.3V    : 5A        :                
 HEX1[3]                      : AG30      : output : 3.3-V LVTTL       :         : 5A        : Y              
 GND                          : AH1       : gnd    :                   :         :           :                
-DRAM_State[2]                : AH2       : output : 3.3-V LVTTL       :         : 3A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AH2       :        :                   :         : 3A        :                
 DataBusOut[5]                : AH3       : output : 3.3-V LVTTL       :         : 3A        : Y              
 DataBusOut[4]                : AH4       : output : 3.3-V LVTTL       :         : 3A        : Y              
 DataBusOut[3]                : AH5       : output : 3.3-V LVTTL       :         : 3A        : Y              
@@ -378,7 +378,7 @@ HEX1[0]                      : AJ29      : output : 3.3-V LVTTL       :         
 GND                          : AJ30      : gnd    :                   :         :           :                
 DataBusOut[0]                : AK2       : output : 3.3-V LVTTL       :         : 3B        : Y              
 LDS_L                        : AK3       : output : 3.3-V LVTTL       :         : 3B        : Y              
-DRAM_State[3]                : AK4       : output : 3.3-V LVTTL       :         : 3B        : N              
+DRAM_State[1]                : AK4       : output : 3.3-V LVTTL       :         : 3B        : N              
 GND                          : AK5       : gnd    :                   :         :           :                
 DRAM_DQ[0]                   : AK6       : bidir  : 3.3-V LVTTL       :         : 3B        : Y              
 DRAM_DQ[2]                   : AK7       : bidir  : 3.3-V LVTTL       :         : 3B        : Y              
@@ -392,7 +392,7 @@ DRAM_ADDR[0]                 : AK14      : output : 3.3-V LVTTL       :         
 GND                          : AK15      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AK16      :        :                   :         : 4A        :                
 VREFB4AN0                    : AK17      : power  :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK18      :        :                   :         : 4A        :                
+DRAM_State[4]                : AK18      : output : 3.3-V LVTTL       :         : 4A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AK19      :        :                   :         : 4A        :                
 VCCIO4A                      : AK20      : power  :                   : 3.3V    : 4A        :                
 DataBusIn[12]                : AK21      : output : 3.3-V LVTTL       :         : 4A        : Y              
