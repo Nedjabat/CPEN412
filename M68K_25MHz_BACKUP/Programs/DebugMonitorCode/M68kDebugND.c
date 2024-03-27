@@ -1774,7 +1774,7 @@ void main(void)
     char c ;
     int i, j ;
 
-    char *BugMessage = "CPEN412 - Lab 3";
+    char *BugMessage = "CPEN412 - Lab 5";
     char *CopyrightMessage = "Ryan Nedjabat 67501510; Anna Yun 94902673";
 
     KillAllBreakPoints() ;
