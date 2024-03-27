@@ -90,13 +90,29 @@
 #define PIA2_PortB_Control *(volatile unsigned char *)(0x00400066)
 
 /******************************************************************************
-**  SPI Controller Registers
+**  I2C Controller Registers
 *******************************************************************************/
-#define SPI_Control     (*(volatile unsigned char *)(0x00408020))
-#define SPI_Status      (*(volatile unsigned char *)(0x00408022))
-#define SPI_Data        (*(volatile unsigned char *)(0x00408024))
-#define SPI_Ext         (*(volatile unsigned char *)(0x00408026)) 
-#define SPI_CS          (*(volatile unsigned char *)(0x00408028))
+//for Lab 5, address range from 0x00408000 - 0040800F has been chosen to avoid conflict
+//with any other IO devices already in system
+
+#define I2C_PRERlo      (*(volatile unsigned char *)(0x00408000))
+#define I2C_PRERhi      (*(volatile unsigned char *)(0x00408002))
+#define I2C_CTR         (*(volatile unsigned char *)(0x00408004))
+
+//transmit and receive registers share same address
+#define I2C_TXR         (*(volatile unsigned char *)(0x00408006))
+#define I2C_RXR         (*(volatile unsigned char *)(0x00408006))
+
+//command and status registers share same address
+#define I2C_CR          (*(volatile unsigned char *)(0x00408008))
+#define I2C_SR          (*(volatile unsigned char *)(0x00408008))
+
+// I2C_CR[7] = STA, [4] = W, [0] = IACK --> 0x91 (hex)
+#define WRITE_STA 0x91
+// I2C_CR[6] = STO, [4] = W --> 0x50 (hex)
+#define WRITE_STO 0x50
+// I2C_CR[4] = W --> 0x10
+#define WRITING 0x10
 
 /*********************************************************************************************************************************
 (( DO NOT initialise global variables here, do it main even if you want 0
@@ -120,19 +136,6 @@ void LCDline1Message(char *theMessage);
 void LCDline2Message(char *theMessage);
 int sprintf(char *out, const char *format, ...) ;
 
-
-// SPI Function Prototypes
-int TestForSPITransmitDataComplete(void);
-void SPI_Init(void);
-void WaitForSPITransmitComplete(void);
-int WriteSPIChar(int c);
-
-void WriteDataToSPI(char *MemAddress, int FlashAddress, int size);
-void WaitForSPIWriteComplete();
-void WriteCommandSPI(int cmd);
-void ReadDataFromSPI(char *MemAddress, int FlashAddress, int size);
-void EraseFlashChip(void);
-
 /*****************************************************************************************
 **	Interrupt service routine for Timers
 **
@@ -140,40 +143,6 @@ void EraseFlashChip(void);
 **  out which timer is producing the interrupt
 **
 *****************************************************************************************/
-char xtod(int c)
-{
-    if ((char)(c) <= (char)('9'))
-        return c - (char)(0x30);    // 0 - 9 = 0x30 - 0x39 so convert to number by sutracting 0x30
-    else if((char)(c) > (char)('F'))    // assume lower case
-        return c - (char)(0x57);    // a-f = 0x61-66 so needs to be converted to 0x0A - 0x0F so subtract 0x57
-    else
-        return c - (char)(0x37);    // A-F = 0x41-46 so needs to be converted to 0x0A - 0x0F so subtract 0x37
-}
-
-int Get2HexDigits(char *CheckSumPtr)
-{
-    register int i = (xtod(_getch()) << 4) | (xtod(_getch()));
-
-    if(CheckSumPtr)
-        *CheckSumPtr += i ;
-
-    return i ;
-}
-
-int Get4HexDigits(char *CheckSumPtr)
-{
-    return (Get2HexDigits(CheckSumPtr) << 8) | (Get2HexDigits(CheckSumPtr));
-}
-
-int Get6HexDigits(char *CheckSumPtr)
-{
-    return (Get4HexDigits(CheckSumPtr) << 8) | (Get2HexDigits(CheckSumPtr));
-}
-
-int Get8HexDigits(char *CheckSumPtr)
-{
-    return (Get4HexDigits(CheckSumPtr) << 16) | (Get4HexDigits(CheckSumPtr));
-}
 
 void Timer_ISR()
 {
@@ -377,175 +346,72 @@ void InstallExceptionHandler( void (*function_ptr)(), int level)
 }
 
 /******************************************************************************
-**  SPI Functions
+**  I2C Functions
 *******************************************************************************/
-// return true if the SPI has finished transmitting a byte (to say the Flash chip) return false otherwise
-// this can be used in a polling algorithm to know when the controller is busy or idle.
-int TestForSPITransmitDataComplete(void)    {
 
-    /* DONE: TODO replace 0 below with a test for status register SPIF bit and if set, return true */
-    // SPIF bit is 7th bit --> shift by 7
-    // 1000_0000 -> 0x80
-    if((SPI_Status & 0x80) >> 7)
-        return 1;
-    else return 0 ;
+void I2C_Init(void){
+    // TODO: set for no interrupts, and clock frequency for 100kHz
+
+    I2C_CTR = 0x00; //turn off core
+
+    // setting clock frequency for 100kHz: prescale = ((25MHz)/(5*100kHz))-1 = 49 (dec) = 31 (hex)
+    I2C_PRERlo = 0x31;
+    I2C_PRERhi = 0x00;
+
+    //turn on core and disable interrupts b1000_0000 = 0x80
+    I2C_CTR = 0x80;
 }
 
-void SPI_Init(void)
-{
-    //DONE: TODO
-    //
-    // Program the SPI Control, EXT, CS and Status registers to initialise the SPI controller
-    // Don't forget to call this routine from main() before you do anything else with SPI
-    //
-    // Here are some settings we want to create
-    //
-    // Control Reg     - interrupts disabled, core enabled, Master mode, Polarity and Phase of clock = [0,0], speed =  divide by 32 = approx 700Khz
-    // Ext Reg         - in conjunction with control reg, sets speed above and also sets interrupt flag after every completed transfer (each byte)
-    // SPI_CS Reg      - control selection of slave SPI chips via their CS# signals
-    // Status Reg      - status of SPI controller chip and used to clear any write collision and interrupt on transmit complete flag
-
-    // SPCR = {SPIE, SPE, x, MSTR, CPOL, CPHA, SPR} = 01x1_0011 = 0x53
-    SPI_Control = 0x53;
-
-    // SPER = {ICNT, x, x, x, x, ESPR} = 00xx_xx00 = 0x00
-    SPI_Ext = 0x00;
-
-    Disable_SPI_CS();
-
-    // SPSR = {SPIF, WCOL, x, x, x, x, x} = 11xx_xxxx = 0xC0
-    // Use bitwise OR because we dont want to overrite data in other bits, only ensure that SPIF and WCOL are 1
-    SPI_Status |= 0xC0;
+void I2C_WaitTIP(void){
+    // check I2C_SR[1] and wait until previous transmits are finished
+    //'1' when transferring data, '0' when transfer complete
+    while(I2C_SR >> 1 == true){}
 }
 
-void WaitForSPITransmitComplete(void)
-{
-    // DONE: TODO : poll the status register SPIF bit looking for completion of transmission
-    // once transmission is complete, clear the write collision and interrupt on transmit complete flags in the status register (read documentation)
-    // just in case they were set
-
-    // need to keep checking until data fully transmitted
-    while(!TestForSPITransmitDataComplete()) {}
-    SPI_Status |= 0xC0;
+void I2C_WaitRxACK(void){
+    // check I2C_SR[7] and wait for ACK after writing anything over I2C to slave
+    // '1' when no ACK received, '0' when ACK received
+    while(I2C_SR >> 7 == true){}
 }
 
-int WriteSPIChar(int c)
-{
-    // DONE: TODO 
-    // STEP 1 - Write the byte in parameter 'c' to the SPI data register, this will start it transmitting to the flash device
-    // STEP 2 - wait for completion of transmission
-    // STEP 3 - Return the received data from Flash chip (which may not be relevent depending upon what we are doing)
-    //          by reading fom the SPI controller Data Register.
-    // note however that in order to get data from an SPI slave device (e.g. flash) chip we have to write a dummy byte to it
-    //
-    // modify '0' below to return back read byte from data register
+void I2C_Transmit(char data, char command){
+    // this function just helps simplify transmission process
+    I2C_TXR = data;
+    I2C_CR = command;
+
+    I2C_WaitTIP();
+    I2C_WaitRxACK();
+}
+
+void I2C_WriteByte(char data, char slaveAddr, char memoryAddrHigh, char memoryAddrLow){
+    // to write data, put transmit data into TX register
+    // tell I2C_CR that we are in writing mode
+    // if want to generate start or stop condition with each byte written, set STA or STO bits in command register when you write to it
+    // similarly, clear ACK bit if you want to generate ACK when reading data back from slave
     
-    // Dummy byte
-    int received_data = 0;
-    
-    // STEP 1
-    SPI_Data = c;
-    
-    // STEP 2
-    WaitForSPITransmitComplete();
-    received_data = SPI_Data;
+    WaitTIP(); //check that nothing is currently in transmission
 
-    // STEP 3
-    return received_data;                   
+    I2C_Transmit(slaveAddr, WRITE_STA);     //want to write to slave, start cmd
+    I2C_Transmit(memoryAddrHigh, WRITING);  //write 2 bytes corresponding to 2 byte internal addr
+    I2C_Transmit(memoryAddrLow, WRITING);
+    I2C_transmit(data, WRITE_STO);          //finishing write operation
 }
 
-// User defined SPI Commands - (1) Includes Writing Data to SPI, (2) Waiting for write,
-// (3) Writing commands to SPI, (4) Reading from SPI, and (5) erasing flash chip
+void I2C_ReadByte(char *data, char slaveAddr, char memoryAddrHigh, char memoryAddrLow){
+    WaitTIP(); //check that nothing is currently in transmission
 
-// (1) Writing to SPI
-void WriteDataToSPI(char *MemAddress, int FlashAddress, int size)
-{
-    int i = 0;
+    I2C_Transmit(slaveAddr, WRITE_STA);     //set write to slave, start cmd
+    I2C_Transmit(memoryAddrHigh, WRITING);  //write 2 bytes corresponding to 2 byte internal addr
+    I2C_Transmit(memoryAddrLow, WRITING);
 
-    // to enable writing, send command 0x06 to flash chip
-    WriteCommandSPI(0x06);
+    I2C_transmit(slaveAddr|1, WRITE_STA);   //send repeated start condition 
+    I2C_CR = 0x29                           //set RD bit and ACK in command reg; [5] = RD, [3] = NACK, [0] = IACK
+    while(!(I2C_CR & 1)){}                  //check status reg [0] = interrupt flag --> if '1', data has been received
 
-    // still manually enabling/disabling CS for more complicated transmissions
-    // since we dont want the actual internal memory cell writes yet
-    Enable_SPI_CS();
-    // getting chip to write data, Page Program to chip by sending command 0x02
-    WriteSPIChar(0x02);
-    // sending 3 bytes that make up the 24 bit internal flash address
-    // gotta break it up into 3
-    WriteSPIChar(FlashAddress >> 16);
-    WriteSPIChar(FlashAddress >> 8);
-    WriteSPIChar(FlashAddress);
-
-    // can now send up to 256 bytes of data by writing one byte at a time to 
-    // SPI controller data register
-    for(i=0; i<size; i++)
-    {
-        WriteSPIChar(MemAddress[i]);
-    }
-
-    // once CS is high again, chip performs actual internal memory cell writes
-    Disable_SPI_CS();
-    WaitForSPIWriteComplete();
+    *data = I2C_RXR;                        //received data found in received register
+    I2C_CR = 0x41;                          //finish operation and clear pending interrupt; [6] = STO, [0] = IACK
 }
 
-// (2) Waiting for write to complete
-void WaitForSPIWriteComplete()
-{
-    Enable_SPI_CS();
-    // status register (SPSR) reset value: 0x05
-    WriteSPIChar(0x05);
-    // WriteSPIChar will return received data, if bit 0 (RFEMPTY) is high,
-    // FIFO is empty and write is complete
-    while(WriteSPIChar(0x00)&0x01);
-    Disable_SPI_CS();
-}
-
-// (3) Writing commands to SPI
-void WriteCommandSPI(int cmd)
-{
-    // need to enable flash chip before speaking to it
-    // this is done by setting CS# low by writing to SPI controller CS register
-    // need to disable this when we are finished each interaction
-    Enable_SPI_CS();
-    WriteSPIChar(cmd);
-    Disable_SPI_CS();
-}
-
-// (4) Reading from SPI
-void ReadDataFromSPI(char *MemAddress, int FlashAddress, int size)
-{
-    int i =0;
-
-    // still manually enabling/disabling CS for more complicated transmissions
-    Enable_SPI_CS();
-    // issuing single read command 0x03
-    WriteSPIChar(0x03);
-    // followed by 24 bit internal start address broken into 3 bytes
-    WriteSPIChar(FlashAddress >> 16);
-    WriteSPIChar(FlashAddress >> 8);
-    WriteSPIChar(FlashAddress);
-
-    for(i=0; i<size; i++)
-    {
-        // can write dummy bytes to device 
-        // any data is fine, they are ignored by mem chip since we are in READ mode
-        // teach write will return data stored in successive incremental locations
-        MemAddress[i] = (unsigned char) WriteSPIChar(0x00);
-    }
-
-    Disable_SPI_CS();
-}
-
-// (5) Erasing Flash Chip
-void EraseFlashChip(void)
-{
-    // enabling device for writing
-    WriteCommandSPI(0x06);
-    // either writing hex C7 or 60 erases the chip
-    WriteCommandSPI(0xC7);
-    // Wait for write to complete
-
-}
 
 /******************************************************************************************************************************
 * Start of user program
@@ -600,11 +466,9 @@ void main()
     **/
 
 /*************************************************************************************************
-**  CPEN 412 Lab 3: SPI UserProgram
+**  CPEN 412 Lab 5: I2C UserProgram
 *************************************************************************************************/
-    SPI_Init();
-
-    printf("This proves SPI works\n");
+    I2C_Init();
 
 
    // programs should NOT exit as there is nothing to Exit TO !!!!!!
