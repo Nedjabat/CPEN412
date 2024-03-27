@@ -140,6 +140,40 @@ void EraseFlashChip(void);
 **  out which timer is producing the interrupt
 **
 *****************************************************************************************/
+char xtod(int c)
+{
+    if ((char)(c) <= (char)('9'))
+        return c - (char)(0x30);    // 0 - 9 = 0x30 - 0x39 so convert to number by sutracting 0x30
+    else if((char)(c) > (char)('F'))    // assume lower case
+        return c - (char)(0x57);    // a-f = 0x61-66 so needs to be converted to 0x0A - 0x0F so subtract 0x57
+    else
+        return c - (char)(0x37);    // A-F = 0x41-46 so needs to be converted to 0x0A - 0x0F so subtract 0x37
+}
+
+int Get2HexDigits(char *CheckSumPtr)
+{
+    register int i = (xtod(_getch()) << 4) | (xtod(_getch()));
+
+    if(CheckSumPtr)
+        *CheckSumPtr += i ;
+
+    return i ;
+}
+
+int Get4HexDigits(char *CheckSumPtr)
+{
+    return (Get2HexDigits(CheckSumPtr) << 8) | (Get2HexDigits(CheckSumPtr));
+}
+
+int Get6HexDigits(char *CheckSumPtr)
+{
+    return (Get4HexDigits(CheckSumPtr) << 8) | (Get2HexDigits(CheckSumPtr));
+}
+
+int Get8HexDigits(char *CheckSumPtr)
+{
+    return (Get4HexDigits(CheckSumPtr) << 16) | (Get4HexDigits(CheckSumPtr));
+}
 
 void Timer_ISR()
 {
