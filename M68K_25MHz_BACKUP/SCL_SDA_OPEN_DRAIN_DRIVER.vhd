@@ -25,3 +25,4 @@ begin
 	scl_pad_i <= SCL;
 	sda_pad_i <= SDA;
 end architecture;
+

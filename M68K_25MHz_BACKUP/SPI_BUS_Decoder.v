@@ -1,16 +1,16 @@
-module SPI_BUS_Decoder (
+module IIC_SPI_BUS_Decoder (
 	input unsigned [31:0] Address,
-	input SPI_Select_H,
+	input IOSelect_H,
 	input AS_L, 
 		
-	output reg SPI_Enable_H
+	output reg IICO_Enable_H
 );
 
 
 	always@(*) begin
 
 		// defaults output are inactive, override as required later
-		SPI_Enable_H <= 0 ;
+		IICO_Enable_H <= 0 ;
 			
 		//  TODO: design decoder to produce SPI_Enable_H for addresses in range
 		//  [00408020 to 0040802F]. Use SPI_Select_H input to simplify decoder
@@ -21,9 +21,9 @@ module SPI_BUS_Decoder (
 		// SPI controller per 68k read/write. You don’t have to do anything more.
 
 		
-		if(SPI_Select_H) begin
-			if(Address[15:4] == 12'b100000000010 && AS_L == 0)
-				SPI_Enable_H <=1;
+		if(IOSelect_H) begin
+			if(Address[15:4] == 12'b100000000000 && AS_L == 0)
+				IICO_Enable_H <=1;
 		end
 			
 			

@@ -5462,24 +5462,24 @@ data_a[13] => ~NO_FANOUT~
 data_a[14] => ~NO_FANOUT~
 data_a[15] => ~NO_FANOUT~
 data_b[0] => ~NO_FANOUT~
-address_a[0] => altsyncram_0ok1:auto_generated.address_a[0]
-address_a[1] => altsyncram_0ok1:auto_generated.address_a[1]
-address_a[2] => altsyncram_0ok1:auto_generated.address_a[2]
-address_a[3] => altsyncram_0ok1:auto_generated.address_a[3]
-address_a[4] => altsyncram_0ok1:auto_generated.address_a[4]
-address_a[5] => altsyncram_0ok1:auto_generated.address_a[5]
-address_a[6] => altsyncram_0ok1:auto_generated.address_a[6]
-address_a[7] => altsyncram_0ok1:auto_generated.address_a[7]
-address_a[8] => altsyncram_0ok1:auto_generated.address_a[8]
-address_a[9] => altsyncram_0ok1:auto_generated.address_a[9]
-address_a[10] => altsyncram_0ok1:auto_generated.address_a[10]
-address_a[11] => altsyncram_0ok1:auto_generated.address_a[11]
-address_a[12] => altsyncram_0ok1:auto_generated.address_a[12]
-address_a[13] => altsyncram_0ok1:auto_generated.address_a[13]
+address_a[0] => altsyncram_64n1:auto_generated.address_a[0]
+address_a[1] => altsyncram_64n1:auto_generated.address_a[1]
+address_a[2] => altsyncram_64n1:auto_generated.address_a[2]
+address_a[3] => altsyncram_64n1:auto_generated.address_a[3]
+address_a[4] => altsyncram_64n1:auto_generated.address_a[4]
+address_a[5] => altsyncram_64n1:auto_generated.address_a[5]
+address_a[6] => altsyncram_64n1:auto_generated.address_a[6]
+address_a[7] => altsyncram_64n1:auto_generated.address_a[7]
+address_a[8] => altsyncram_64n1:auto_generated.address_a[8]
+address_a[9] => altsyncram_64n1:auto_generated.address_a[9]
+address_a[10] => altsyncram_64n1:auto_generated.address_a[10]
+address_a[11] => altsyncram_64n1:auto_generated.address_a[11]
+address_a[12] => altsyncram_64n1:auto_generated.address_a[12]
+address_a[13] => altsyncram_64n1:auto_generated.address_a[13]
 address_b[0] => ~NO_FANOUT~
 addressstall_a => ~NO_FANOUT~
 addressstall_b => ~NO_FANOUT~
-clock0 => altsyncram_0ok1:auto_generated.clock0
+clock0 => altsyncram_64n1:auto_generated.clock0
 clock1 => ~NO_FANOUT~
 clocken0 => ~NO_FANOUT~
 clocken1 => ~NO_FANOUT~
@@ -5489,63 +5489,63 @@ aclr0 => ~NO_FANOUT~
 aclr1 => ~NO_FANOUT~
 byteena_a[0] => ~NO_FANOUT~
 byteena_b[0] => ~NO_FANOUT~
-q_a[0] <= altsyncram_0ok1:auto_generated.q_a[0]
-q_a[1] <= altsyncram_0ok1:auto_generated.q_a[1]
-q_a[2] <= altsyncram_0ok1:auto_generated.q_a[2]
-q_a[3] <= altsyncram_0ok1:auto_generated.q_a[3]
-q_a[4] <= altsyncram_0ok1:auto_generated.q_a[4]
-q_a[5] <= altsyncram_0ok1:auto_generated.q_a[5]
-q_a[6] <= altsyncram_0ok1:auto_generated.q_a[6]
-q_a[7] <= altsyncram_0ok1:auto_generated.q_a[7]
-q_a[8] <= altsyncram_0ok1:auto_generated.q_a[8]
-q_a[9] <= altsyncram_0ok1:auto_generated.q_a[9]
-q_a[10] <= altsyncram_0ok1:auto_generated.q_a[10]
-q_a[11] <= altsyncram_0ok1:auto_generated.q_a[11]
-q_a[12] <= altsyncram_0ok1:auto_generated.q_a[12]
-q_a[13] <= altsyncram_0ok1:auto_generated.q_a[13]
-q_a[14] <= altsyncram_0ok1:auto_generated.q_a[14]
-q_a[15] <= altsyncram_0ok1:auto_generated.q_a[15]
+q_a[0] <= altsyncram_64n1:auto_generated.q_a[0]
+q_a[1] <= altsyncram_64n1:auto_generated.q_a[1]
+q_a[2] <= altsyncram_64n1:auto_generated.q_a[2]
+q_a[3] <= altsyncram_64n1:auto_generated.q_a[3]
+q_a[4] <= altsyncram_64n1:auto_generated.q_a[4]
+q_a[5] <= altsyncram_64n1:auto_generated.q_a[5]
+q_a[6] <= altsyncram_64n1:auto_generated.q_a[6]
+q_a[7] <= altsyncram_64n1:auto_generated.q_a[7]
+q_a[8] <= altsyncram_64n1:auto_generated.q_a[8]
+q_a[9] <= altsyncram_64n1:auto_generated.q_a[9]
+q_a[10] <= altsyncram_64n1:auto_generated.q_a[10]
+q_a[11] <= altsyncram_64n1:auto_generated.q_a[11]
+q_a[12] <= altsyncram_64n1:auto_generated.q_a[12]
+q_a[13] <= altsyncram_64n1:auto_generated.q_a[13]
+q_a[14] <= altsyncram_64n1:auto_generated.q_a[14]
+q_a[15] <= altsyncram_64n1:auto_generated.q_a[15]
 q_b[0] <= <GND>
 eccstatus[0] <= <GND>
 eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated
-address_a[0] => altsyncram_icm2:altsyncram1.address_a[0]
-address_a[1] => altsyncram_icm2:altsyncram1.address_a[1]
-address_a[2] => altsyncram_icm2:altsyncram1.address_a[2]
-address_a[3] => altsyncram_icm2:altsyncram1.address_a[3]
-address_a[4] => altsyncram_icm2:altsyncram1.address_a[4]
-address_a[5] => altsyncram_icm2:altsyncram1.address_a[5]
-address_a[6] => altsyncram_icm2:altsyncram1.address_a[6]
-address_a[7] => altsyncram_icm2:altsyncram1.address_a[7]
-address_a[8] => altsyncram_icm2:altsyncram1.address_a[8]
-address_a[9] => altsyncram_icm2:altsyncram1.address_a[9]
-address_a[10] => altsyncram_icm2:altsyncram1.address_a[10]
-address_a[11] => altsyncram_icm2:altsyncram1.address_a[11]
-address_a[12] => altsyncram_icm2:altsyncram1.address_a[12]
-address_a[13] => altsyncram_icm2:altsyncram1.address_a[13]
-clock0 => altsyncram_icm2:altsyncram1.clock0
-q_a[0] <= altsyncram_icm2:altsyncram1.q_a[0]
-q_a[1] <= altsyncram_icm2:altsyncram1.q_a[1]
-q_a[2] <= altsyncram_icm2:altsyncram1.q_a[2]
-q_a[3] <= altsyncram_icm2:altsyncram1.q_a[3]
-q_a[4] <= altsyncram_icm2:altsyncram1.q_a[4]
-q_a[5] <= altsyncram_icm2:altsyncram1.q_a[5]
-q_a[6] <= altsyncram_icm2:altsyncram1.q_a[6]
-q_a[7] <= altsyncram_icm2:altsyncram1.q_a[7]
-q_a[8] <= altsyncram_icm2:altsyncram1.q_a[8]
-q_a[9] <= altsyncram_icm2:altsyncram1.q_a[9]
-q_a[10] <= altsyncram_icm2:altsyncram1.q_a[10]
-q_a[11] <= altsyncram_icm2:altsyncram1.q_a[11]
-q_a[12] <= altsyncram_icm2:altsyncram1.q_a[12]
-q_a[13] <= altsyncram_icm2:altsyncram1.q_a[13]
-q_a[14] <= altsyncram_icm2:altsyncram1.q_a[14]
-q_a[15] <= altsyncram_icm2:altsyncram1.q_a[15]
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated
+address_a[0] => altsyncram_ooo2:altsyncram1.address_a[0]
+address_a[1] => altsyncram_ooo2:altsyncram1.address_a[1]
+address_a[2] => altsyncram_ooo2:altsyncram1.address_a[2]
+address_a[3] => altsyncram_ooo2:altsyncram1.address_a[3]
+address_a[4] => altsyncram_ooo2:altsyncram1.address_a[4]
+address_a[5] => altsyncram_ooo2:altsyncram1.address_a[5]
+address_a[6] => altsyncram_ooo2:altsyncram1.address_a[6]
+address_a[7] => altsyncram_ooo2:altsyncram1.address_a[7]
+address_a[8] => altsyncram_ooo2:altsyncram1.address_a[8]
+address_a[9] => altsyncram_ooo2:altsyncram1.address_a[9]
+address_a[10] => altsyncram_ooo2:altsyncram1.address_a[10]
+address_a[11] => altsyncram_ooo2:altsyncram1.address_a[11]
+address_a[12] => altsyncram_ooo2:altsyncram1.address_a[12]
+address_a[13] => altsyncram_ooo2:altsyncram1.address_a[13]
+clock0 => altsyncram_ooo2:altsyncram1.clock0
+q_a[0] <= altsyncram_ooo2:altsyncram1.q_a[0]
+q_a[1] <= altsyncram_ooo2:altsyncram1.q_a[1]
+q_a[2] <= altsyncram_ooo2:altsyncram1.q_a[2]
+q_a[3] <= altsyncram_ooo2:altsyncram1.q_a[3]
+q_a[4] <= altsyncram_ooo2:altsyncram1.q_a[4]
+q_a[5] <= altsyncram_ooo2:altsyncram1.q_a[5]
+q_a[6] <= altsyncram_ooo2:altsyncram1.q_a[6]
+q_a[7] <= altsyncram_ooo2:altsyncram1.q_a[7]
+q_a[8] <= altsyncram_ooo2:altsyncram1.q_a[8]
+q_a[9] <= altsyncram_ooo2:altsyncram1.q_a[9]
+q_a[10] <= altsyncram_ooo2:altsyncram1.q_a[10]
+q_a[11] <= altsyncram_ooo2:altsyncram1.q_a[11]
+q_a[12] <= altsyncram_ooo2:altsyncram1.q_a[12]
+q_a[13] <= altsyncram_ooo2:altsyncram1.q_a[13]
+q_a[14] <= altsyncram_ooo2:altsyncram1.q_a[14]
+q_a[15] <= altsyncram_ooo2:altsyncram1.q_a[15]
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|altsyncram_icm2:altsyncram1
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|altsyncram_ooo2:altsyncram1
 address_a[0] => ram_block3a0.PORTAADDR
 address_a[0] => ram_block3a1.PORTAADDR
 address_a[0] => ram_block3a2.PORTAADDR
@@ -6517,7 +6517,7 @@ q_b[15] <= mux_4hb:mux7.result[15]
 wren_b => decode_5la:decode5.enable
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|altsyncram_icm2:altsyncram1|decode_5la:decode4
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|altsyncram_ooo2:altsyncram1|decode_5la:decode4
 data[0] => eq_node[1].IN0
 data[0] => eq_node[0].IN0
 enable => eq_node[1].IN1
@@ -6526,7 +6526,7 @@ eq[0] <= eq_node[0].DB_MAX_OUTPUT_PORT_TYPE
 eq[1] <= eq_node[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|altsyncram_icm2:altsyncram1|decode_5la:decode5
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|altsyncram_ooo2:altsyncram1|decode_5la:decode5
 data[0] => eq_node[1].IN0
 data[0] => eq_node[0].IN0
 enable => eq_node[1].IN1
@@ -6535,21 +6535,21 @@ eq[0] <= eq_node[0].DB_MAX_OUTPUT_PORT_TYPE
 eq[1] <= eq_node[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|altsyncram_icm2:altsyncram1|decode_u0a:rden_decode_a
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|altsyncram_ooo2:altsyncram1|decode_u0a:rden_decode_a
 data[0] => eq_node[1].IN0
 data[0] => eq_node[0].IN0
 eq[0] <= eq_node[0].DB_MAX_OUTPUT_PORT_TYPE
 eq[1] <= eq_node[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|altsyncram_icm2:altsyncram1|decode_u0a:rden_decode_b
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|altsyncram_ooo2:altsyncram1|decode_u0a:rden_decode_b
 data[0] => eq_node[1].IN0
 data[0] => eq_node[0].IN0
 eq[0] <= eq_node[0].DB_MAX_OUTPUT_PORT_TYPE
 eq[1] <= eq_node[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|altsyncram_icm2:altsyncram1|mux_4hb:mux6
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|altsyncram_ooo2:altsyncram1|mux_4hb:mux6
 data[0] => l1_w0_n0_mux_dataout.IN1
 data[1] => l1_w1_n0_mux_dataout.IN1
 data[2] => l1_w2_n0_mux_dataout.IN1
@@ -6632,7 +6632,7 @@ sel[0] => l1_w9_n0_mux_dataout.IN0
 sel[0] => _.IN0
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|altsyncram_icm2:altsyncram1|mux_4hb:mux7
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|altsyncram_ooo2:altsyncram1|mux_4hb:mux7
 data[0] => l1_w0_n0_mux_dataout.IN1
 data[1] => l1_w1_n0_mux_dataout.IN1
 data[2] => l1_w2_n0_mux_dataout.IN1
@@ -6715,7 +6715,7 @@ sel[0] => l1_w9_n0_mux_dataout.IN0
 sel[0] => _.IN0
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|sld_mod_ram_rom:mgl_prim2
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|sld_mod_ram_rom:mgl_prim2
 tck_usr <= sld_jtag_endpoint_adapter:jtag_signal_adapter.adapted_tck
 address[0] <= ram_rom_addr_reg[0].DB_MAX_OUTPUT_PORT_TYPE
 address[1] <= ram_rom_addr_reg[1].DB_MAX_OUTPUT_PORT_TYPE
@@ -6805,7 +6805,7 @@ ir_out[7] <= sld_jtag_endpoint_adapter:jtag_signal_adapter.ir_out[7]
 tdo <= sld_jtag_endpoint_adapter:jtag_signal_adapter.tdo
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter
 raw_tck => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst.raw_tck
 raw_tms => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst.raw_tms
 tdi => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst.tdi
@@ -6888,7 +6888,7 @@ adapted_ir_out[6] => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_im
 adapted_ir_out[7] => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst.adapted_ir_out[7]
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst
 raw_tck => adapted_tck.DATAIN
 raw_tms => adapted_tms.DATAIN
 tdi => adapted_tdi.DATAIN
@@ -6971,7 +6971,7 @@ adapted_ir_out[6] => ir_out[6].DATAIN
 adapted_ir_out[7] => ir_out[7].DATAIN
 
 
-|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_0ok1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr
+|MC68K|OnChipROM16KWords:inst16|OnChipRom16KWord:inst3|altsyncram:altsyncram_component|altsyncram_64n1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr
 ROM_DATA[0] => Mux3.IN131
 ROM_DATA[1] => Mux2.IN131
 ROM_DATA[2] => Mux1.IN131
@@ -16780,44 +16780,44 @@ Clk => i2c_master_top:inst6.wb_clk_i
 Reset_L => i2c_master_top:inst6.arst_i
 WE_L => inst3.IN0
 WE_L => inst8.IN2
-IIC_SPI_Select => SPI_BUS_Decoder:inst2.SPI_Select_H
-AS_L => SPI_BUS_Decoder:inst2.AS_L
+IO_Select => IIC_SPI_BUS_Decoder:inst1.IOSelect_H
+AS_L => IIC_SPI_BUS_Decoder:inst1.AS_L
 AS_L => inst10.IN0
-Address[0] => SPI_BUS_Decoder:inst2.Address[0]
-Address[1] => SPI_BUS_Decoder:inst2.Address[1]
+Address[0] => IIC_SPI_BUS_Decoder:inst1.Address[0]
+Address[1] => IIC_SPI_BUS_Decoder:inst1.Address[1]
 Address[1] => i2c_master_top:inst6.wb_adr_i[0]
-Address[2] => SPI_BUS_Decoder:inst2.Address[2]
+Address[2] => IIC_SPI_BUS_Decoder:inst1.Address[2]
 Address[2] => i2c_master_top:inst6.wb_adr_i[1]
-Address[3] => SPI_BUS_Decoder:inst2.Address[3]
+Address[3] => IIC_SPI_BUS_Decoder:inst1.Address[3]
 Address[3] => i2c_master_top:inst6.wb_adr_i[2]
-Address[4] => SPI_BUS_Decoder:inst2.Address[4]
-Address[5] => SPI_BUS_Decoder:inst2.Address[5]
-Address[6] => SPI_BUS_Decoder:inst2.Address[6]
-Address[7] => SPI_BUS_Decoder:inst2.Address[7]
-Address[8] => SPI_BUS_Decoder:inst2.Address[8]
-Address[9] => SPI_BUS_Decoder:inst2.Address[9]
-Address[10] => SPI_BUS_Decoder:inst2.Address[10]
-Address[11] => SPI_BUS_Decoder:inst2.Address[11]
-Address[12] => SPI_BUS_Decoder:inst2.Address[12]
-Address[13] => SPI_BUS_Decoder:inst2.Address[13]
-Address[14] => SPI_BUS_Decoder:inst2.Address[14]
-Address[15] => SPI_BUS_Decoder:inst2.Address[15]
-Address[16] => SPI_BUS_Decoder:inst2.Address[16]
-Address[17] => SPI_BUS_Decoder:inst2.Address[17]
-Address[18] => SPI_BUS_Decoder:inst2.Address[18]
-Address[19] => SPI_BUS_Decoder:inst2.Address[19]
-Address[20] => SPI_BUS_Decoder:inst2.Address[20]
-Address[21] => SPI_BUS_Decoder:inst2.Address[21]
-Address[22] => SPI_BUS_Decoder:inst2.Address[22]
-Address[23] => SPI_BUS_Decoder:inst2.Address[23]
-Address[24] => SPI_BUS_Decoder:inst2.Address[24]
-Address[25] => SPI_BUS_Decoder:inst2.Address[25]
-Address[26] => SPI_BUS_Decoder:inst2.Address[26]
-Address[27] => SPI_BUS_Decoder:inst2.Address[27]
-Address[28] => SPI_BUS_Decoder:inst2.Address[28]
-Address[29] => SPI_BUS_Decoder:inst2.Address[29]
-Address[30] => SPI_BUS_Decoder:inst2.Address[30]
-Address[31] => SPI_BUS_Decoder:inst2.Address[31]
+Address[4] => IIC_SPI_BUS_Decoder:inst1.Address[4]
+Address[5] => IIC_SPI_BUS_Decoder:inst1.Address[5]
+Address[6] => IIC_SPI_BUS_Decoder:inst1.Address[6]
+Address[7] => IIC_SPI_BUS_Decoder:inst1.Address[7]
+Address[8] => IIC_SPI_BUS_Decoder:inst1.Address[8]
+Address[9] => IIC_SPI_BUS_Decoder:inst1.Address[9]
+Address[10] => IIC_SPI_BUS_Decoder:inst1.Address[10]
+Address[11] => IIC_SPI_BUS_Decoder:inst1.Address[11]
+Address[12] => IIC_SPI_BUS_Decoder:inst1.Address[12]
+Address[13] => IIC_SPI_BUS_Decoder:inst1.Address[13]
+Address[14] => IIC_SPI_BUS_Decoder:inst1.Address[14]
+Address[15] => IIC_SPI_BUS_Decoder:inst1.Address[15]
+Address[16] => IIC_SPI_BUS_Decoder:inst1.Address[16]
+Address[17] => IIC_SPI_BUS_Decoder:inst1.Address[17]
+Address[18] => IIC_SPI_BUS_Decoder:inst1.Address[18]
+Address[19] => IIC_SPI_BUS_Decoder:inst1.Address[19]
+Address[20] => IIC_SPI_BUS_Decoder:inst1.Address[20]
+Address[21] => IIC_SPI_BUS_Decoder:inst1.Address[21]
+Address[22] => IIC_SPI_BUS_Decoder:inst1.Address[22]
+Address[23] => IIC_SPI_BUS_Decoder:inst1.Address[23]
+Address[24] => IIC_SPI_BUS_Decoder:inst1.Address[24]
+Address[25] => IIC_SPI_BUS_Decoder:inst1.Address[25]
+Address[26] => IIC_SPI_BUS_Decoder:inst1.Address[26]
+Address[27] => IIC_SPI_BUS_Decoder:inst1.Address[27]
+Address[28] => IIC_SPI_BUS_Decoder:inst1.Address[28]
+Address[29] => IIC_SPI_BUS_Decoder:inst1.Address[29]
+Address[30] => IIC_SPI_BUS_Decoder:inst1.Address[30]
+Address[31] => IIC_SPI_BUS_Decoder:inst1.Address[31]
 SCL_GPIO_0 <> SCL_SDA_OPEN_DRAIN_DRIVER:inst13.SCL
 SDA_GPIO_0 <> SCL_SDA_OPEN_DRAIN_DRIVER:inst13.SDA
 DataIn[0] => i2c_master_top:inst6.wb_dat_i[0]
@@ -17492,22 +17492,22 @@ sda_o <= <GND>
 sda_oen <= isda_oen.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MC68K|IIC_SPI_Interface:inst32|SPI_BUS_Decoder:inst2
+|MC68K|IIC_SPI_Interface:inst32|IIC_SPI_BUS_Decoder:inst1
 Address[0] => ~NO_FANOUT~
 Address[1] => ~NO_FANOUT~
 Address[2] => ~NO_FANOUT~
 Address[3] => ~NO_FANOUT~
 Address[4] => Equal0.IN11
-Address[5] => Equal0.IN1
-Address[6] => Equal0.IN10
-Address[7] => Equal0.IN9
-Address[8] => Equal0.IN8
-Address[9] => Equal0.IN7
-Address[10] => Equal0.IN6
-Address[11] => Equal0.IN5
-Address[12] => Equal0.IN4
-Address[13] => Equal0.IN3
-Address[14] => Equal0.IN2
+Address[5] => Equal0.IN10
+Address[6] => Equal0.IN9
+Address[7] => Equal0.IN8
+Address[8] => Equal0.IN7
+Address[9] => Equal0.IN6
+Address[10] => Equal0.IN5
+Address[11] => Equal0.IN4
+Address[12] => Equal0.IN3
+Address[13] => Equal0.IN2
+Address[14] => Equal0.IN1
 Address[15] => Equal0.IN0
 Address[16] => ~NO_FANOUT~
 Address[17] => ~NO_FANOUT~
@@ -17525,9 +17525,9 @@ Address[28] => ~NO_FANOUT~
 Address[29] => ~NO_FANOUT~
 Address[30] => ~NO_FANOUT~
 Address[31] => ~NO_FANOUT~
-SPI_Select_H => SPI_Enable_H.OUTPUTSELECT
+IOSelect_H => IICO_Enable_H.OUTPUTSELECT
 AS_L => always0.IN1
-SPI_Enable_H <= SPI_Enable_H.DB_MAX_OUTPUT_PORT_TYPE
+IICO_Enable_H <= IICO_Enable_H.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |MC68K|IIC_SPI_Interface:inst32|SCL_SDA_OPEN_DRAIN_DRIVER:inst13

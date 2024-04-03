@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("C:/M68K/") File("MC68K.sof") MfrSpec(OpMask(1) SEC_Device(EPCS128) Child_OpMask(1 0));
+		Device PartName(5CSEMA5F31) Path("C:/M68K/CPEN412/M68K_25MHz_BACKUP/") File("MC68K.sof") MfrSpec(OpMask(1) SEC_Device(EPCS128) Child_OpMask(1 0));
 
 ChainEnd;
 

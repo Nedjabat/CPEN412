@@ -83,7 +83,7 @@ module OnChipRom16KWord (
 		altsyncram_component.address_aclr_a = "NONE",
 		altsyncram_component.clock_enable_input_a = "BYPASS",
 		altsyncram_component.clock_enable_output_a = "BYPASS",
-		altsyncram_component.init_file = "../../../../M68K/Lab1v2/m68kdebugmonitor.mif",
+		altsyncram_component.init_file = "../../../M68K/CPEN412/Lab4b/LatestDbeugMonitor/Lab4debugmonitor.mif",
 		altsyncram_component.intended_device_family = "Cyclone V",
 		altsyncram_component.lpm_hint = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=ROM1",
 		altsyncram_component.lpm_type = "altsyncram",
@@ -118,7 +118,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "1"
 // Retrieval info: PRIVATE: JTAG_ID STRING "ROM1"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MIFfilename STRING "../../../../M68K/Lab1v2/m68kdebugmonitor.mif"
+// Retrieval info: PRIVATE: MIFfilename STRING "../../../M68K/CPEN412/Lab4b/LatestDbeugMonitor/Lab4debugmonitor.mif"
 // Retrieval info: PRIVATE: NUMWORDS_A NUMERIC "16384"
 // Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
 // Retrieval info: PRIVATE: RegAddr NUMERIC "1"
@@ -133,7 +133,7 @@ endmodule
 // Retrieval info: CONSTANT: ADDRESS_ACLR_A STRING "NONE"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
-// Retrieval info: CONSTANT: INIT_FILE STRING "../../../../M68K/Lab1v2/m68kdebugmonitor.mif"
+// Retrieval info: CONSTANT: INIT_FILE STRING "../../../M68K/CPEN412/Lab4b/LatestDbeugMonitor/Lab4debugmonitor.mif"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=ROM1"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
