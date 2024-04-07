@@ -374,6 +374,8 @@ set_location_assignment PIN_AK29 -to LCD_BLON
 
 set_location_assignment PIN_J12 -to CanBusSelect_H
 set_location_assignment PIN_AG26 -to LCD_Contrast_DE1
+set_global_assignment -name VERILOG_FILE can_registers.v
+set_global_assignment -name VERILOG_FILE can_top.v
 set_global_assignment -name VERILOG_FILE simple_spi_top.v
 set_global_assignment -name VECTOR_WAVEFORM_FILE "Waveform68k-V15.0-DE1SoC.vwf"
 set_global_assignment -name VECTOR_WAVEFORM_FILE "simulation/qsim/Waveform68k-V15.0-DE1SoC-Output.vwf"
@@ -437,4 +439,5 @@ set_global_assignment -name QIP_FILE OnChipRom16KWord.qip
 set_global_assignment -name VHDL_FILE SPI_BUS_Decoder.vhd
 set_global_assignment -name VERILOG_FILE SPI_BUS_Decoder.v
 set_global_assignment -name VHDL_FILE SCL_SDA_OPEN_DRAIN_DRIVER.vhd
+set_global_assignment -name VHDL_FILE CanBusDecoder.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
