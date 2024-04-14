@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at M68kDramController_Verilog.v(182): always construct contains both blocking and non-blocking assignments File: C:/ubc/yair-ubc.cpen412/final_project_template/M68kDramController_Verilog.v Line: 182

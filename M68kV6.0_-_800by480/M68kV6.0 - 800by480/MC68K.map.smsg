@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at SramBlockDecoder_Verilog.v(20): always construct contains both blocking and non-blocking assignments File: C:/M68kV6.0 - 800by480/SramBlockDecoder_Verilog.v Line: 20

@@ -86,7 +86,9 @@ void Task1(void *pdata)
                 led89++;
             }
         }
-        else led70++;
+        else{ 
+            led70++;
+        }
        OSTimeDly(30);
     }
 }

@@ -1,0 +1,29 @@
+module VGA_Decoder (
+
+    input unsigned [31:0] Address, 	//[7:0] Address = [7:0] octl
+												//[15:8] Address = [7:0] ocry
+												//[23:16] Address = [7:0] ocrx
+    input VGA_Select_H,
+
+    output reg [7:0] ocrx,
+	 output reg [7:0] ocry,
+	 output reg [7:0] octl,
+	 
+	 output reg VGA_Enable_H
+);
+
+always@(*) begin
+	
+	VGA_Enable_H <= 0;
+	
+	if(Address[23:16] == 8'b11110000 && VGA_Select_H == 1) begin
+       VGA_Enable_H <= 1;
+	end
+	
+	octl <= 8'b1111001;
+	ocry <= 8'd20;
+	ocrx <= 8'd60;	 
+			
+end
+
+endmodule
